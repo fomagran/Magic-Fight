@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0467E6A4260B3C9A00C1C416 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0467E6A3260B3C9A00C1C416 /* LoadingViewController.swift */; };
+		0467E6A7260B45F900C1C416 /* DesignableSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0467E6A6260B45F900C1C416 /* DesignableSlider.swift */; };
 		04A79E6F25B66DD600754FDD /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A79E6E25B66DD600754FDD /* StartViewController.swift */; };
 		04A79E7225B66E2200754FDD /* UserRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A79E7125B66E2200754FDD /* UserRoomViewController.swift */; };
 		04A79E7525B66EE800754FDD /* UserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A79E7425B66EE800754FDD /* UserInfoViewController.swift */; };
@@ -23,6 +25,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0467E6A3260B3C9A00C1C416 /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
+		0467E6A6260B45F900C1C416 /* DesignableSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableSlider.swift; sourceTree = "<group>"; };
 		04A79E6E25B66DD600754FDD /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		04A79E7125B66E2200754FDD /* UserRoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRoomViewController.swift; sourceTree = "<group>"; };
 		04A79E7425B66EE800754FDD /* UserInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoViewController.swift; sourceTree = "<group>"; };
@@ -84,6 +88,8 @@
 				04A79E7D25B6703B00754FDD /* GameViewController.swift */,
 				04A79E8025B6747600754FDD /* SupplierViewController.swift */,
 				04A79E8325B674DE00754FDD /* SupplierCollectionViewCell.swift */,
+				0467E6A3260B3C9A00C1C416 /* LoadingViewController.swift */,
+				0467E6A6260B45F900C1C416 /* DesignableSlider.swift */,
 			);
 			path = "Magic Fight";
 			sourceTree = "<group>";
@@ -166,7 +172,9 @@
 				04A79E7E25B6703B00754FDD /* GameViewController.swift in Sources */,
 				04FFADA625B51FFF0045D75D /* AppDelegate.swift in Sources */,
 				04A79E7225B66E2200754FDD /* UserRoomViewController.swift in Sources */,
+				0467E6A4260B3C9A00C1C416 /* LoadingViewController.swift in Sources */,
 				04A79E7825B66F4600754FDD /* UserInfoCollectionViewCell.swift in Sources */,
+				0467E6A7260B45F900C1C416 /* DesignableSlider.swift in Sources */,
 				04FFADA825B51FFF0045D75D /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
