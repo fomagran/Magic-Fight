@@ -9,7 +9,6 @@ import UIKit
 
 class GameViewController: UIViewController {
 
-    
     @IBOutlet weak var card5: UIImageView!
     @IBOutlet weak var card4: UIImageView!
     @IBOutlet weak var card3: UIImageView!
@@ -29,5 +28,4 @@ class GameViewController: UIViewController {
 
   
     }
-
 }

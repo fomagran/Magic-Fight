@@ -12,6 +12,10 @@
 		04BF55A8261D482100BFD44E /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BF55A7261D482100BFD44E /* MainViewController.swift */; };
 		04BF55AC261D4A4300BFD44E /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BF55AB261D4A4300BFD44E /* LoadingViewController.swift */; };
 		04BF55B0261D4A9800BFD44E /* SoundSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BF55AF261D4A9800BFD44E /* SoundSettingViewController.swift */; };
+		04BF55B7261D510400BFD44E /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BF55B6261D510400BFD44E /* Card.swift */; };
+		04BF55BB261D5B0B00BFD44E /* GemCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BF55BA261D5B0B00BFD44E /* GemCard.swift */; };
+		04BF55BF261D612F00BFD44E /* BanCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BF55BE261D612F00BFD44E /* BanCardViewController.swift */; };
+		04BF55C2261D618D00BFD44E /* TurnViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BF55C1261D618D00BFD44E /* TurnViewController.swift */; };
 		04FFADA625B51FFF0045D75D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FFADA525B51FFF0045D75D /* AppDelegate.swift */; };
 		04FFADA825B51FFF0045D75D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FFADA725B51FFF0045D75D /* SceneDelegate.swift */; };
 		04FFADAD25B51FFF0045D75D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04FFADAB25B51FFF0045D75D /* Main.storyboard */; };
@@ -25,6 +29,10 @@
 		04BF55A7261D482100BFD44E /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		04BF55AB261D4A4300BFD44E /* LoadingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoadingViewController.swift; path = "../../../../../Library/Mobile Documents/com~apple~CloudDocs/.Trash/LoadingViewController.swift"; sourceTree = "<group>"; };
 		04BF55AF261D4A9800BFD44E /* SoundSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SoundSettingViewController.swift; path = "../../../../../Library/Mobile Documents/com~apple~CloudDocs/.Trash/SoundSettingViewController.swift"; sourceTree = "<group>"; };
+		04BF55B6261D510400BFD44E /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		04BF55BA261D5B0B00BFD44E /* GemCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GemCard.swift; sourceTree = "<group>"; };
+		04BF55BE261D612F00BFD44E /* BanCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BanCardViewController.swift; sourceTree = "<group>"; };
+		04BF55C1261D618D00BFD44E /* TurnViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TurnViewController.swift; sourceTree = "<group>"; };
 		04FFADA225B51FFF0045D75D /* Magic Fight.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Magic Fight.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		04FFADA525B51FFF0045D75D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		04FFADA725B51FFF0045D75D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -52,8 +60,19 @@
 				04BF55A7261D482100BFD44E /* MainViewController.swift */,
 				04A79E7D25B6703B00754FDD /* GameViewController.swift */,
 				04BF55AF261D4A9800BFD44E /* SoundSettingViewController.swift */,
+				04BF55BE261D612F00BFD44E /* BanCardViewController.swift */,
+				04BF55C1261D618D00BFD44E /* TurnViewController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		04BF55B5261D50FA00BFD44E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				04BF55B6261D510400BFD44E /* Card.swift */,
+				04BF55BA261D5B0B00BFD44E /* GemCard.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		04FFAD9925B51FFF0045D75D = {
@@ -75,6 +94,7 @@
 		04FFADA425B51FFF0045D75D /* Magic Fight */ = {
 			isa = PBXGroup;
 			children = (
+				04BF55B5261D50FA00BFD44E /* Model */,
 				04BF55A4261D47CF00BFD44E /* Controller */,
 				04FFADA525B51FFF0045D75D /* AppDelegate.swift */,
 				04FFADA725B51FFF0045D75D /* SceneDelegate.swift */,
@@ -157,13 +177,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04BF55BF261D612F00BFD44E /* BanCardViewController.swift in Sources */,
 				04A79E7E25B6703B00754FDD /* GameViewController.swift in Sources */,
+				04BF55B7261D510400BFD44E /* Card.swift in Sources */,
 				04FFADA625B51FFF0045D75D /* AppDelegate.swift in Sources */,
 				0467E6A7260B45F900C1C416 /* DesignableSlider.swift in Sources */,
 				04FFADA825B51FFF0045D75D /* SceneDelegate.swift in Sources */,
+				04BF55C2261D618D00BFD44E /* TurnViewController.swift in Sources */,
 				04BF55B0261D4A9800BFD44E /* SoundSettingViewController.swift in Sources */,
 				04BF55A8261D482100BFD44E /* MainViewController.swift in Sources */,
 				04BF55AC261D4A4300BFD44E /* LoadingViewController.swift in Sources */,
+				04BF55BB261D5B0B00BFD44E /* GemCard.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
