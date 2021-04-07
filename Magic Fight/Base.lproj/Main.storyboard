@@ -7,10 +7,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Start View Controller-->
+        <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="StartViewController" customModule="Magic_Fight" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -61,9 +61,6 @@
                             <constraint firstItem="BTv-NH-M5w" firstAttribute="leading" secondItem="MQs-za-pii" secondAttribute="leading" id="uOl-Xa-Bgx"/>
                         </constraints>
                     </view>
-                    <connections>
-                        <outlet property="startLabel" destination="Krn-M7-qs7" id="PLP-Td-kkI"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="HFW-Tx-cgw">
@@ -112,10 +109,10 @@
             </objects>
             <point key="canvasLocation" x="128.57142857142856" y="-217.39130434782609"/>
         </scene>
-        <!--User Room View Controller-->
+        <!--Main View Controller-->
         <scene sceneID="3ts-Fc-hbU">
             <objects>
-                <viewController storyboardIdentifier="UserRoomViewController" modalTransitionStyle="crossDissolve" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="2hf-fX-FYZ" customClass="UserRoomViewController" customModule="Magic_Fight" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MainViewController" modalTransitionStyle="crossDissolve" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="2hf-fX-FYZ" customClass="MainViewController" customModule="Magic_Fight" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wad-wv-SX9">
                         <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -164,7 +161,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S1M-2V-1bn">
                                         <rect key="frame" x="250" y="0.0" width="200" height="250"/>
                                         <connections>
-                                            <segue destination="iwc-UT-k63" kind="show" id="8V5-ZC-jts"/>
+                                            <action selector="tapBattleButton:" destination="2hf-fX-FYZ" eventType="touchUpInside" id="FxJ-bA-haR"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4t6-GY-8zV">
@@ -265,6 +262,10 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="cZW-Uk-Cs1"/>
+                    <connections>
+                        <outlet property="battleButton" destination="S1M-2V-1bn" id="NpX-Fm-L4E"/>
+                        <segue destination="iwc-UT-k63" kind="show" identifier="showGameViewController" id="s87-Gl-ZbL"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VMw-Vb-Hdh" sceneMemberID="firstResponder"/>
             </objects>
@@ -321,30 +322,13 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Y5a-Fa-GXC">
-                                <rect key="frame" x="298" y="236" width="300" height="50"/>
-                                <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="배틀_빛속성" translatesAutoresizingMaskIntoConstraints="NO" id="Puf-6q-UJd">
-                                        <rect key="frame" x="0.0" y="0.0" width="52" height="50"/>
-                                    </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="배틀_번개속성" translatesAutoresizingMaskIntoConstraints="NO" id="lph-qL-4Nw">
-                                        <rect key="frame" x="62" y="0.0" width="52" height="50"/>
-                                    </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="배틀_물속성" translatesAutoresizingMaskIntoConstraints="NO" id="iDu-mT-JOC">
-                                        <rect key="frame" x="124" y="0.0" width="52" height="50"/>
-                                    </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="배틀_불속성" translatesAutoresizingMaskIntoConstraints="NO" id="oz9-7V-Htt">
-                                        <rect key="frame" x="186" y="0.0" width="52" height="50"/>
-                                    </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="배틀_어둠속성" translatesAutoresizingMaskIntoConstraints="NO" id="L6R-AQ-avs">
-                                        <rect key="frame" x="248" y="0.0" width="52" height="50"/>
-                                    </imageView>
-                                </subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="배틀_어둠속성" translatesAutoresizingMaskIntoConstraints="NO" id="L6R-AQ-avs">
+                                <rect key="frame" x="373" y="224" width="100" height="50"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="300" id="JWU-fv-7Dh"/>
-                                    <constraint firstAttribute="height" constant="50" id="Mc4-0y-eOz"/>
+                                    <constraint firstAttribute="height" constant="50" id="NU6-l3-8GL"/>
+                                    <constraint firstAttribute="width" constant="100" id="Vn6-Lg-xmg"/>
                                 </constraints>
-                            </stackView>
+                            </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="LHb-CZ-mfH">
                                 <rect key="frame" x="298" y="286" width="300" height="128"/>
                                 <subviews>
@@ -526,7 +510,6 @@
                             <constraint firstItem="bDZ-Wi-fYW" firstAttribute="centerX" secondItem="OaB-WR-f00" secondAttribute="centerX" id="8K3-qe-ZMu"/>
                             <constraint firstItem="BDG-uR-MPc" firstAttribute="centerX" secondItem="oB5-Xx-d5p" secondAttribute="centerX" id="AOi-fN-qZb"/>
                             <constraint firstItem="BDG-uR-MPc" firstAttribute="centerY" secondItem="oB5-Xx-d5p" secondAttribute="centerY" id="AYD-sn-pAQ"/>
-                            <constraint firstItem="LHb-CZ-mfH" firstAttribute="top" secondItem="Y5a-Fa-GXC" secondAttribute="bottom" id="Crr-M5-V55"/>
                             <constraint firstItem="rCr-fN-32d" firstAttribute="trailing" secondItem="zF4-Hu-dgF" secondAttribute="trailing" id="DIL-wQ-XJH"/>
                             <constraint firstItem="csy-gO-qXS" firstAttribute="leading" secondItem="cFA-7G-Z4N" secondAttribute="leading" id="DUm-gy-NdW"/>
                             <constraint firstAttribute="bottom" secondItem="csy-gO-qXS" secondAttribute="bottom" id="Dev-py-ADp"/>
@@ -540,16 +523,17 @@
                             <constraint firstItem="oB5-Xx-d5p" firstAttribute="leading" secondItem="csy-gO-qXS" secondAttribute="leading" constant="30" id="N04-Ln-7vf"/>
                             <constraint firstItem="Iyg-MU-d9l" firstAttribute="bottom" secondItem="gbB-wg-aKf" secondAttribute="bottom" id="NXg-NK-68k"/>
                             <constraint firstItem="dMm-RU-UJ7" firstAttribute="centerY" secondItem="eZu-VV-TVg" secondAttribute="centerY" id="NYG-ze-ecf"/>
+                            <constraint firstItem="L6R-AQ-avs" firstAttribute="centerX" secondItem="i0e-38-IPM" secondAttribute="centerX" id="NhI-Vn-vMj"/>
                             <constraint firstItem="1tl-qi-z0y" firstAttribute="centerY" secondItem="XES-ge-0W1" secondAttribute="centerY" id="Nta-xg-MUv"/>
                             <constraint firstItem="XES-ge-0W1" firstAttribute="centerY" secondItem="LHb-CZ-mfH" secondAttribute="centerY" id="Pga-kq-GbL"/>
                             <constraint firstItem="sOR-zh-pMm" firstAttribute="top" secondItem="csy-gO-qXS" secondAttribute="top" constant="-20" id="QnV-Jd-mKN"/>
                             <constraint firstItem="zF4-Hu-dgF" firstAttribute="top" secondItem="sOR-zh-pMm" secondAttribute="bottom" constant="10" id="TAr-76-gIS"/>
+                            <constraint firstItem="i0e-38-IPM" firstAttribute="top" secondItem="L6R-AQ-avs" secondAttribute="bottom" constant="30" id="V9A-EB-Yac"/>
                             <constraint firstItem="zF4-Hu-dgF" firstAttribute="centerX" secondItem="sOR-zh-pMm" secondAttribute="centerX" constant="50" id="VKf-b9-KMq"/>
                             <constraint firstItem="GeY-K5-dpw" firstAttribute="leading" secondItem="fHE-UM-Aaa" secondAttribute="leading" constant="50" id="WNc-Rc-5Ov"/>
                             <constraint firstItem="i0e-38-IPM" firstAttribute="trailing" secondItem="csy-gO-qXS" secondAttribute="trailing" constant="350" id="ceA-Lr-5pE"/>
                             <constraint firstItem="Pzr-28-3nK" firstAttribute="centerY" secondItem="eZu-VV-TVg" secondAttribute="centerY" id="eeO-fg-vxR"/>
                             <constraint firstItem="bDZ-Wi-fYW" firstAttribute="centerY" secondItem="OaB-WR-f00" secondAttribute="centerY" id="f6r-is-GdR"/>
-                            <constraint firstItem="Y5a-Fa-GXC" firstAttribute="centerX" secondItem="LHb-CZ-mfH" secondAttribute="centerX" id="gm6-Fw-I5T"/>
                             <constraint firstItem="gbB-wg-aKf" firstAttribute="top" secondItem="csy-gO-qXS" secondAttribute="top" constant="60" id="mS2-nZ-4XO"/>
                             <constraint firstItem="fHE-UM-Aaa" firstAttribute="leading" secondItem="csy-gO-qXS" secondAttribute="leading" id="mjX-El-pAG"/>
                             <constraint firstItem="u8E-i7-3tN" firstAttribute="centerY" secondItem="dMm-RU-UJ7" secondAttribute="centerY" id="n3g-fv-ReX"/>
@@ -567,15 +551,30 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="OEH-cM-9vk"/>
+                    <connections>
+                        <outlet property="card1" destination="Vs7-Ld-mMg" id="Tt6-S5-0Yx"/>
+                        <outlet property="card2" destination="FrJ-Fb-KXf" id="9og-Xv-ZPE"/>
+                        <outlet property="card3" destination="UOh-DN-BVn" id="RsB-QY-VKd"/>
+                        <outlet property="card4" destination="XZE-ur-qkh" id="Gnw-Bd-gwj"/>
+                        <outlet property="card5" destination="wol-2a-SoY" id="UMk-2U-AYk"/>
+                        <outlet property="enemyHPLabel" destination="pKb-EM-T9T" id="1fn-k3-5Lj"/>
+                        <outlet property="enemyMPLabel" destination="uUB-d1-Eck" id="7CT-6X-nJW"/>
+                        <outlet property="logLabel" destination="fHE-UM-Aaa" id="eav-kz-MAw"/>
+                        <outlet property="magicAttributeImageView" destination="L6R-AQ-avs" id="ZIT-De-9MU"/>
+                        <outlet property="myHPLabel" destination="bDZ-Wi-fYW" id="DJk-AO-egF"/>
+                        <outlet property="myMPLabel" destination="u8E-i7-3tN" id="1OL-Id-9zL"/>
+                        <outlet property="timerLabel" destination="wN2-XP-sHn" id="z2G-Md-qYC"/>
+                        <outlet property="trashCardLabel" destination="Pzr-28-3nK" id="Zrb-nd-LBv"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i6Q-nH-Xqv" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="128.57142857142856" y="2298.5507246376815"/>
+            <point key="canvasLocation" x="129" y="3012"/>
         </scene>
-        <!--User Info View Controller-->
+        <!--View Controller-->
         <scene sceneID="0Q1-wk-YXn">
             <objects>
-                <viewController id="vWk-MJ-EWt" customClass="UserInfoViewController" customModule="Magic_Fight" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="vWk-MJ-EWt" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ltl-h5-S23">
                         <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1101,7 +1100,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RWl-69-6FI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="McB-p9-Ral">
                     <connections>
-                        <action selector="tapView:" destination="8yP-i4-TCe" id="2S3-BX-kLQ"/>
+                        <action selector="tapView:" destination="8yP-i4-TCe" id="GJP-IU-VYY"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
@@ -1288,16 +1287,15 @@
     </scenes>
     <designables>
         <designable name="6qx-nb-TPT">
-            <size key="intrinsicContentSize" width="-1" height="471.33333333333331"/>
+            <size key="intrinsicContentSize" width="-1" height="30"/>
         </designable>
         <designable name="VfA-CK-D0I">
-            <size key="intrinsicContentSize" width="-1" height="471.33333333333331"/>
+            <size key="intrinsicContentSize" width="-1" height="30"/>
         </designable>
     </designables>
     <inferredMetricsTieBreakers>
-        <segue reference="SK6-0E-iye"/>
-        <segue reference="Uvw-my-Zof"/>
-        <segue reference="6KE-ra-ZlF"/>
+        <segue reference="VKx-3q-ZgU"/>
+        <segue reference="g9n-o3-wDF"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="게임종료" width="630" height="472.33334350585938"/>
@@ -1309,10 +1307,6 @@
         <image name="마나잼_대" width="812" height="375"/>
         <image name="마나잼_소" width="812" height="375"/>
         <image name="배경" width="183.33332824707031" height="176.33332824707031"/>
-        <image name="배틀_물속성" width="812" height="375"/>
-        <image name="배틀_번개속성" width="812" height="375"/>
-        <image name="배틀_불속성" width="812" height="375"/>
-        <image name="배틀_빛속성" width="812" height="375"/>
         <image name="배틀_어둠속성" width="812" height="375"/>
         <image name="배틀_타이머" width="812" height="375"/>
         <image name="사운드스크롤1" width="630" height="472.33334350585938"/>

@@ -7,16 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0467E6A4260B3C9A00C1C416 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0467E6A3260B3C9A00C1C416 /* LoadingViewController.swift */; };
 		0467E6A7260B45F900C1C416 /* DesignableSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0467E6A6260B45F900C1C416 /* DesignableSlider.swift */; };
-		04A79E6F25B66DD600754FDD /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A79E6E25B66DD600754FDD /* StartViewController.swift */; };
-		04A79E7225B66E2200754FDD /* UserRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A79E7125B66E2200754FDD /* UserRoomViewController.swift */; };
-		04A79E7525B66EE800754FDD /* UserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A79E7425B66EE800754FDD /* UserInfoViewController.swift */; };
-		04A79E7825B66F4600754FDD /* UserInfoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A79E7725B66F4600754FDD /* UserInfoCollectionViewCell.swift */; };
-		04A79E7B25B66FA700754FDD /* SoundSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A79E7A25B66FA700754FDD /* SoundSettingViewController.swift */; };
 		04A79E7E25B6703B00754FDD /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A79E7D25B6703B00754FDD /* GameViewController.swift */; };
-		04A79E8125B6747600754FDD /* SupplierViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A79E8025B6747600754FDD /* SupplierViewController.swift */; };
-		04A79E8425B674DE00754FDD /* SupplierCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A79E8325B674DE00754FDD /* SupplierCollectionViewCell.swift */; };
+		04BF55A8261D482100BFD44E /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BF55A7261D482100BFD44E /* MainViewController.swift */; };
+		04BF55AC261D4A4300BFD44E /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BF55AB261D4A4300BFD44E /* LoadingViewController.swift */; };
+		04BF55B0261D4A9800BFD44E /* SoundSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BF55AF261D4A9800BFD44E /* SoundSettingViewController.swift */; };
 		04FFADA625B51FFF0045D75D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FFADA525B51FFF0045D75D /* AppDelegate.swift */; };
 		04FFADA825B51FFF0045D75D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FFADA725B51FFF0045D75D /* SceneDelegate.swift */; };
 		04FFADAD25B51FFF0045D75D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04FFADAB25B51FFF0045D75D /* Main.storyboard */; };
@@ -25,16 +20,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0467E6A3260B3C9A00C1C416 /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		0467E6A6260B45F900C1C416 /* DesignableSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableSlider.swift; sourceTree = "<group>"; };
-		04A79E6E25B66DD600754FDD /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
-		04A79E7125B66E2200754FDD /* UserRoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRoomViewController.swift; sourceTree = "<group>"; };
-		04A79E7425B66EE800754FDD /* UserInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoViewController.swift; sourceTree = "<group>"; };
-		04A79E7725B66F4600754FDD /* UserInfoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoCollectionViewCell.swift; sourceTree = "<group>"; };
-		04A79E7A25B66FA700754FDD /* SoundSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundSettingViewController.swift; sourceTree = "<group>"; };
 		04A79E7D25B6703B00754FDD /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
-		04A79E8025B6747600754FDD /* SupplierViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupplierViewController.swift; sourceTree = "<group>"; };
-		04A79E8325B674DE00754FDD /* SupplierCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupplierCollectionViewCell.swift; sourceTree = "<group>"; };
+		04BF55A7261D482100BFD44E /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		04BF55AB261D4A4300BFD44E /* LoadingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoadingViewController.swift; path = "../../../../../Library/Mobile Documents/com~apple~CloudDocs/.Trash/LoadingViewController.swift"; sourceTree = "<group>"; };
+		04BF55AF261D4A9800BFD44E /* SoundSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SoundSettingViewController.swift; path = "../../../../../Library/Mobile Documents/com~apple~CloudDocs/.Trash/SoundSettingViewController.swift"; sourceTree = "<group>"; };
 		04FFADA225B51FFF0045D75D /* Magic Fight.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Magic Fight.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		04FFADA525B51FFF0045D75D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		04FFADA725B51FFF0045D75D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -55,6 +45,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		04BF55A4261D47CF00BFD44E /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				04BF55AB261D4A4300BFD44E /* LoadingViewController.swift */,
+				04BF55A7261D482100BFD44E /* MainViewController.swift */,
+				04A79E7D25B6703B00754FDD /* GameViewController.swift */,
+				04BF55AF261D4A9800BFD44E /* SoundSettingViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		04FFAD9925B51FFF0045D75D = {
 			isa = PBXGroup;
 			children = (
@@ -74,21 +75,13 @@
 		04FFADA425B51FFF0045D75D /* Magic Fight */ = {
 			isa = PBXGroup;
 			children = (
+				04BF55A4261D47CF00BFD44E /* Controller */,
 				04FFADA525B51FFF0045D75D /* AppDelegate.swift */,
 				04FFADA725B51FFF0045D75D /* SceneDelegate.swift */,
 				04FFADAB25B51FFF0045D75D /* Main.storyboard */,
 				04FFADAE25B520000045D75D /* Assets.xcassets */,
 				04FFADB025B520000045D75D /* LaunchScreen.storyboard */,
 				04FFADB325B520000045D75D /* Info.plist */,
-				04A79E6E25B66DD600754FDD /* StartViewController.swift */,
-				04A79E7125B66E2200754FDD /* UserRoomViewController.swift */,
-				04A79E7425B66EE800754FDD /* UserInfoViewController.swift */,
-				04A79E7725B66F4600754FDD /* UserInfoCollectionViewCell.swift */,
-				04A79E7A25B66FA700754FDD /* SoundSettingViewController.swift */,
-				04A79E7D25B6703B00754FDD /* GameViewController.swift */,
-				04A79E8025B6747600754FDD /* SupplierViewController.swift */,
-				04A79E8325B674DE00754FDD /* SupplierCollectionViewCell.swift */,
-				0467E6A3260B3C9A00C1C416 /* LoadingViewController.swift */,
 				0467E6A6260B45F900C1C416 /* DesignableSlider.swift */,
 			);
 			path = "Magic Fight";
@@ -164,18 +157,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				04A79E7525B66EE800754FDD /* UserInfoViewController.swift in Sources */,
-				04A79E8125B6747600754FDD /* SupplierViewController.swift in Sources */,
-				04A79E7B25B66FA700754FDD /* SoundSettingViewController.swift in Sources */,
-				04A79E6F25B66DD600754FDD /* StartViewController.swift in Sources */,
-				04A79E8425B674DE00754FDD /* SupplierCollectionViewCell.swift in Sources */,
 				04A79E7E25B6703B00754FDD /* GameViewController.swift in Sources */,
 				04FFADA625B51FFF0045D75D /* AppDelegate.swift in Sources */,
-				04A79E7225B66E2200754FDD /* UserRoomViewController.swift in Sources */,
-				0467E6A4260B3C9A00C1C416 /* LoadingViewController.swift in Sources */,
-				04A79E7825B66F4600754FDD /* UserInfoCollectionViewCell.swift in Sources */,
 				0467E6A7260B45F900C1C416 /* DesignableSlider.swift in Sources */,
 				04FFADA825B51FFF0045D75D /* SceneDelegate.swift in Sources */,
+				04BF55B0261D4A9800BFD44E /* SoundSettingViewController.swift in Sources */,
+				04BF55A8261D482100BFD44E /* MainViewController.swift in Sources */,
+				04BF55AC261D4A4300BFD44E /* LoadingViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
