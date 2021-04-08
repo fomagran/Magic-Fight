@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04284D12261EA4B00081540E /* SupplierViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04284D11261EA4B00081540E /* SupplierViewController.swift */; };
+		04284D16261EA6090081540E /* SupplierCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04284D15261EA6090081540E /* SupplierCollectionViewCell.swift */; };
+		04284D1A261EB1810081540E /* BigCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04284D19261EB1810081540E /* BigCardViewController.swift */; };
 		0467E6A7260B45F900C1C416 /* DesignableSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0467E6A6260B45F900C1C416 /* DesignableSlider.swift */; };
 		04A79E7E25B6703B00754FDD /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A79E7D25B6703B00754FDD /* GameViewController.swift */; };
 		04BF55A8261D482100BFD44E /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BF55A7261D482100BFD44E /* MainViewController.swift */; };
@@ -24,6 +27,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		04284D11261EA4B00081540E /* SupplierViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupplierViewController.swift; sourceTree = "<group>"; };
+		04284D15261EA6090081540E /* SupplierCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupplierCollectionViewCell.swift; sourceTree = "<group>"; };
+		04284D19261EB1810081540E /* BigCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigCardViewController.swift; sourceTree = "<group>"; };
 		0467E6A6260B45F900C1C416 /* DesignableSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableSlider.swift; sourceTree = "<group>"; };
 		04A79E7D25B6703B00754FDD /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		04BF55A7261D482100BFD44E /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -53,6 +59,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		04284D14261EA5F50081540E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				04284D15261EA6090081540E /* SupplierCollectionViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		04BF55A4261D47CF00BFD44E /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -62,6 +76,8 @@
 				04BF55AF261D4A9800BFD44E /* SoundSettingViewController.swift */,
 				04BF55BE261D612F00BFD44E /* BanCardViewController.swift */,
 				04BF55C1261D618D00BFD44E /* TurnViewController.swift */,
+				04284D11261EA4B00081540E /* SupplierViewController.swift */,
+				04284D19261EB1810081540E /* BigCardViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -94,6 +110,7 @@
 		04FFADA425B51FFF0045D75D /* Magic Fight */ = {
 			isa = PBXGroup;
 			children = (
+				04284D14261EA5F50081540E /* View */,
 				04BF55B5261D50FA00BFD44E /* Model */,
 				04BF55A4261D47CF00BFD44E /* Controller */,
 				04FFADA525B51FFF0045D75D /* AppDelegate.swift */,
@@ -184,9 +201,12 @@
 				0467E6A7260B45F900C1C416 /* DesignableSlider.swift in Sources */,
 				04FFADA825B51FFF0045D75D /* SceneDelegate.swift in Sources */,
 				04BF55C2261D618D00BFD44E /* TurnViewController.swift in Sources */,
+				04284D16261EA6090081540E /* SupplierCollectionViewCell.swift in Sources */,
 				04BF55B0261D4A9800BFD44E /* SoundSettingViewController.swift in Sources */,
+				04284D1A261EB1810081540E /* BigCardViewController.swift in Sources */,
 				04BF55A8261D482100BFD44E /* MainViewController.swift in Sources */,
 				04BF55AC261D4A4300BFD44E /* LoadingViewController.swift in Sources */,
+				04284D12261EA4B00081540E /* SupplierViewController.swift in Sources */,
 				04BF55BB261D5B0B00BFD44E /* GemCard.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
