@@ -18,6 +18,9 @@ class SupplierViewController: UIViewController {
     @IBOutlet weak var buyButton: UIButton!
     @IBOutlet var tapGesture: UITapGestureRecognizer!
     
+    var cards:[Card]?
+    var isSupplier:Bool = true
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
@@ -34,6 +37,9 @@ class SupplierViewController: UIViewController {
         bigCardBackground.isHidden = true
         bigCardDescriptionLabel.isHidden = true
         buyButton.isHidden = true
+        if isSupplier == false {
+            buyButton.setTitle("Use this card", for: .normal)
+        }
     }
     @IBAction func tapBackGround(_ sender: Any) {
         dismiss(animated: true, completion: nil)
@@ -42,12 +48,12 @@ class SupplierViewController: UIViewController {
 
 extension SupplierViewController:UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        allCard.count
+        return cards == nil ? allCard.count : cards!.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collection.dequeueReusableCell(withReuseIdentifier: "SupplierCollectionViewCell", for: indexPath) as! SupplierCollectionViewCell
-        cell.label.text = allCard[indexPath.item].name
+        cell.label.text = cards == nil ? allCard[indexPath.item].name : cards![indexPath.item].name
         return cell
     }
     
@@ -59,7 +65,7 @@ extension SupplierViewController:UICollectionViewDelegate {
         
         let cell = collection.cellForItem(at: indexPath) as! SupplierCollectionViewCell
         bigCardLabel.text = cell.label.text
-        bigCardDescriptionLabel.text = allCard[indexPath.item].effect
+        bigCardDescriptionLabel.text = cards == nil ? allCard[indexPath.item].effect : cards![indexPath.item].effect
         
         bigCard.isHidden = false
         bigCardLabel.isHidden = false

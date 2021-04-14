@@ -31,7 +31,7 @@ class BanCardViewController: UIViewController {
     var randomCard3:Card?
     var randomCard4:Card?
     
-    var allCardCopy = allCard
+    var allCardCopy = allCard.filter{$0.gem == nil}
     
     override func viewDidLoad() {
         super.viewDidLoad()

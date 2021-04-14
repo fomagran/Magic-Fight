@@ -9,16 +9,8 @@ import UIKit
 
 class GameViewController: UIViewController {
 
-    @IBOutlet weak var card5Label: UILabel!
-    @IBOutlet weak var card4Label: UILabel!
-    @IBOutlet weak var card3Label: UILabel!
-    @IBOutlet weak var card2Label: UILabel!
-    @IBOutlet weak var card1Label: UILabel!
-    @IBOutlet weak var card5: UIImageView!
-    @IBOutlet weak var card4: UIImageView!
-    @IBOutlet weak var card3: UIImageView!
-    @IBOutlet weak var card2: UIImageView!
-    @IBOutlet weak var card1: UIImageView!
+    @IBOutlet weak var deckCountLabel: UILabel!
+    @IBOutlet weak var cardButton: UIButton!
     @IBOutlet weak var magicAttributeImageView: UIImageView!
     @IBOutlet weak var trashCardLabel: UILabel!
     @IBOutlet weak var myMPLabel: UILabel!
@@ -28,14 +20,17 @@ class GameViewController: UIViewController {
     @IBOutlet weak var logLabel: UIImageView!
     @IBOutlet weak var timerLabel: UILabel!
     
+    
+    var cards:[Card] = []
+    
     var timer = Timer()
     var (minutes,seconds) = (1,0)
     
     var name = ""
     var descriptionLabel = ""
     
-    var deck = [Any]()
-    var trash = [Any]()
+    var deck = [Card]()
+    var trash = [Card]()
 
     
     override func viewDidLoad() {
@@ -43,76 +38,41 @@ class GameViewController: UIViewController {
         
         configure()
         start()
-        setTap()
     }
     
+    @IBAction func tapCardButton(_ sender: Any) {
+        performSegue(withIdentifier: "showSupplierViewController", sender: nil)
+    }
+    
+    
     func configure() {
-        let 초급마법서 = Card(name: "초급 마법서", price: 0, usePrice: 1, count: 0, effect: "가격 4 이하의 주문 카드 하나를 공급처에서 선택하여 가져온다. 게임을 시작할 때만 얻을 수 있으며, 구매할 수 없고, 사용 후 파괴된다.",magicAttribute:.무속성)
-        let 푸른젬 =  GemCard(name: "푸른 젬", price: 1, gem: 1, count: 30)
+        let 초급마법서 = Card(name: "초급 마법서", price: 0, usePrice: 1, count: 0, effect: "가격 4 이하의 주문 카드 하나를 공급처에서 선택하여 가져온다. 게임을 시작할 때만 얻을 수 있으며, 구매할 수 없고, 사용 후 파괴된다.",magicAttribute:.무속성,gem: nil)
+        let 푸른젬 =      Card(name: "푸른 젬", price: 1,usePrice: 0, count: 30, effect: "",magicAttribute:.무속성 ,gem:1)
         deck = [초급마법서,초급마법서,초급마법서,초급마법서,초급마법서,초급마법서,초급마법서,초급마법서,푸른젬,푸른젬]
+        deckCountLabel.text = "\(deck.count)"
+        setNameFromDeck()
         
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "BigCardViewController" {
-            let vc = segue.destination as! BigCardViewController
-            vc.bigCardLabel.text = name
-            vc.bigCardDescription.text = descriptionLabel
+    func setNameFromDeck(){
+        
+        for _ in 0...4 {
+        let randomCard = deck.randomElement()!
+        cards.append(deck.randomElement()!)
+        deck.remove(at: deck.firstIndex { $0 == randomCard}!)
         }
     }
     
-    func setTap() {
-        let tap1 = UITapGestureRecognizer(target: self, action:#selector(tapCard1))
-        card1Label.addGestureRecognizer(tap1)
-        card1Label.isUserInteractionEnabled = true
-        
-        let tap2 = UITapGestureRecognizer(target: self, action:#selector(tapCard2))
-        card2Label.addGestureRecognizer(tap2)
-        card2Label.isUserInteractionEnabled = true
-        
-        let tap3 = UITapGestureRecognizer(target: self, action:#selector(tapCard3))
-        card3Label.addGestureRecognizer(tap3)
-        card3Label.isUserInteractionEnabled = true
-        
-        let tap4 = UITapGestureRecognizer(target: self, action:#selector(tapCard4))
-        card4Label.addGestureRecognizer(tap4)
-        card4Label.isUserInteractionEnabled = true
-        
-        let tap5 = UITapGestureRecognizer(target: self, action:#selector(tapCard5))
-        card5Label.addGestureRecognizer(tap5)
-        card5Label.isUserInteractionEnabled = true
-        
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showSupplierViewController" {
+            let vc = segue.destination as! SupplierViewController
+            vc.cards = cards
+            vc.isSupplier = false
+
+        }
     }
     
-    @objc func tapCard1() {
-        name = card1Label.text ?? ""
-        descriptionLabel = "가격 4 이하의 주문 카드 하나를 공급처에서 선택하여 가져온다. 게임을 시작할 때만 얻을 수 있으며, 구매할 수 없고, 사용 후 파괴된다."
-        performSegue(withIdentifier: "showBigCardViewController", sender: nil)
-    }
-    
-    @objc func tapCard2() {
-        name = card1Label.text ?? ""
-        descriptionLabel = "가격 4 이하의 주문 카드 하나를 공급처에서 선택하여 가져온다. 게임을 시작할 때만 얻을 수 있으며, 구매할 수 없고, 사용 후 파괴된다."
-        performSegue(withIdentifier: "showBigCardViewController", sender: nil)
-    }
-    
-    @objc func tapCard3() {
-        name = card1Label.text ?? ""
-        descriptionLabel = "가격 4 이하의 주문 카드 하나를 공급처에서 선택하여 가져온다. 게임을 시작할 때만 얻을 수 있으며, 구매할 수 없고, 사용 후 파괴된다."
-        performSegue(withIdentifier: "showBigCardViewController", sender: nil)
-    }
-    
-    @objc func tapCard4() {
-        name = card1Label.text ?? ""
-        descriptionLabel = "가격 4 이하의 주문 카드 하나를 공급처에서 선택하여 가져온다. 게임을 시작할 때만 얻을 수 있으며, 구매할 수 없고, 사용 후 파괴된다."
-        performSegue(withIdentifier: "showBigCardViewController", sender: nil)
-    }
-    
-    @objc func tapCard5() {
-        name = card1Label.text ?? ""
-        descriptionLabel = "가격 4 이하의 주문 카드 하나를 공급처에서 선택하여 가져온다. 게임을 시작할 때만 얻을 수 있으며, 구매할 수 없고, 사용 후 파괴된다."
-        performSegue(withIdentifier: "showBigCardViewController", sender: nil)
-    }
+  
     
    func reset(_ sender: Any) {
         timer.invalidate()
