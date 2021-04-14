@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Card {
+struct Card :Equatable{
     let name:String
     let price:Int
     let usePrice:Int
@@ -35,7 +35,7 @@ enum Magic {
     case 무속성
 }
 
-let allCard:[Card] = [
+var allCard:[Card] = [
     Card(name: "금지된 마법", price: 20, usePrice: 20, count: 1, effect: "게임에서 승리한다.",magicAttribute:.암흑),
     Card(name: "스파크", price: 3, usePrice: 1, count: 20, effect: "상대에게 피해를 2 준다.",magicAttribute:.번개),
     Card(name: "에너지 재생", price: 4, usePrice: 2, count: 10, effect: "체력을 4 회복한다.",magicAttribute:.빛),

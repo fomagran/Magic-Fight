@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="iwc-UT-k63">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="landscape" appearance="dark"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
@@ -304,30 +304,86 @@
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Rrq-22-kUq">
                                 <rect key="frame" x="24" y="96.5" width="848" height="300"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="금지된 마법" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="37Q-Q4-inV">
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="QWd-D7-7oB">
                                         <rect key="frame" x="0.0" y="0.0" width="212" height="300"/>
-                                        <fontDescription key="fontDescription" name="BodoniSvtyTwoITCTT-BookIta" family="Bodoni 72" pointSize="30"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="초급 마법서" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VwV-id-wdl">
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="금지된 마법" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="37Q-Q4-inV">
+                                                <rect key="frame" x="0.0" y="0.0" width="212" height="200"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="200" id="6hW-Y6-bCH"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="BodoniSvtyTwoITCTT-BookIta" family="Bodoni 72" pointSize="30"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="금지된 마법" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="0d9-EJ-E7F">
+                                                <rect key="frame" x="0.0" y="200" width="212" height="100"/>
+                                                <fontDescription key="fontDescription" name="BodoniSvtyTwoITCTT-BookIta" family="Bodoni 72" pointSize="30"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="zFg-iz-yQW">
                                         <rect key="frame" x="212" y="0.0" width="212" height="300"/>
-                                        <fontDescription key="fontDescription" name="BodoniSvtyTwoITCTT-BookIta" family="Bodoni 72" pointSize="30"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="푸른 젬" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mg5-Ch-POV">
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="초급 마법서" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VwV-id-wdl">
+                                                <rect key="frame" x="0.0" y="0.0" width="212" height="200"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="200" id="Acl-eO-o1z"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="BodoniSvtyTwoITCTT-BookIta" family="Bodoni 72" pointSize="30"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="금지된 마법" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="KKk-PT-yYD">
+                                                <rect key="frame" x="0.0" y="200" width="212" height="100"/>
+                                                <fontDescription key="fontDescription" name="BodoniSvtyTwoITCTT-BookIta" family="Bodoni 72" pointSize="30"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="vI8-gg-Nmx">
                                         <rect key="frame" x="424" y="0.0" width="212" height="300"/>
-                                        <fontDescription key="fontDescription" name="BodoniSvtyTwoITCTT-BookIta" family="Bodoni 72" pointSize="30"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="황금 젬" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jbj-AZ-bSE">
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="푸른 젬" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mg5-Ch-POV">
+                                                <rect key="frame" x="0.0" y="0.0" width="212" height="200"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="200" id="e0f-zV-SmO"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="BodoniSvtyTwoITCTT-BookIta" family="Bodoni 72" pointSize="30"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="금지된 마법" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="44M-H5-wbJ">
+                                                <rect key="frame" x="0.0" y="200" width="212" height="100"/>
+                                                <fontDescription key="fontDescription" name="BodoniSvtyTwoITCTT-BookIta" family="Bodoni 72" pointSize="30"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="8uR-oT-dUv">
                                         <rect key="frame" x="636" y="0.0" width="212" height="300"/>
-                                        <fontDescription key="fontDescription" name="BodoniSvtyTwoITCTT-BookIta" family="Bodoni 72" pointSize="30"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="황금 젬" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jbj-AZ-bSE">
+                                                <rect key="frame" x="0.0" y="0.0" width="212" height="200"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="200" id="fwe-BP-kYj"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="BodoniSvtyTwoITCTT-BookIta" family="Bodoni 72" pointSize="30"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="금지된 마법" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="bji-fI-gdK">
+                                                <rect key="frame" x="0.0" y="200" width="212" height="100"/>
+                                                <fontDescription key="fontDescription" name="BodoniSvtyTwoITCTT-BookIta" family="Bodoni 72" pointSize="30"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="300" id="fUR-5O-kcq"/>
@@ -370,13 +426,21 @@
                     <navigationItem key="navigationItem" id="HNa-h6-tWU"/>
                     <connections>
                         <outlet property="card1" destination="SPG-aV-6S9" id="Msp-7o-oq4"/>
+                        <outlet property="card1Effect" destination="0d9-EJ-E7F" id="ad1-B8-81o"/>
                         <outlet property="card1Label" destination="37Q-Q4-inV" id="yiC-4e-eKc"/>
                         <outlet property="card2" destination="QOE-w4-4uw" id="aC2-Lg-xKu"/>
+                        <outlet property="card2Effect" destination="KKk-PT-yYD" id="V2u-kf-9HL"/>
                         <outlet property="card2Label" destination="VwV-id-wdl" id="8PL-AG-C7C"/>
                         <outlet property="card3" destination="p5J-hF-z1S" id="ybf-q9-c3N"/>
+                        <outlet property="card3Effect" destination="44M-H5-wbJ" id="2a2-jS-DmP"/>
                         <outlet property="card3Label" destination="mg5-Ch-POV" id="kso-Ow-cUY"/>
                         <outlet property="card4" destination="u6v-aL-BCh" id="1Ej-Xi-q45"/>
+                        <outlet property="card4Effect" destination="bji-fI-gdK" id="AOC-Cx-lEP"/>
                         <outlet property="card4Label" destination="jbj-AZ-bSE" id="xLu-kx-1Vo"/>
+                        <outlet property="stack1" destination="QWd-D7-7oB" id="dLc-pA-1rA"/>
+                        <outlet property="stack2" destination="zFg-iz-yQW" id="9PV-82-JsV"/>
+                        <outlet property="stack3" destination="vI8-gg-Nmx" id="9in-4q-O2t"/>
+                        <outlet property="stack4" destination="8uR-oT-dUv" id="RUb-wB-AIw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="687-pH-Ppu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1763,10 +1827,10 @@
     </scenes>
     <designables>
         <designable name="6qx-nb-TPT">
-            <size key="intrinsicContentSize" width="-1" height="30"/>
+            <size key="intrinsicContentSize" width="-1" height="471.33333333333331"/>
         </designable>
         <designable name="VfA-CK-D0I">
-            <size key="intrinsicContentSize" width="-1" height="30"/>
+            <size key="intrinsicContentSize" width="-1" height="471.33333333333331"/>
         </designable>
     </designables>
     <inferredMetricsTieBreakers>

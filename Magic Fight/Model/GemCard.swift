@@ -26,5 +26,4 @@ let allGemCard:[GemCard] = [
     GemCard(name: "붉은 젬", price: 3, gem: 2, count: 30),
     GemCard(name: "황금 젬", price: 6, gem: 4, count: 30),
     GemCard(name: "칠흑의 젬", price: 10, gem: 5, count: 20)
-    
 ]

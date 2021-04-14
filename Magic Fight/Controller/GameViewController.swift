@@ -33,11 +33,21 @@ class GameViewController: UIViewController {
     
     var name = ""
     var descriptionLabel = ""
+    let 초급마법서 = Card(name: "초급 마법서", price: 0, usePrice: 1, count: 0, effect: "가격 4 이하의 주문 카드 하나를 공급처에서 선택하여 가져온다. 게임을 시작할 때만 얻을 수 있으며, 구매할 수 없고, 사용 후 파괴된다.",magicAttribute:.무속성)
+    let 푸른젬 =  GemCard(name: "푸른 젬", price: 1, gem: 1, count: 30)
+    var deck = [Any]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        configure()
         start()
         setTap()
+    }
+    
+    func configure() {
+        deck = [초급마법서,초급마법서,초급마법서,초급마법서,초급마법서,초급마법서,초급마법서,초급마법서,푸른젬,푸른젬]
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
