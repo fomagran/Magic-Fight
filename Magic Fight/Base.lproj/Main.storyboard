@@ -76,7 +76,7 @@
         <!--Loading View Controller-->
         <scene sceneID="lRi-fw-9ts">
             <objects>
-                <viewController modalTransitionStyle="partialCurl" modalPresentationStyle="fullScreen" id="TTJ-5q-jgG" customClass="LoadingViewController" customModule="Magic_Fight" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalTransitionStyle="crossDissolve" modalPresentationStyle="fullScreen" id="TTJ-5q-jgG" customClass="LoadingViewController" customModule="Magic_Fight" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="W04-4h-9iD">
                         <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -94,6 +94,48 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N5p-sA-fHL">
+                                <rect key="frame" x="298" y="96.5" width="300" height="200"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="닉네임을 설정해주세요!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o6P-Ev-4jJ">
+                                        <rect key="frame" x="21" y="18" width="156.5" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jNv-6d-KEs">
+                                        <rect key="frame" x="20" y="71" width="260" height="34"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="TTJ-5q-jgG" id="uxs-lL-zZE"/>
+                                        </connections>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wsa-0p-4q8">
+                                        <rect key="frame" x="250" y="154" width="30" height="30"/>
+                                        <state key="normal" title="확인">
+                                            <color key="titleColor" systemColor="systemIndigoColor"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="tapConfrimButton:" destination="TTJ-5q-jgG" eventType="touchUpInside" id="YKT-JA-szX"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="1pW-a6-5Od"/>
+                                    <constraint firstItem="jNv-6d-KEs" firstAttribute="top" secondItem="o6P-Ev-4jJ" secondAttribute="bottom" constant="32" id="2Fk-sO-5ko"/>
+                                    <constraint firstItem="o6P-Ev-4jJ" firstAttribute="leading" secondItem="N5p-sA-fHL" secondAttribute="leading" constant="21" id="2dL-eo-q0D"/>
+                                    <constraint firstAttribute="trailing" secondItem="wsa-0p-4q8" secondAttribute="trailing" constant="20" symbolic="YES" id="5qH-fW-rkJ"/>
+                                    <constraint firstAttribute="trailing" secondItem="jNv-6d-KEs" secondAttribute="trailing" constant="20" id="Lcu-aK-JQ7"/>
+                                    <constraint firstItem="jNv-6d-KEs" firstAttribute="leading" secondItem="N5p-sA-fHL" secondAttribute="leading" constant="20" id="ewh-cH-KYr"/>
+                                    <constraint firstAttribute="height" constant="200" id="llz-NH-KBj"/>
+                                    <constraint firstItem="o6P-Ev-4jJ" firstAttribute="top" secondItem="N5p-sA-fHL" secondAttribute="top" constant="18" id="oZr-BD-OUn"/>
+                                    <constraint firstAttribute="bottom" secondItem="wsa-0p-4q8" secondAttribute="bottom" constant="16" id="swQ-VT-bqX"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="9K5-Aq-HS5"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -101,11 +143,20 @@
                             <constraint firstItem="F9Z-nR-1Mk" firstAttribute="centerX" secondItem="9K5-Aq-HS5" secondAttribute="centerX" id="Cc2-yd-8X0"/>
                             <constraint firstAttribute="bottom" secondItem="F9Z-nR-1Mk" secondAttribute="bottom" id="Kvq-EU-gUR"/>
                             <constraint firstItem="9K5-Aq-HS5" firstAttribute="trailing" secondItem="n4t-wu-pAj" secondAttribute="trailing" constant="20" id="XFN-CK-xpg"/>
+                            <constraint firstItem="N5p-sA-fHL" firstAttribute="centerX" secondItem="9K5-Aq-HS5" secondAttribute="centerX" id="XrS-VW-Ths"/>
                             <constraint firstItem="9K5-Aq-HS5" firstAttribute="bottom" secondItem="n4t-wu-pAj" secondAttribute="bottom" constant="23" id="gsB-oM-Gyu"/>
                             <constraint firstItem="F9Z-nR-1Mk" firstAttribute="top" secondItem="9K5-Aq-HS5" secondAttribute="top" id="krE-K4-j08"/>
+                            <constraint firstItem="N5p-sA-fHL" firstAttribute="centerY" secondItem="9K5-Aq-HS5" secondAttribute="centerY" id="qsd-Kn-W4Q"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="k3i-GO-gO2"/>
+                    <connections>
+                        <outlet property="bgView" destination="N5p-sA-fHL" id="8Vg-Kq-LT1"/>
+                        <outlet property="confirmButton" destination="wsa-0p-4q8" id="kTh-59-3ob"/>
+                        <outlet property="loadingLabel" destination="n4t-wu-pAj" id="Ltj-t0-3xw"/>
+                        <outlet property="nickNameTF" destination="jNv-6d-KEs" id="iR3-WH-NQo"/>
+                        <outlet property="setNicknameLabel" destination="o6P-Ev-4jJ" id="VRb-KP-GqK"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2SC-IM-Df2" sceneMemberID="firstResponder"/>
             </objects>
@@ -266,6 +317,7 @@
                     <navigationItem key="navigationItem" id="cZW-Uk-Cs1"/>
                     <connections>
                         <outlet property="battleButton" destination="S1M-2V-1bn" id="NpX-Fm-L4E"/>
+                        <outlet property="nicknameLabel" destination="Hkq-Y4-8Zx" id="fyb-10-rpv"/>
                         <segue destination="vDE-I1-T7w" kind="show" identifier="showBanCardViewController" id="2kZ-aS-AZ5"/>
                     </connections>
                 </viewController>
@@ -1834,7 +1886,7 @@
         </designable>
     </designables>
     <inferredMetricsTieBreakers>
-        <segue reference="Uvw-my-Zof"/>
+        <segue reference="VKx-3q-ZgU"/>
         <segue reference="g9n-o3-wDF"/>
     </inferredMetricsTieBreakers>
     <resources>
@@ -1870,6 +1922,9 @@
         <image name="턴종료" width="812" height="375"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemIndigoColor">
+            <color red="0.34509803921568627" green="0.33725490196078434" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

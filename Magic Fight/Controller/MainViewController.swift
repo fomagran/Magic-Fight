@@ -9,6 +9,7 @@ import UIKit
 
 class MainViewController: UIViewController {
     
+    @IBOutlet weak var nicknameLabel: UILabel!
     @IBOutlet weak var battleButton: UIButton!
     lazy var activityIndicator: UIActivityIndicatorView = {
         let activityIndicator = UIActivityIndicatorView()
@@ -24,8 +25,10 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        nicknameLabel.text = UserDefaults.standard.string(forKey: "nickname")
         self.view.addSubview(self.activityIndicator)
         activityIndicator.isHidden = true
+        
     }
     
     
