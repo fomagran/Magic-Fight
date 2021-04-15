@@ -53,7 +53,6 @@ class BanCardViewController: UIViewController {
     }
     
     @IBAction func tapDoneBttn(_ sender: Any) {
-        print(opponentConfirm)
         if opponentConfirm == true {
             ref.child("battle").setValue(["isReady":"됐어"])
            performSegue(withIdentifier: "showTurnViewController", sender: nil)

@@ -451,7 +451,7 @@
                                 <rect key="frame" x="740" y="25.5" width="62" height="50"/>
                                 <fontDescription key="fontDescription" name="BodoniSvtyTwoITCTT-BookIta" family="Bodoni 72" pointSize="30"/>
                                 <state key="normal" title="Done">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="titleColor" systemColor="labelColor"/>
                                 </state>
                                 <connections>
                                     <action selector="tapDoneBttn:" destination="vDE-I1-T7w" eventType="touchUpInside" id="VGS-DR-Zqo"/>
@@ -548,6 +548,10 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="2PR-pd-uOJ"/>
+                    <connections>
+                        <outlet property="afterLabel" destination="wii-ZS-X0L" id="7Jg-qw-9Go"/>
+                        <outlet property="firstLabel" destination="0yg-lD-0BT" id="oyL-92-Gnm"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aDC-Hd-dHF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -855,6 +859,7 @@
                     <connections>
                         <outlet property="cardButton" destination="bdr-vb-log" id="dic-yE-I0l"/>
                         <outlet property="deckCountLabel" destination="1tl-qi-z0y" id="Jfc-Gv-eYj"/>
+                        <outlet property="enemyDeckLabel" destination="d9s-lg-BJO" id="9bL-9N-jqA"/>
                         <outlet property="enemyHPLabel" destination="pKb-EM-T9T" id="1fn-k3-5Lj"/>
                         <outlet property="enemyMPLabel" destination="uUB-d1-Eck" id="7CT-6X-nJW"/>
                         <outlet property="logLabel" destination="fHE-UM-Aaa" id="eav-kz-MAw"/>
@@ -1863,6 +1868,9 @@
         <image name="카드도감카드큰거" width="812" height="375"/>
         <image name="캐릭터" width="666.66668701171875" height="666.66668701171875"/>
         <image name="턴종료" width="812" height="375"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

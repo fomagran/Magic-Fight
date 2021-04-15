@@ -20,6 +20,7 @@
 		04BF55C2261D618D00BFD44E /* TurnViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BF55C1261D618D00BFD44E /* TurnViewController.swift */; };
 		04D9FF7E2627D5810096BA6E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 04D9FF7D2627D5810096BA6E /* GoogleService-Info.plist */; };
 		04D9FF8E2627E85B0096BA6E /* CardService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D9FF8D2627E85B0096BA6E /* CardService.swift */; };
+		04D9FF972628186F0096BA6E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D9FF962628186F0096BA6E /* Constants.swift */; };
 		04FFADA625B51FFF0045D75D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FFADA525B51FFF0045D75D /* AppDelegate.swift */; };
 		04FFADA825B51FFF0045D75D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FFADA725B51FFF0045D75D /* SceneDelegate.swift */; };
 		04FFADAD25B51FFF0045D75D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04FFADAB25B51FFF0045D75D /* Main.storyboard */; };
@@ -43,6 +44,7 @@
 		04BF55C1261D618D00BFD44E /* TurnViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TurnViewController.swift; sourceTree = "<group>"; };
 		04D9FF7D2627D5810096BA6E /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		04D9FF8D2627E85B0096BA6E /* CardService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardService.swift; sourceTree = "<group>"; };
+		04D9FF962628186F0096BA6E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		04FFADA225B51FFF0045D75D /* Magic Fight.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Magic Fight.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		04FFADA525B51FFF0045D75D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		04FFADA725B51FFF0045D75D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 				04FFADB325B520000045D75D /* Info.plist */,
 				0467E6A6260B45F900C1C416 /* DesignableSlider.swift */,
 				04D9FF7D2627D5810096BA6E /* GoogleService-Info.plist */,
+				04D9FF962628186F0096BA6E /* Constants.swift */,
 			);
 			path = "Magic Fight";
 			sourceTree = "<group>";
@@ -279,6 +282,7 @@
 				04A79E7E25B6703B00754FDD /* GameViewController.swift in Sources */,
 				04BF55B7261D510400BFD44E /* Card.swift in Sources */,
 				04FFADA625B51FFF0045D75D /* AppDelegate.swift in Sources */,
+				04D9FF972628186F0096BA6E /* Constants.swift in Sources */,
 				0467E6A7260B45F900C1C416 /* DesignableSlider.swift in Sources */,
 				04FFADA825B51FFF0045D75D /* SceneDelegate.swift in Sources */,
 				04BF55C2261D618D00BFD44E /* TurnViewController.swift in Sources */,

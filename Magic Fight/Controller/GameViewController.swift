@@ -10,6 +10,7 @@ import FirebaseDatabase
 
 class GameViewController: UIViewController {
 
+    @IBOutlet weak var enemyDeckLabel: UILabel!
     @IBOutlet weak var deckCountLabel: UILabel!
     @IBOutlet weak var cardButton: UIButton!
     @IBOutlet weak var magicAttributeImageView: UIImageView!
@@ -40,14 +41,48 @@ class GameViewController: UIViewController {
         configure()
         setDatabase()
         start()
+        
+        ref.child("battle").child(CURRENT_USER).observe(DataEventType.value, with: { (snapshot) in
+            if snapshot.exists() {
+                let value = snapshot.value as! [String : AnyObject]
+                if "\(value["HP"]!)" == "0" {
+                    self.showAlert(title:"Lose" ,message:"아쉽게 패배하셨네요ㅜ")
+                }
+                
+                self.myHPLabel.text = "\(value["HP"]!)"
+                self.myMPLabel.text = "\(value["MP"]!)"
+                self.trashCardLabel.text = "\(value["trash"]!)"
+                self.deckCountLabel.text = "\(value["deck"]!.count!)"
+            }
+        })
+        
+        ref.child("battle").child(OPPONENT_USER).observe(DataEventType.value, with: { (snapshot) in
+            if snapshot.exists() {
+                let value = snapshot.value as! [String : AnyObject]
+                if "\(value["HP"]!)" == "0" {
+                    self.showAlert(title:"Victory" ,message:"승리를 축하드려요!")
+                }
+                self.enemyHPLabel.text = "\(value["HP"]!)"
+                self.enemyMPLabel.text = "\(value["MP"]!)"
+                self.enemyDeckLabel.text = "\(value["deck"]!.count!)"
+            }
+        })
     }
     
+    func showAlert(title:String,message:String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: "확인", style: .default) { (_) in
+            self.ref.removeValue()
+        }
+        alert.addAction(action)
+        present(alert, animated: true, completion: nil)
+    }
+    
+    
+    
     func setDatabase() {
-        ref.child("battle").child("fomagran").setValue(["HP":20,"MP":0,"turn":true])
-        ref.child("battle").child("acop").setValue(["HP":20,"MP":0,"turn":false])
-        ref.child("battle").child("fomagran").child("deck").setValue(["cards":["초급마법서","초급마법서","초급마법서","초급마법서","초급마법서","초급마법서","초급마법서","초급마법서","푸른젬","푸른젬"]])
-        ref.child("battle").child("fomagran").child("trash").setValue(["cards":[]])
-        ref.child("battle").child("acop").child("trash").setValue(["cards":[]])
+        ref.child("battle").child(CURRENT_USER).setValue(["HP":20,"MP":0,"turn":true,"trash":0,"deck":["초급마법서","초급마법서","초급마법서","초급마법서","초급마법서","초급마법서","초급마법서","초급마법서","푸른젬","푸른젬"]])
+        
     }
     
     @IBAction func tapCardButton(_ sender: Any) {
@@ -61,7 +96,6 @@ class GameViewController: UIViewController {
         deck = [초급마법서,초급마법서,초급마법서,초급마법서,초급마법서,초급마법서,초급마법서,초급마법서,푸른젬,푸른젬]
         deckCountLabel.text = "\(deck.count)"
         setNameFromDeck()
-        
     }
     
     func setNameFromDeck(){
@@ -78,7 +112,8 @@ class GameViewController: UIViewController {
             let vc = segue.destination as! SupplierViewController
             vc.cards = cards
             vc.isSupplier = false
-
+            vc.myHP = Int(myHPLabel.text!)!
+            vc.enemyHP = Int(enemyHPLabel.text!)!
         }
     }
     

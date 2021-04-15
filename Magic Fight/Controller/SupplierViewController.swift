@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseDatabase
 
 class SupplierViewController: UIViewController {
 
@@ -20,6 +21,9 @@ class SupplierViewController: UIViewController {
     
     var cards:[Card]?
     var isSupplier:Bool = true
+    var ref = Database.database().reference()
+    var myHP = 0
+    var enemyHP = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +32,9 @@ class SupplierViewController: UIViewController {
         
     }
     @IBAction func tapBuyButton(_ sender: Any) {
+        if !isSupplier {
+            ref.child("battle").child(OPPONENT_USER).updateChildValues(["HP":enemyHP - 5])
+        }
         dismiss(animated: true, completion: nil)
     }
     

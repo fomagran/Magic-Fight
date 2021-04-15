@@ -37,7 +37,6 @@ class MainViewController: UIViewController {
         
             if "\(value)" != UserDefaults.standard.string(forKey: "nickname")! && "\(value)" != "<null>" {
                 self.showAlert()
-                print(value,UserDefaults.standard.string(forKey: "nickname"))
             }
         })
         
