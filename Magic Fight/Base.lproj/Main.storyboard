@@ -454,7 +454,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <segue destination="7N2-i6-VUB" kind="show" id="mex-ae-6f4"/>
+                                    <action selector="tapDoneBttn:" destination="vDE-I1-T7w" eventType="touchUpInside" id="VGS-DR-Zqo"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -493,6 +493,7 @@
                         <outlet property="stack2" destination="zFg-iz-yQW" id="9PV-82-JsV"/>
                         <outlet property="stack3" destination="vI8-gg-Nmx" id="9in-4q-O2t"/>
                         <outlet property="stack4" destination="8uR-oT-dUv" id="RUb-wB-AIw"/>
+                        <segue destination="7N2-i6-VUB" kind="show" identifier="showTurnViewController" id="xaD-tT-ewB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="687-pH-Ppu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

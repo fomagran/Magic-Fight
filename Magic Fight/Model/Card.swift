@@ -39,7 +39,7 @@ enum Magic {
 }
 
 var allCard:[Card] = [
-    Card(name: "금지된 마법", price: 20, usePrice: 20, count: 1, effect: "게임에서 승리한다.",magicAttribute:.암흑,gem: nil),
+
     Card(name: "스파크", price: 3, usePrice: 1, count: 20, effect: "상대에게 피해를 2 준다.",magicAttribute:.번개,gem: nil),
     Card(name: "에너지 재생", price: 4, usePrice: 2, count: 10, effect: "체력을 4 회복한다.",magicAttribute:.빛,gem: nil),
     Card(name: "정신 과부하", price: 5, usePrice: 1, count: 8, effect: "푸른 젬 5개를 공급처에서 내 손으로 가져온다.",magicAttribute:.암흑,gem: nil),
@@ -53,7 +53,6 @@ var allCard:[Card] = [
     Card(name: "수혈", price: 5, usePrice: 5, count: 10, effect: "상대에게 피해를 3 주고, 공급처에서 붉은 젬을 한 장 가져온다.",magicAttribute:.물,gem: nil),
     Card(name: "불의 순환", price: 8, usePrice: 1, count: 4, effect: "상대에게 피해를 1 주고, 카드를 한 장 뽑고, 공급처에서 불의 순환 카드를 한 장 가져온다.",magicAttribute:.불,gem: nil),
     Card(name: "도깨비불", price: 6, usePrice: 5, count: 10, effect: "상대에게 피해를 3 주고, 상대의 젬 에너지를 1 깎는다.",magicAttribute:.불,gem: nil),
-    Card(name: "소환의 진", price: 10, usePrice: 8, count: 8, effect: "악마 또는 천사 카드 한 장을 무작위로 가져온다.",magicAttribute:.무속성,gem: nil),
     Card(name: "서큐버스", price: 0, usePrice: 4, count: 0, effect: "상대에게 피해를 5 주고, 내 체력을 5 회복한다. 사용 후 파괴되며, 구매할 수 없다.",magicAttribute:.암흑,gem: nil),
     Card(name: "사타나치아", price: 0, usePrice: 3, count: 0, effect: "상대에게 내 젬 에너지만큼의 피해를 준다. 사용 후 파괴되며, 구매할 수 없다.",magicAttribute:.암흑,gem: nil),
     Card(name: "아스타로트", price: 0, usePrice: 3, count: 0, effect: "상대의 젬 에너지를 5 깎는다. 사용 후 파괴되며, 구매할 수 없다.",magicAttribute:.암흑,gem: nil),

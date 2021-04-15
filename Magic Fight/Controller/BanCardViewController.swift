@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseDatabase
 
 class BanCardViewController: UIViewController {
     
@@ -31,14 +32,35 @@ class BanCardViewController: UIViewController {
     var randomCard3:Card?
     var randomCard4:Card?
     
+    var ref = Database.database().reference()
+    var opponentConfirm = false
+    
     var allCardCopy = allCard.filter{$0.gem == nil}
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setTap()
         setNameFromRandomCard()
+        ref.child("battle").child("isReady").observe(DataEventType.value, with: { (snapshot) in
+            if snapshot.exists() {
+                if snapshot.value as! String == "아직" {
+                    self.opponentConfirm = true
+                }else{
+                    self.performSegue(withIdentifier: "showTurnViewController", sender: nil)
+                }
+            }
+        })
     }
     
+    @IBAction func tapDoneBttn(_ sender: Any) {
+        print(opponentConfirm)
+        if opponentConfirm == true {
+            ref.child("battle").setValue(["isReady":"됐어"])
+           performSegue(withIdentifier: "showTurnViewController", sender: nil)
+        }else {
+            ref.child("battle").setValue(["isReady":"아직"])
+        }
+    }
     func setNameFromRandomCard(){
         
         randomCard1 = allCardCopy.randomElement()!

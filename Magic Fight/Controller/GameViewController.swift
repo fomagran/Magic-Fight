@@ -21,7 +21,7 @@ class GameViewController: UIViewController {
     @IBOutlet weak var logLabel: UIImageView!
     @IBOutlet weak var timerLabel: UILabel!
     
-    var ref: DatabaseReference!
+    var ref = Database.database().reference()
     
     var cards:[Card] = []
     
@@ -33,7 +33,6 @@ class GameViewController: UIViewController {
     
     var deck = [Card]()
     var trash = [Card]()
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,10 +43,11 @@ class GameViewController: UIViewController {
     }
     
     func setDatabase() {
-        ref = Database.database().reference()
-        ref.observe(DataEventType.value, with: { (snapshot) in
-            print(snapshot.value!)
-        })
+        ref.child("battle").child("fomagran").setValue(["HP":20,"MP":0,"turn":true])
+        ref.child("battle").child("acop").setValue(["HP":20,"MP":0,"turn":false])
+        ref.child("battle").child("fomagran").child("deck").setValue(["cards":["초급마법서","초급마법서","초급마법서","초급마법서","초급마법서","초급마법서","초급마법서","초급마법서","푸른젬","푸른젬"]])
+        ref.child("battle").child("fomagran").child("trash").setValue(["cards":[]])
+        ref.child("battle").child("acop").child("trash").setValue(["cards":[]])
     }
     
     @IBAction func tapCardButton(_ sender: Any) {
