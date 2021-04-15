@@ -31,10 +31,8 @@ class MainViewController: UIViewController {
         nicknameLabel.text = UserDefaults.standard.string(forKey: "nickname")
         self.view.addSubview(self.activityIndicator)
         activityIndicator.isHidden = true
-        
         ref.child("battle").child("name").observe(DataEventType.value, with: { (snapshot) in
             guard let value = snapshot.value else { return }
-        
             if "\(value)" != UserDefaults.standard.string(forKey: "nickname")! && "\(value)" != "<null>" {
                 self.showAlert()
             }
@@ -42,6 +40,11 @@ class MainViewController: UIViewController {
         
     }
     
+    
+    
+    @IBAction func unwindToMainViewController (segue : UIStoryboardSegue) {
+           
+       }
     
     @IBAction func tapBattleButton(_ sender: Any) {
         self.activityIndicator.isHidden = false
@@ -59,6 +62,7 @@ class MainViewController: UIViewController {
         let alert = UIAlertController(title: "매칭 수락하기", message: "수락하시겠습니까?", preferredStyle: .alert)
         let 수락 = UIAlertAction(title: "수락", style: .default) { (_) in
             self.ref.child("battle").setValue(["name":UserDefaults.standard.string(forKey: "nickname")!])
+            self.activityIndicator.isHidden = true
             self.performSegue(withIdentifier: "showBanCardViewController", sender: nil)
         }
         let 거절 = UIAlertAction(title: "거절", style: .cancel) { (_) in

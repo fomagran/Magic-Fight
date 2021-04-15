@@ -29,11 +29,7 @@ class TurnViewController: UIViewController {
     }
     
     func goToGameViewController() {
-        let storyboard: UIStoryboard = self.storyboard!
-
-        let nextView = storyboard.instantiateViewController(withIdentifier: "GameViewController") as! GameViewController
-
-        self.present(nextView, animated: true, completion: nil)
+        performSegue(withIdentifier: "showGameViewController", sender: nil)
     }
     
 }

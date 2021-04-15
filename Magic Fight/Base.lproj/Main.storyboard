@@ -489,6 +489,8 @@
                         <outlet property="card4" destination="u6v-aL-BCh" id="1Ej-Xi-q45"/>
                         <outlet property="card4Effect" destination="bji-fI-gdK" id="AOC-Cx-lEP"/>
                         <outlet property="card4Label" destination="jbj-AZ-bSE" id="xLu-kx-1Vo"/>
+                        <outlet property="doneBtn" destination="S68-50-vVX" id="a8w-XR-LUh"/>
+                        <outlet property="pickBanCard" destination="rGA-kB-Qf6" id="0bw-ea-sGz"/>
                         <outlet property="stack1" destination="QWd-D7-7oB" id="dLc-pA-1rA"/>
                         <outlet property="stack2" destination="zFg-iz-yQW" id="9PV-82-JsV"/>
                         <outlet property="stack3" destination="vI8-gg-Nmx" id="9in-4q-O2t"/>
@@ -551,6 +553,7 @@
                     <connections>
                         <outlet property="afterLabel" destination="wii-ZS-X0L" id="7Jg-qw-9Go"/>
                         <outlet property="firstLabel" destination="0yg-lD-0BT" id="oyL-92-Gnm"/>
+                        <segue destination="iwc-UT-k63" kind="show" identifier="showGameViewController" id="M0U-P4-qYh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aDC-Hd-dHF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -870,9 +873,11 @@
                         <outlet property="trashCardLabel" destination="Pzr-28-3nK" id="Zrb-nd-LBv"/>
                         <segue destination="NMD-Ya-2ze" kind="show" identifier="showBigCardViewController" id="Lf7-oM-kkf"/>
                         <segue destination="cvA-Ke-BWN" kind="show" identifier="showSupplierViewController" id="ByE-IB-Top"/>
+                        <segue destination="EiW-kN-JDT" kind="unwind" identifier="unwindMainViewController" unwindAction="unwindToMainViewControllerWithSegue:" id="nC1-WC-BMZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i6Q-nH-Xqv" sceneMemberID="firstResponder"/>
+                <exit id="EiW-kN-JDT" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="129" y="3626"/>
         </scene>
@@ -1826,10 +1831,10 @@
     </scenes>
     <designables>
         <designable name="6qx-nb-TPT">
-            <size key="intrinsicContentSize" width="-1" height="471.33333333333331"/>
+            <size key="intrinsicContentSize" width="-1" height="30"/>
         </designable>
         <designable name="VfA-CK-D0I">
-            <size key="intrinsicContentSize" width="-1" height="471.33333333333331"/>
+            <size key="intrinsicContentSize" width="-1" height="30"/>
         </designable>
     </designables>
     <inferredMetricsTieBreakers>

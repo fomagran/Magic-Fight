@@ -10,6 +10,8 @@ import FirebaseDatabase
 
 class BanCardViewController: UIViewController {
     
+    @IBOutlet weak var pickBanCard: UILabel!
+    @IBOutlet weak var doneBtn: UIButton!
     @IBOutlet weak var stack4: UIStackView!
     @IBOutlet weak var stack3: UIStackView!
     @IBOutlet weak var stack2: UIStackView!
@@ -57,6 +59,9 @@ class BanCardViewController: UIViewController {
             ref.child("battle").setValue(["isReady":"됐어"])
            performSegue(withIdentifier: "showTurnViewController", sender: nil)
         }else {
+            self.opponentConfirm = true
+            self.doneBtn.isHidden = true
+            self.pickBanCard.text = "YOU READY"
             ref.child("battle").setValue(["isReady":"아직"])
         }
     }

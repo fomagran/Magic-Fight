@@ -73,6 +73,7 @@ class GameViewController: UIViewController {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let action = UIAlertAction(title: "확인", style: .default) { (_) in
             self.ref.removeValue()
+            self.performSegue(withIdentifier: "unwindMainViewController", sender: nil)
         }
         alert.addAction(action)
         present(alert, animated: true, completion: nil)
