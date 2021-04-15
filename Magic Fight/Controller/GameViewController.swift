@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseDatabase
 
 class GameViewController: UIViewController {
 
@@ -20,6 +21,7 @@ class GameViewController: UIViewController {
     @IBOutlet weak var logLabel: UIImageView!
     @IBOutlet weak var timerLabel: UILabel!
     
+    var ref: DatabaseReference!
     
     var cards:[Card] = []
     
@@ -37,7 +39,15 @@ class GameViewController: UIViewController {
         super.viewDidLoad()
         
         configure()
+        setDatabase()
         start()
+    }
+    
+    func setDatabase() {
+        ref = Database.database().reference()
+        ref.observe(DataEventType.value, with: { (snapshot) in
+            print(snapshot.value!)
+        })
     }
     
     @IBAction func tapCardButton(_ sender: Any) {

@@ -21,7 +21,7 @@ class MainViewController: UIViewController {
         activityIndicator.layer.cornerRadius = 20
         return activityIndicator
     }()
-    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()

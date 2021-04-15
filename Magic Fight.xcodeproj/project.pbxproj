@@ -19,11 +19,13 @@
 		04BF55BB261D5B0B00BFD44E /* GemCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BF55BA261D5B0B00BFD44E /* GemCard.swift */; };
 		04BF55BF261D612F00BFD44E /* BanCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BF55BE261D612F00BFD44E /* BanCardViewController.swift */; };
 		04BF55C2261D618D00BFD44E /* TurnViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BF55C1261D618D00BFD44E /* TurnViewController.swift */; };
+		04D9FF7E2627D5810096BA6E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 04D9FF7D2627D5810096BA6E /* GoogleService-Info.plist */; };
 		04FFADA625B51FFF0045D75D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FFADA525B51FFF0045D75D /* AppDelegate.swift */; };
 		04FFADA825B51FFF0045D75D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FFADA725B51FFF0045D75D /* SceneDelegate.swift */; };
 		04FFADAD25B51FFF0045D75D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04FFADAB25B51FFF0045D75D /* Main.storyboard */; };
 		04FFADAF25B520000045D75D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04FFADAE25B520000045D75D /* Assets.xcassets */; };
 		04FFADB225B520000045D75D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04FFADB025B520000045D75D /* LaunchScreen.storyboard */; };
+		AD6740C973DC62E8872FAF90 /* Pods_Magic_Fight.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04A77C20ED6DD027540F20E8 /* Pods_Magic_Fight.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +33,7 @@
 		04284D15261EA6090081540E /* SupplierCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupplierCollectionViewCell.swift; sourceTree = "<group>"; };
 		04284D19261EB1810081540E /* BigCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigCardViewController.swift; sourceTree = "<group>"; };
 		0467E6A6260B45F900C1C416 /* DesignableSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableSlider.swift; sourceTree = "<group>"; };
+		04A77C20ED6DD027540F20E8 /* Pods_Magic_Fight.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Magic_Fight.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		04A79E7D25B6703B00754FDD /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		04BF55A7261D482100BFD44E /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		04BF55AB261D4A4300BFD44E /* LoadingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoadingViewController.swift; path = "../../../../../Library/Mobile Documents/com~apple~CloudDocs/.Trash/LoadingViewController.swift"; sourceTree = "<group>"; };
@@ -39,6 +42,7 @@
 		04BF55BA261D5B0B00BFD44E /* GemCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GemCard.swift; sourceTree = "<group>"; };
 		04BF55BE261D612F00BFD44E /* BanCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BanCardViewController.swift; sourceTree = "<group>"; };
 		04BF55C1261D618D00BFD44E /* TurnViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TurnViewController.swift; sourceTree = "<group>"; };
+		04D9FF7D2627D5810096BA6E /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		04FFADA225B51FFF0045D75D /* Magic Fight.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Magic Fight.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		04FFADA525B51FFF0045D75D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		04FFADA725B51FFF0045D75D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -46,6 +50,8 @@
 		04FFADAE25B520000045D75D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		04FFADB125B520000045D75D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		04FFADB325B520000045D75D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0703220846A658E6E2C8DB96 /* Pods-Magic Fight.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Magic Fight.debug.xcconfig"; path = "Target Support Files/Pods-Magic Fight/Pods-Magic Fight.debug.xcconfig"; sourceTree = "<group>"; };
+		C0DF17724F8F41FE5D198B28 /* Pods-Magic Fight.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Magic Fight.release.xcconfig"; path = "Target Support Files/Pods-Magic Fight/Pods-Magic Fight.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD6740C973DC62E8872FAF90 /* Pods_Magic_Fight.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -96,6 +103,8 @@
 			children = (
 				04FFADA425B51FFF0045D75D /* Magic Fight */,
 				04FFADA325B51FFF0045D75D /* Products */,
+				BFDFA58A37DA155256DE8714 /* Pods */,
+				2C68201774D47898912813C0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -120,8 +129,27 @@
 				04FFADB025B520000045D75D /* LaunchScreen.storyboard */,
 				04FFADB325B520000045D75D /* Info.plist */,
 				0467E6A6260B45F900C1C416 /* DesignableSlider.swift */,
+				04D9FF7D2627D5810096BA6E /* GoogleService-Info.plist */,
 			);
 			path = "Magic Fight";
+			sourceTree = "<group>";
+		};
+		2C68201774D47898912813C0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				04A77C20ED6DD027540F20E8 /* Pods_Magic_Fight.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BFDFA58A37DA155256DE8714 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0703220846A658E6E2C8DB96 /* Pods-Magic Fight.debug.xcconfig */,
+				C0DF17724F8F41FE5D198B28 /* Pods-Magic Fight.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -131,9 +159,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 04FFADB625B520000045D75D /* Build configuration list for PBXNativeTarget "Magic Fight" */;
 			buildPhases = (
+				F49732F2EA6C8371D8D56AE8 /* [CP] Check Pods Manifest.lock */,
 				04FFAD9E25B51FFF0045D75D /* Sources */,
 				04FFAD9F25B51FFF0045D75D /* Frameworks */,
 				04FFADA025B51FFF0045D75D /* Resources */,
+				80F2A10748320C48C6023885 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -183,11 +213,54 @@
 			files = (
 				04FFADB225B520000045D75D /* LaunchScreen.storyboard in Resources */,
 				04FFADAF25B520000045D75D /* Assets.xcassets in Resources */,
+				04D9FF7E2627D5810096BA6E /* GoogleService-Info.plist in Resources */,
 				04FFADAD25B51FFF0045D75D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		80F2A10748320C48C6023885 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Magic Fight/Pods-Magic Fight-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Magic Fight/Pods-Magic Fight-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Magic Fight/Pods-Magic Fight-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F49732F2EA6C8371D8D56AE8 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Magic Fight-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		04FFAD9E25B51FFF0045D75D /* Sources */ = {
@@ -351,6 +424,7 @@
 		};
 		04FFADB725B520000045D75D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0703220846A658E6E2C8DB96 /* Pods-Magic Fight.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -370,6 +444,7 @@
 		};
 		04FFADB825B520000045D75D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C0DF17724F8F41FE5D198B28 /* Pods-Magic Fight.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
