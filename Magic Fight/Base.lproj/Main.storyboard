@@ -119,7 +119,7 @@
                                             <color key="titleColor" systemColor="systemIndigoColor"/>
                                         </state>
                                         <connections>
-                                            <action selector="tapConfrimButton:" destination="TTJ-5q-jgG" eventType="touchUpInside" id="YKT-JA-szX"/>
+                                            <action selector="tapConfirmButton:" destination="TTJ-5q-jgG" eventType="touchUpInside" id="fla-HN-dfL"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -151,11 +151,11 @@
                     </view>
                     <navigationItem key="navigationItem" id="k3i-GO-gO2"/>
                     <connections>
-                        <outlet property="bgView" destination="N5p-sA-fHL" id="8Vg-Kq-LT1"/>
-                        <outlet property="confirmButton" destination="wsa-0p-4q8" id="kTh-59-3ob"/>
-                        <outlet property="loadingLabel" destination="n4t-wu-pAj" id="Ltj-t0-3xw"/>
-                        <outlet property="nickNameTF" destination="jNv-6d-KEs" id="iR3-WH-NQo"/>
-                        <outlet property="setNicknameLabel" destination="o6P-Ev-4jJ" id="VRb-KP-GqK"/>
+                        <outlet property="bgView" destination="N5p-sA-fHL" id="qbb-wG-HCN"/>
+                        <outlet property="confirmButton" destination="wsa-0p-4q8" id="9FA-ka-hgr"/>
+                        <outlet property="loadingLabel" destination="n4t-wu-pAj" id="c4Z-pM-iZN"/>
+                        <outlet property="nickNameTF" destination="jNv-6d-KEs" id="9fJ-Ov-AUw"/>
+                        <segue destination="2hf-fX-FYZ" kind="show" identifier="showMainViewController" id="K07-Sw-hQb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2SC-IM-Df2" sceneMemberID="firstResponder"/>
@@ -1831,16 +1831,16 @@
     </scenes>
     <designables>
         <designable name="6qx-nb-TPT">
-            <size key="intrinsicContentSize" width="-1" height="30"/>
+            <size key="intrinsicContentSize" width="-1" height="471.33333333333331"/>
         </designable>
         <designable name="VfA-CK-D0I">
-            <size key="intrinsicContentSize" width="-1" height="30"/>
+            <size key="intrinsicContentSize" width="-1" height="471.33333333333331"/>
         </designable>
     </designables>
     <inferredMetricsTieBreakers>
         <segue reference="ByE-IB-Top"/>
-        <segue reference="Uvw-my-Zof"/>
-        <segue reference="g9n-o3-wDF"/>
+        <segue reference="VKx-3q-ZgU"/>
+        <segue reference="K07-Sw-hQb"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="게임종료" width="630" height="472.33334350585938"/>
