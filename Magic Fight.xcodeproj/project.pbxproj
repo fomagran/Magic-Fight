@@ -20,12 +20,12 @@
 		04D9FF7E2627D5810096BA6E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 04D9FF7D2627D5810096BA6E /* GoogleService-Info.plist */; };
 		04D9FF8E2627E85B0096BA6E /* CardService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D9FF8D2627E85B0096BA6E /* CardService.swift */; };
 		04D9FF972628186F0096BA6E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D9FF962628186F0096BA6E /* Constants.swift */; };
+		04E55197263A7BD70082124A /* Pods_Magic_Fight.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04A77C20ED6DD027540F20E8 /* Pods_Magic_Fight.framework */; };
 		04FFADA625B51FFF0045D75D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FFADA525B51FFF0045D75D /* AppDelegate.swift */; };
 		04FFADA825B51FFF0045D75D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FFADA725B51FFF0045D75D /* SceneDelegate.swift */; };
 		04FFADAD25B51FFF0045D75D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04FFADAB25B51FFF0045D75D /* Main.storyboard */; };
 		04FFADAF25B520000045D75D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04FFADAE25B520000045D75D /* Assets.xcassets */; };
 		04FFADB225B520000045D75D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04FFADB025B520000045D75D /* LaunchScreen.storyboard */; };
-		AD6740C973DC62E8872FAF90 /* Pods_Magic_Fight.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04A77C20ED6DD027540F20E8 /* Pods_Magic_Fight.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,7 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AD6740C973DC62E8872FAF90 /* Pods_Magic_Fight.framework in Frameworks */,
+				04E55197263A7BD70082124A /* Pods_Magic_Fight.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -441,6 +441,7 @@
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+					"@executable_path/../Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.fomagran.Magic-Fight";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -461,6 +462,7 @@
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+					"@executable_path/../Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.fomagran.Magic-Fight";
 				PRODUCT_NAME = "$(TARGET_NAME)";

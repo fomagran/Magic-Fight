@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="landscape" appearance="dark"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -404,21 +404,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="60" translatesAutoresizingMaskIntoConstraints="NO" id="l6V-Rz-GpT">
-                                <rect key="frame" x="194" y="106.5" width="508" height="280"/>
+                                <rect key="frame" x="348" y="106.5" width="200" height="280"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0yg-lD-0BT">
-                                        <rect key="frame" x="0.0" y="0.0" width="224" height="280"/>
-                                        <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <fontDescription key="fontDescription" name="BodoniSvtyTwoITCTT-Book" family="Bodoni 72" pointSize="50"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="After" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wii-ZS-X0L">
-                                        <rect key="frame" x="284" y="0.0" width="224" height="280"/>
-                                        <fontDescription key="fontDescription" name="BodoniSvtyTwoITCTT-Book" family="Bodoni 72" pointSize="50"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="JJt-oO-lwE">
+                                        <rect key="frame" x="0.0" y="0.0" width="200" height="280"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="200" id="f1g-c3-vEU"/>
+                                        </constraints>
+                                    </imageView>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="280" id="GtR-mE-rq6"/>
@@ -436,16 +429,13 @@
                         <constraints>
                             <constraint firstItem="l6V-Rz-GpT" firstAttribute="centerX" secondItem="ebC-aD-zbi" secondAttribute="centerX" id="DqU-Ld-r6q"/>
                             <constraint firstItem="9gg-HH-Efz" firstAttribute="centerX" secondItem="ebC-aD-zbi" secondAttribute="centerX" id="Ky5-bI-qO8"/>
-                            <constraint firstItem="l6V-Rz-GpT" firstAttribute="trailing" secondItem="ebC-aD-zbi" secondAttribute="trailing" constant="-150" id="Tzp-rs-oIb"/>
-                            <constraint firstItem="ebC-aD-zbi" firstAttribute="leading" secondItem="l6V-Rz-GpT" secondAttribute="leading" constant="-150" id="bgi-GK-exA"/>
                             <constraint firstItem="9gg-HH-Efz" firstAttribute="top" secondItem="ebC-aD-zbi" secondAttribute="top" constant="20" id="qwD-8V-EVT"/>
                             <constraint firstItem="l6V-Rz-GpT" firstAttribute="centerY" secondItem="ebC-aD-zbi" secondAttribute="centerY" constant="50" id="uZm-uD-Vk1"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="2PR-pd-uOJ"/>
                     <connections>
-                        <outlet property="afterLabel" destination="wii-ZS-X0L" id="7Jg-qw-9Go"/>
-                        <outlet property="firstLabel" destination="0yg-lD-0BT" id="oyL-92-Gnm"/>
+                        <outlet property="image" destination="JJt-oO-lwE" id="DdC-z2-8dN"/>
                         <segue destination="iwc-UT-k63" kind="show" identifier="showGameViewController" id="M0U-P4-qYh"/>
                     </connections>
                 </viewController>
@@ -1459,7 +1449,7 @@
     </designables>
     <inferredMetricsTieBreakers>
         <segue reference="ByE-IB-Top"/>
-        <segue reference="VKx-3q-ZgU"/>
+        <segue reference="Uvw-my-Zof"/>
         <segue reference="6KE-ra-ZlF"/>
     </inferredMetricsTieBreakers>
     <resources>

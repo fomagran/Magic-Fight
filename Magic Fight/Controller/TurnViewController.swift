@@ -9,28 +9,19 @@ import UIKit
 
 class TurnViewController: UIViewController {
 
-    @IBOutlet weak var afterLabel: UILabel!
-    @IBOutlet weak var firstLabel: UILabel!
+    @IBOutlet weak var image: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        firstLabel.layer.cornerRadius = 20
-        firstLabel.layer.masksToBounds = true
-        
-        afterLabel.layer.cornerRadius = 20
-        afterLabel.layer.masksToBounds = true
-        
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             self.goToGameViewController()
         }
         
         if OPPONENT_USER == "acop" {
-            firstLabel.backgroundColor = .systemRed
-            afterLabel.backgroundColor = . black
+            image.image = #imageLiteral(resourceName: "선공")
         }else {
-            firstLabel.backgroundColor = .black
-            afterLabel.backgroundColor = .systemRed
+            image.image = #imageLiteral(resourceName: "후공")
         }
     }
     

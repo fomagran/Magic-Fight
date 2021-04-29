@@ -27,7 +27,8 @@ class GameViewController: UIViewController {
     
     var ref = Database.database().reference()
         
-    var cards:[Card] = []
+    var myCards:[Card] = []
+    var enemyCards:[Card] = []
     
     var timer = Timer()
     var (minutes,seconds) = (1,0)
@@ -35,16 +36,19 @@ class GameViewController: UIViewController {
     var name = ""
     var descriptionLabel = ""
     
-    var deck = [Card]()
-    var trash = [Card]()
+    
+    var myDeck = [Card]()
+    var myTrash = [Card]()
+    var enemyDeck = [Card]()
+    var enemyTrash = [Card]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configure()
         setDatabase()
-        start()
         observeDatabase()
+        start()
         
         let tap1 = UITapGestureRecognizer(target: self, action:#selector(tapBackground))
         bgImage.addGestureRecognizer(tap1)
@@ -56,7 +60,12 @@ class GameViewController: UIViewController {
         ref.child("battle").child(CURRENT_USER).observe(DataEventType.value, with: { (snapshot) in
             if snapshot.exists() {
                 let value = snapshot.value as! [String : AnyObject]
-                if "\(value["HP"]!)" == "0" {
+                
+                self.myHPLabel.text = "\(value["HP"]!)"
+                self.myMPLabel.text = "\(value["MP"]!)"
+                
+                guard let hp = value["HP"] else {return}
+                if (hp as! Int) <= 0 {
                     self.victoryOrDefeatImage.image = #imageLiteral(resourceName: "defeat")
                     self.victoryOrDefeatImage.isHidden = false
                     self.timer.invalidate()
@@ -74,24 +83,67 @@ class GameViewController: UIViewController {
                     self.timer.invalidate()
                 }
                 
-                self.myHPLabel.text = "\(value["HP"]!)"
-                self.myMPLabel.text = "\(value["MP"]!)"
-                self.trashCardLabel.text = "\(value["trash"]!)"
-                self.deckCountLabel.text = "\(value["deck"]!.count!)"
+                guard let deck = value["deck"] else {return}
+                
+                for name in deck as! [String]{
+                    if allCard.filter({$0.name == name}).first != nil {
+                    self.myDeck.append(allCard.filter{$0.name == name}.first!)
+                    }
+                }
+                guard let cards = value["cards"] else {return}
+                
+                var newCards = [Card]()
+                for name in cards as! [String]{
+                    newCards.append(allCard.filter{$0.name == name}.first!)
+                }
+                self.myCards = newCards
+                guard let trash = value["trash"] else {return}
+                for name in trash as! [String] {
+                    self.myTrash.append(allCard.filter{$0.name == name}.first!)
+                }
+
+                self.trashCardLabel.text = "\(self.myTrash.count)"
+                self.deckCountLabel.text = "\(self.myDeck.count)"
             }
         })
         
         ref.child("battle").child(OPPONENT_USER).observe(DataEventType.value, with: { (snapshot) in
             if snapshot.exists() {
+                
                 let value = snapshot.value as! [String : AnyObject]
-                if "\(value["HP"]!)" == "0" {
+                self.enemyHPLabel.text = "\(value["HP"]!)"
+                self.enemyMPLabel.text = "\(value["MP"]!)"
+                guard let hp = value["HP"] else {return}
+
+                if (hp as! Int) <= 0 {
                     self.victoryOrDefeatImage.image = #imageLiteral(resourceName: "victory")
                     self.victoryOrDefeatImage.isHidden = false
                     self.timer.invalidate()
                 }
-                self.enemyHPLabel.text = "\(value["HP"]!)"
-                self.enemyMPLabel.text = "\(value["MP"]!)"
-                self.enemyDeckLabel.text = "\(value["deck"]!.count!)"
+                
+                guard let deck = value["deck"] else {return}
+                for name in deck as! [String] {
+                    if allCard.filter({$0.name == name}).first != nil {
+                    self.enemyDeck.append(allCard.filter{$0.name == name}.first!)
+                    }
+                }
+                
+                guard let cards = value["cards"] else {return}
+                var newCards = [Card]()
+                for name in cards as! [String]{
+                    if allCard.filter({$0.name == name}).first != nil {
+                    newCards.append(allCard.filter{$0.name == name}.first!)
+                    }
+                }
+                self.enemyCards = newCards
+                guard let trash = value["trash"] else {return}
+                for name in trash as! [String]{
+                    if allCard.filter({$0.name == name}).first != nil {
+                    self.enemyTrash.append(allCard.filter{$0.name == name}.first!)
+                    }
+                }
+            
+                self.enemyDeckLabel.text = "\(self.enemyDeck.count)"
             }
         })
     }
@@ -103,7 +155,8 @@ class GameViewController: UIViewController {
     
     func setDatabase() {
         let turn = CURRENT_USER == "fomagran" ? true:false
-        ref.child("battle").child(CURRENT_USER).setValue(["HP":20,"MP":0,"turn":turn,"trash":0,"deck":["초급마법서","초급마법서","초급마법서","초급마법서","초급마법서","초급마법서","초급마법서","초급마법서","푸른젬","푸른젬"]])
+        ref.child("battle").child(CURRENT_USER).setValue(["HP":20,"MP":0,"cards":[],"turn":turn,"trash":[],"deck":["초급마법서","초급마법서","초급마법서","초급마법서","초급마법서","초급마법서","초급마법서","초급마법서","푸른젬","푸른젬"]])
+        setNameFromDeck()
     }
     
     @objc func tapBackground() {
@@ -121,36 +174,44 @@ class GameViewController: UIViewController {
     
     func configure() {
         victoryOrDefeatImage.isHidden = true
-        let 초급마법서 = Card(name: "초급 마법서", price: 0, usePrice: 1, count: 0, effect: "가격 4 이하의 주문 카드 하나를 공급처에서 선택하여 가져온다. 게임을 시작할 때만 얻을 수 있으며, 구매할 수 없고, 사용 후 파괴된다.",magicAttribute:.무속성,gem: nil,image: UIImage(named: "초급마법서")!)
-        let 푸른젬 =  Card(name: "푸른 젬", price: 1,usePrice: 0, count: 30, effect: "",magicAttribute:.무속성 ,gem:1,image: UIImage(named: "초급마법서")!)
-        deck = [초급마법서,초급마법서,초급마법서,초급마법서,초급마법서,초급마법서,초급마법서,초급마법서,푸른젬,푸른젬]
-        deckCountLabel.text = "\(deck.count)"
-        setNameFromDeck()
+        let 초급마법서 = allCard.filter{$0.name == "초급마법서"}.first!
+        let 푸른젬 = allCard.filter{$0.name == "푸른젬"}.first!
+        myDeck = [초급마법서,초급마법서,초급마법서,초급마법서,초급마법서,초급마법서,초급마법서,초급마법서,푸른젬,푸른젬]
+        deckCountLabel.text = "\(myDeck.count)"
     }
     
     func setNameFromDeck(){
         
-        for _ in 0...4 {
-        let randomCard = deck.randomElement()!
-        cards.append(deck.randomElement()!)
-        deck.remove(at: deck.firstIndex { $0 == randomCard}!)
-        }
+//        for _ in 0...4 {
+//        let randomCard = myDeck.randomElement()!
+//            myCards.append(myDeck.randomElement()!)
+//            myDeck.remove(at: myDeck.firstIndex { $0 == randomCard}!)
+//        }
+        
+        ref.child("battle").child(CURRENT_USER).updateChildValues(["cards":["릴림","화염구","물대포","낙뢰","에너지재생"]])
+        ref.child("battle").child(CURRENT_USER).updateChildValues(["deck":myDeck.map{$0.name}])
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showSupplierViewController" {
             let vc = segue.destination as! SupplierViewController
-            vc.cards = cards
+            vc.myCards = myCards
             vc.isSupplier = false
             vc.myHP = Int(myHPLabel.text!)!
+            vc.myMP = Int(myMPLabel.text!)!
             vc.enemyHP = Int(enemyHPLabel.text!)!
+            vc.enemyMP = Int(enemyMPLabel.text!)!
+            vc.enemyDeck = enemyDeck
+            vc.enemyTrash = enemyTrash
+            vc.myTrash = myTrash
+            vc.myDeck = myDeck
+            vc.enemyCards = enemyCards
+            vc.myCards = myCards
         }
     }
     
     func start() {
-        
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(GameViewController.keepTimer), userInfo: nil, repeats: true)
-
     }
     
     @objc private func stopTimer() {

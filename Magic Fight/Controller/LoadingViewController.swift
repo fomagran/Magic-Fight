@@ -39,10 +39,11 @@ class LoadingViewController: UIViewController {
     
     
     @IBAction func tapConfirmButton(_ sender: Any) {
-        loadingLabel.isHidden = false
         if nickNameTF.text == "" {
             showAlert()
         }else {
+            loadingLabel.isHidden = false
+            UserDefaults.standard.setValue(nickNameTF.text!, forKey: "nickname")
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                 self.performSegue(withIdentifier: "showMainViewController", sender: nil)
             }
