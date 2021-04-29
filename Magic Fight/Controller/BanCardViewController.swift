@@ -12,18 +12,6 @@ class BanCardViewController: UIViewController {
     
     @IBOutlet weak var pickBanCard: UILabel!
     @IBOutlet weak var doneBtn: UIButton!
-    @IBOutlet weak var stack4: UIStackView!
-    @IBOutlet weak var stack3: UIStackView!
-    @IBOutlet weak var stack2: UIStackView!
-    @IBOutlet weak var stack1: UIStackView!
-    @IBOutlet weak var card4Effect: UILabel!
-    @IBOutlet weak var card3Effect: UILabel!
-    @IBOutlet weak var card2Effect: UILabel!
-    @IBOutlet weak var card1Effect: UILabel!
-    @IBOutlet weak var card4Label: UILabel!
-    @IBOutlet weak var card3Label: UILabel!
-    @IBOutlet weak var card2Label: UILabel!
-    @IBOutlet weak var card1Label: UILabel!
     @IBOutlet weak var card4: UIImageView!
     @IBOutlet weak var card3: UIImageView!
     @IBOutlet weak var card2: UIImageView!
@@ -69,62 +57,65 @@ class BanCardViewController: UIViewController {
         
         randomCard1 = allCardCopy.randomElement()!
         allCardCopy.remove(at: allCardCopy.firstIndex { $0 == randomCard1}!)
-        (card1Label.text,card1Effect.text) = (randomCard1!.name,randomCard1!.effect)
+        card1.image = randomCard1?.image
+       
         
         randomCard2 = allCardCopy.randomElement()!
         allCardCopy.remove(at: allCardCopy.firstIndex { $0 == randomCard2}!)
-        (card2Label.text,card2Effect.text) = (randomCard2!.name,randomCard2!.effect)
+        card2.image = randomCard2?.image
+     
         
         randomCard3 = allCardCopy.randomElement()!
         allCardCopy.remove(at: allCardCopy.firstIndex { $0 == randomCard3}!)
-        (card3Label.text,card3Effect.text) = (randomCard3!.name,randomCard3!.effect)
-        
+        card3.image = randomCard3?.image
+       
         randomCard4 = allCardCopy.randomElement()!
         allCardCopy.remove(at: allCardCopy.firstIndex { $0 == randomCard4}!)
-        (card4Label.text,card4Effect.text) = (randomCard4!.name,randomCard4!.effect)
+        card4.image = randomCard4?.image
+
         
     }
     
     func setTap() {
         let tap1 = UITapGestureRecognizer(target: self, action:#selector(tapCard1))
-        card1Label.addGestureRecognizer(tap1)
-        card1Label.isUserInteractionEnabled = true
+        card1.addGestureRecognizer(tap1)
+        card1.isUserInteractionEnabled = true
         
         let tap2 = UITapGestureRecognizer(target: self, action:#selector(tapCard2))
-        card2Label.addGestureRecognizer(tap2)
-        card2Label.isUserInteractionEnabled = true
+        card2.addGestureRecognizer(tap2)
+        card2.isUserInteractionEnabled = true
         
         let tap3 = UITapGestureRecognizer(target: self, action:#selector(tapCard3))
-        card3Label.addGestureRecognizer(tap3)
-        card3Label.isUserInteractionEnabled = true
+        card3.addGestureRecognizer(tap3)
+        card3.isUserInteractionEnabled = true
         
         let tap4 = UITapGestureRecognizer(target: self, action:#selector(tapCard4))
-        card4Label.addGestureRecognizer(tap4)
-        card4Label.isUserInteractionEnabled = true
+        card4.addGestureRecognizer(tap4)
+        card4.isUserInteractionEnabled = true
         
     }
     
     @objc func tapCard1() {
-        stack1.isHidden = true
+
         card1.isHidden = true
         allCard.remove(at: allCard.firstIndex{$0 == randomCard1}!)
     }
     
     @objc func tapCard2() {
-        stack2.isHidden = true
+
         card2.isHidden = true
         allCard.remove(at: allCard.firstIndex{$0 == randomCard2}!)
         
     }
     
     @objc func tapCard3() {
-        stack3.isHidden = true
+  
         card3.isHidden = true
         allCard.remove(at: allCard.firstIndex{$0 == randomCard3}!)
     }
     
     @objc func tapCard4() {
-        stack4.isHidden = true
+
         card4.isHidden = true
         allCard.remove(at: allCard.firstIndex{$0 == randomCard4}!)
     }

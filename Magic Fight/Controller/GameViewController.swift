@@ -10,6 +10,7 @@ import FirebaseDatabase
 
 class GameViewController: UIViewController {
 
+    @IBOutlet weak var victoryOrDefeatImage: UIImageView!
     @IBOutlet weak var endTurnButton: UIButton!
     @IBOutlet weak var enemyDeckLabel: UILabel!
     @IBOutlet weak var deckCountLabel: UILabel!
@@ -24,9 +25,7 @@ class GameViewController: UIViewController {
     @IBOutlet weak var timerLabel: UILabel!
     
     var ref = Database.database().reference()
-    
-    var isMyTurn:Bool = true
-    
+        
     var cards:[Card] = []
     
     var timer = Timer()
@@ -54,16 +53,18 @@ class GameViewController: UIViewController {
             if snapshot.exists() {
                 let value = snapshot.value as! [String : AnyObject]
                 if "\(value["HP"]!)" == "0" {
-                    self.showAlert(title:"Lose" ,message:"아쉽게 패배하셨네요ㅜ")
+                    self.victoryOrDefeatImage.image = #imageLiteral(resourceName: "defeat")
+                    self.victoryOrDefeatImage.isHidden = false
                 }
                 
                 if value["turn"] as! Bool == true {
                     self.setInitialState()
                     self.start()
                     self.timerLabel.backgroundColor = .clear
+                    self.setTurn(isMyturn: true)
                 }else {
                     self.timerLabel.backgroundColor = .red
-                    
+                    self.setTurn(isMyturn: false)
                     self.timerLabel.text = "상대턴"
                     self.timer.invalidate()
                 }
@@ -79,7 +80,8 @@ class GameViewController: UIViewController {
             if snapshot.exists() {
                 let value = snapshot.value as! [String : AnyObject]
                 if "\(value["HP"]!)" == "0" {
-                    self.showAlert(title:"Victory" ,message:"승리를 축하드려요!")
+                    self.victoryOrDefeatImage.image = #imageLiteral(resourceName: "victory")
+                    self.victoryOrDefeatImage.isHidden = false
                 }
                 self.enemyHPLabel.text = "\(value["HP"]!)"
                 self.enemyMPLabel.text = "\(value["MP"]!)"
@@ -93,31 +95,26 @@ class GameViewController: UIViewController {
         ref.child("battle").child(OPPONENT_USER).updateChildValues(["turn":true])
     }
     
-    func showAlert(title:String,message:String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let action = UIAlertAction(title: "확인", style: .default) { (_) in
+    func setDatabase() {
+        let turn = CURRENT_USER == "fomagran" ? true:false
+        ref.child("battle").child(CURRENT_USER).setValue(["HP":20,"MP":0,"turn":turn,"trash":0,"deck":["초급마법서","초급마법서","초급마법서","초급마법서","초급마법서","초급마법서","초급마법서","초급마법서","푸른젬","푸른젬"]])
+    }
+    
+    @IBAction func tapBackground(_ sender: Any) {
+        if victoryOrDefeatImage.isHidden == false {
             self.ref.removeValue()
             self.performSegue(withIdentifier: "unwindMainViewController", sender: nil)
         }
-        alert.addAction(action)
-        present(alert, animated: true, completion: nil)
     }
-    
-    
-    
-    func setDatabase() {
-        ref.child("battle").child(CURRENT_USER).setValue(["HP":20,"MP":0,"turn":true,"trash":0,"deck":["초급마법서","초급마법서","초급마법서","초급마법서","초급마법서","초급마법서","초급마법서","초급마법서","푸른젬","푸른젬"]])
-        
-    }
-    
     @IBAction func tapCardButton(_ sender: Any) {
         performSegue(withIdentifier: "showSupplierViewController", sender: nil)
     }
     
     
     func configure() {
-        let 초급마법서 = Card(name: "초급 마법서", price: 0, usePrice: 1, count: 0, effect: "가격 4 이하의 주문 카드 하나를 공급처에서 선택하여 가져온다. 게임을 시작할 때만 얻을 수 있으며, 구매할 수 없고, 사용 후 파괴된다.",magicAttribute:.무속성,gem: nil)
-        let 푸른젬 =      Card(name: "푸른 젬", price: 1,usePrice: 0, count: 30, effect: "",magicAttribute:.무속성 ,gem:1)
+        victoryOrDefeatImage.isHidden = true
+        let 초급마법서 = Card(name: "초급 마법서", price: 0, usePrice: 1, count: 0, effect: "가격 4 이하의 주문 카드 하나를 공급처에서 선택하여 가져온다. 게임을 시작할 때만 얻을 수 있으며, 구매할 수 없고, 사용 후 파괴된다.",magicAttribute:.무속성,gem: nil,image: UIImage(named: "초급마법서")!)
+        let 푸른젬 =  Card(name: "푸른 젬", price: 1,usePrice: 0, count: 30, effect: "",magicAttribute:.무속성 ,gem:1,image: UIImage(named: "초급마법서")!)
         deck = [초급마법서,초급마법서,초급마법서,초급마법서,초급마법서,초급마법서,초급마법서,초급마법서,푸른젬,푸른젬]
         deckCountLabel.text = "\(deck.count)"
         setNameFromDeck()
@@ -165,16 +162,28 @@ class GameViewController: UIViewController {
             minutes -= 1
             seconds = 59
             }else{
+                ref.child("battle").child(CURRENT_USER).updateChildValues(["turn":false])
+                ref.child("battle").child(OPPONENT_USER).updateChildValues(["turn":true])
+                setTurn(isMyturn: false)
                 timer.invalidate()
             }
         }else{
             seconds -= 1
         }
 
-        
         let secondsString = seconds > 9 ? "\(seconds)" : "0\(seconds)"
         let minutesString = minutes > 9 ? "\(minutes)" : "0\(minutes)"
       
         timerLabel.text = "\(minutesString):\(secondsString)"
+    }
+    
+    func setTurn(isMyturn:Bool) {
+        if isMyturn {
+            cardButton.isEnabled = true
+            endTurnButton.isEnabled = true
+        }else {
+            cardButton.isEnabled = false
+            endTurnButton.isEnabled = false
+        }
     }
 }

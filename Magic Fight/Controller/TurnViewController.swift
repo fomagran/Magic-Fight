@@ -14,6 +14,12 @@ class TurnViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        firstLabel.layer.cornerRadius = 20
+        firstLabel.layer.masksToBounds = true
+        
+        afterLabel.layer.cornerRadius = 20
+        afterLabel.layer.masksToBounds = true
+        
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             self.goToGameViewController()

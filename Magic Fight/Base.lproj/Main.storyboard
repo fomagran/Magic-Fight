@@ -336,109 +336,21 @@
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="vnz-Qe-gX3">
                                 <rect key="frame" x="24" y="96.5" width="848" height="300"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="카드도감카드큰거" translatesAutoresizingMaskIntoConstraints="NO" id="SPG-aV-6S9">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="초급마법서" translatesAutoresizingMaskIntoConstraints="NO" id="SPG-aV-6S9">
                                         <rect key="frame" x="0.0" y="0.0" width="212" height="300"/>
                                     </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="카드도감카드큰거" translatesAutoresizingMaskIntoConstraints="NO" id="QOE-w4-4uw">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="카드도감카드큰거" translatesAutoresizingMaskIntoConstraints="NO" id="QOE-w4-4uw">
                                         <rect key="frame" x="212" y="0.0" width="212" height="300"/>
                                     </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="카드도감카드큰거" translatesAutoresizingMaskIntoConstraints="NO" id="p5J-hF-z1S">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="카드도감카드큰거" translatesAutoresizingMaskIntoConstraints="NO" id="p5J-hF-z1S">
                                         <rect key="frame" x="424" y="0.0" width="212" height="300"/>
                                     </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="카드도감카드큰거" translatesAutoresizingMaskIntoConstraints="NO" id="u6v-aL-BCh">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="카드도감카드큰거" translatesAutoresizingMaskIntoConstraints="NO" id="u6v-aL-BCh">
                                         <rect key="frame" x="636" y="0.0" width="212" height="300"/>
                                     </imageView>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="300" id="jUv-cn-fyt"/>
-                                </constraints>
-                            </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Rrq-22-kUq">
-                                <rect key="frame" x="24" y="96.5" width="848" height="300"/>
-                                <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="QWd-D7-7oB">
-                                        <rect key="frame" x="0.0" y="0.0" width="212" height="300"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="금지된 마법" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="37Q-Q4-inV">
-                                                <rect key="frame" x="0.0" y="0.0" width="212" height="200"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="200" id="6hW-Y6-bCH"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" name="BodoniSvtyTwoITCTT-BookIta" family="Bodoni 72" pointSize="30"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="금지된 마법" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="0d9-EJ-E7F">
-                                                <rect key="frame" x="0.0" y="200" width="212" height="100"/>
-                                                <fontDescription key="fontDescription" name="BodoniSvtyTwoITCTT-BookIta" family="Bodoni 72" pointSize="30"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                    </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="zFg-iz-yQW">
-                                        <rect key="frame" x="212" y="0.0" width="212" height="300"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="초급 마법서" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VwV-id-wdl">
-                                                <rect key="frame" x="0.0" y="0.0" width="212" height="200"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="200" id="Acl-eO-o1z"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" name="BodoniSvtyTwoITCTT-BookIta" family="Bodoni 72" pointSize="30"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="금지된 마법" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="KKk-PT-yYD">
-                                                <rect key="frame" x="0.0" y="200" width="212" height="100"/>
-                                                <fontDescription key="fontDescription" name="BodoniSvtyTwoITCTT-BookIta" family="Bodoni 72" pointSize="30"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                    </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="vI8-gg-Nmx">
-                                        <rect key="frame" x="424" y="0.0" width="212" height="300"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="푸른 젬" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mg5-Ch-POV">
-                                                <rect key="frame" x="0.0" y="0.0" width="212" height="200"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="200" id="e0f-zV-SmO"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" name="BodoniSvtyTwoITCTT-BookIta" family="Bodoni 72" pointSize="30"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="금지된 마법" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="44M-H5-wbJ">
-                                                <rect key="frame" x="0.0" y="200" width="212" height="100"/>
-                                                <fontDescription key="fontDescription" name="BodoniSvtyTwoITCTT-BookIta" family="Bodoni 72" pointSize="30"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                    </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="8uR-oT-dUv">
-                                        <rect key="frame" x="636" y="0.0" width="212" height="300"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="황금 젬" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jbj-AZ-bSE">
-                                                <rect key="frame" x="0.0" y="0.0" width="212" height="200"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="200" id="fwe-BP-kYj"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" name="BodoniSvtyTwoITCTT-BookIta" family="Bodoni 72" pointSize="30"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="금지된 마법" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="bji-fI-gdK">
-                                                <rect key="frame" x="0.0" y="200" width="212" height="100"/>
-                                                <fontDescription key="fontDescription" name="BodoniSvtyTwoITCTT-BookIta" family="Bodoni 72" pointSize="30"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                    </stackView>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="300" id="fUR-5O-kcq"/>
                                 </constraints>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pick Ban Card" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rGA-kB-Qf6">
@@ -463,38 +375,22 @@
                         <constraints>
                             <constraint firstItem="RNk-f8-hAv" firstAttribute="trailing" secondItem="S68-50-vVX" secondAttribute="trailing" constant="50" id="D4D-n5-37W"/>
                             <constraint firstItem="rGA-kB-Qf6" firstAttribute="top" secondItem="RNk-f8-hAv" secondAttribute="top" constant="20" id="F8G-1K-IL0"/>
-                            <constraint firstItem="Rrq-22-kUq" firstAttribute="leading" secondItem="vnz-Qe-gX3" secondAttribute="leading" id="Tx5-cS-Y79"/>
                             <constraint firstItem="RNk-f8-hAv" firstAttribute="leading" secondItem="vnz-Qe-gX3" secondAttribute="leading" constant="20" id="YbB-Ok-Uvy"/>
                             <constraint firstItem="vnz-Qe-gX3" firstAttribute="centerY" secondItem="RNk-f8-hAv" secondAttribute="centerY" constant="50" id="a79-4u-VRx"/>
-                            <constraint firstItem="Rrq-22-kUq" firstAttribute="trailing" secondItem="vnz-Qe-gX3" secondAttribute="trailing" id="end-SA-jFP"/>
                             <constraint firstItem="vnz-Qe-gX3" firstAttribute="centerX" secondItem="RNk-f8-hAv" secondAttribute="centerX" id="ewO-1M-HQQ"/>
                             <constraint firstItem="rGA-kB-Qf6" firstAttribute="centerX" secondItem="RNk-f8-hAv" secondAttribute="centerX" id="heh-bc-vA0"/>
-                            <constraint firstItem="Rrq-22-kUq" firstAttribute="bottom" secondItem="vnz-Qe-gX3" secondAttribute="bottom" id="ib7-Fx-s95"/>
                             <constraint firstItem="vnz-Qe-gX3" firstAttribute="trailing" secondItem="RNk-f8-hAv" secondAttribute="trailing" constant="20" id="lnf-K5-E1K"/>
-                            <constraint firstItem="Rrq-22-kUq" firstAttribute="top" secondItem="vnz-Qe-gX3" secondAttribute="top" id="vP5-et-msa"/>
                             <constraint firstItem="S68-50-vVX" firstAttribute="centerY" secondItem="rGA-kB-Qf6" secondAttribute="centerY" id="vbg-nv-PIo"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="HNa-h6-tWU"/>
                     <connections>
                         <outlet property="card1" destination="SPG-aV-6S9" id="Msp-7o-oq4"/>
-                        <outlet property="card1Effect" destination="0d9-EJ-E7F" id="ad1-B8-81o"/>
-                        <outlet property="card1Label" destination="37Q-Q4-inV" id="yiC-4e-eKc"/>
                         <outlet property="card2" destination="QOE-w4-4uw" id="aC2-Lg-xKu"/>
-                        <outlet property="card2Effect" destination="KKk-PT-yYD" id="V2u-kf-9HL"/>
-                        <outlet property="card2Label" destination="VwV-id-wdl" id="8PL-AG-C7C"/>
                         <outlet property="card3" destination="p5J-hF-z1S" id="ybf-q9-c3N"/>
-                        <outlet property="card3Effect" destination="44M-H5-wbJ" id="2a2-jS-DmP"/>
-                        <outlet property="card3Label" destination="mg5-Ch-POV" id="kso-Ow-cUY"/>
                         <outlet property="card4" destination="u6v-aL-BCh" id="1Ej-Xi-q45"/>
-                        <outlet property="card4Effect" destination="bji-fI-gdK" id="AOC-Cx-lEP"/>
-                        <outlet property="card4Label" destination="jbj-AZ-bSE" id="xLu-kx-1Vo"/>
                         <outlet property="doneBtn" destination="S68-50-vVX" id="a8w-XR-LUh"/>
                         <outlet property="pickBanCard" destination="rGA-kB-Qf6" id="0bw-ea-sGz"/>
-                        <outlet property="stack1" destination="QWd-D7-7oB" id="dLc-pA-1rA"/>
-                        <outlet property="stack2" destination="zFg-iz-yQW" id="9PV-82-JsV"/>
-                        <outlet property="stack3" destination="vI8-gg-Nmx" id="9in-4q-O2t"/>
-                        <outlet property="stack4" destination="8uR-oT-dUv" id="RUb-wB-AIw"/>
                         <segue destination="7N2-i6-VUB" kind="show" identifier="showTurnViewController" id="xaD-tT-ewB"/>
                     </connections>
                 </viewController>
@@ -510,25 +406,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="l6V-Rz-GpT">
-                                <rect key="frame" x="64" y="96.5" width="768" height="300"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="60" translatesAutoresizingMaskIntoConstraints="NO" id="l6V-Rz-GpT">
+                                <rect key="frame" x="194" y="106.5" width="508" height="280"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0yg-lD-0BT">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="300"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="224" height="280"/>
                                         <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="BodoniSvtyTwoITCTT-Book" family="Bodoni 72" pointSize="50"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="After" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wii-ZS-X0L">
-                                        <rect key="frame" x="394" y="0.0" width="374" height="300"/>
+                                        <rect key="frame" x="284" y="0.0" width="224" height="280"/>
                                         <fontDescription key="fontDescription" name="BodoniSvtyTwoITCTT-Book" family="Bodoni 72" pointSize="50"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="300" id="GtR-mE-rq6"/>
+                                    <constraint firstAttribute="height" constant="280" id="GtR-mE-rq6"/>
                                 </constraints>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Turn" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9gg-HH-Efz">
@@ -543,8 +439,8 @@
                         <constraints>
                             <constraint firstItem="l6V-Rz-GpT" firstAttribute="centerX" secondItem="ebC-aD-zbi" secondAttribute="centerX" id="DqU-Ld-r6q"/>
                             <constraint firstItem="9gg-HH-Efz" firstAttribute="centerX" secondItem="ebC-aD-zbi" secondAttribute="centerX" id="Ky5-bI-qO8"/>
-                            <constraint firstItem="l6V-Rz-GpT" firstAttribute="trailing" secondItem="ebC-aD-zbi" secondAttribute="trailing" constant="-20" id="Tzp-rs-oIb"/>
-                            <constraint firstItem="ebC-aD-zbi" firstAttribute="leading" secondItem="l6V-Rz-GpT" secondAttribute="leading" constant="-20" id="bgi-GK-exA"/>
+                            <constraint firstItem="l6V-Rz-GpT" firstAttribute="trailing" secondItem="ebC-aD-zbi" secondAttribute="trailing" constant="-150" id="Tzp-rs-oIb"/>
+                            <constraint firstItem="ebC-aD-zbi" firstAttribute="leading" secondItem="l6V-Rz-GpT" secondAttribute="leading" constant="-150" id="bgi-GK-exA"/>
                             <constraint firstItem="9gg-HH-Efz" firstAttribute="top" secondItem="ebC-aD-zbi" secondAttribute="top" constant="20" id="qwD-8V-EVT"/>
                             <constraint firstItem="l6V-Rz-GpT" firstAttribute="centerY" secondItem="ebC-aD-zbi" secondAttribute="centerY" constant="50" id="uZm-uD-Vk1"/>
                         </constraints>
@@ -570,6 +466,10 @@
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="배경" translatesAutoresizingMaskIntoConstraints="NO" id="csy-gO-qXS">
                                 <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="hZa-v9-CDh" appends="YES" id="VQA-h6-5ri"/>
+                                </connections>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="카드도감배경" translatesAutoresizingMaskIntoConstraints="NO" id="i0e-38-IPM">
                                 <rect key="frame" x="-400" y="304" width="1646" height="100"/>
@@ -798,6 +698,13 @@
                                     <action selector="tapCardButton:" destination="iwc-UT-k63" eventType="touchUpInside" id="ie0-Uu-9G2"/>
                                 </connections>
                             </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tlG-N6-usu">
+                                <rect key="frame" x="328" y="132.5" width="240" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="4cj-eF-Ek0"/>
+                                    <constraint firstAttribute="height" constant="128" id="IcK-gP-Cca"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="PYN-eR-t7w"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -816,6 +723,7 @@
                             <constraint firstItem="ldb-aE-aHv" firstAttribute="trailing" secondItem="oB5-Xx-d5p" secondAttribute="trailing" id="9ma-ZH-Pp0"/>
                             <constraint firstItem="BDG-uR-MPc" firstAttribute="centerX" secondItem="oB5-Xx-d5p" secondAttribute="centerX" id="AOi-fN-qZb"/>
                             <constraint firstItem="BDG-uR-MPc" firstAttribute="centerY" secondItem="oB5-Xx-d5p" secondAttribute="centerY" id="AYD-sn-pAQ"/>
+                            <constraint firstItem="tlG-N6-usu" firstAttribute="centerX" secondItem="PYN-eR-t7w" secondAttribute="centerX" id="CF7-eS-jvn"/>
                             <constraint firstItem="rCr-fN-32d" firstAttribute="trailing" secondItem="zF4-Hu-dgF" secondAttribute="trailing" id="DIL-wQ-XJH"/>
                             <constraint firstItem="csy-gO-qXS" firstAttribute="leading" secondItem="cFA-7G-Z4N" secondAttribute="leading" id="DUm-gy-NdW"/>
                             <constraint firstAttribute="bottom" secondItem="csy-gO-qXS" secondAttribute="bottom" id="Dev-py-ADp"/>
@@ -852,6 +760,7 @@
                             <constraint firstItem="gbB-wg-aKf" firstAttribute="top" secondItem="csy-gO-qXS" secondAttribute="top" constant="60" id="mS2-nZ-4XO"/>
                             <constraint firstItem="fHE-UM-Aaa" firstAttribute="leading" secondItem="csy-gO-qXS" secondAttribute="leading" id="mjX-El-pAG"/>
                             <constraint firstItem="u8E-i7-3tN" firstAttribute="centerY" secondItem="dMm-RU-UJ7" secondAttribute="centerY" id="n3g-fv-ReX"/>
+                            <constraint firstItem="tlG-N6-usu" firstAttribute="centerY" secondItem="PYN-eR-t7w" secondAttribute="centerY" id="oC8-dd-qak"/>
                             <constraint firstItem="csy-gO-qXS" firstAttribute="top" secondItem="PYN-eR-t7w" secondAttribute="top" id="omX-kc-uDO"/>
                             <constraint firstItem="XES-ge-0W1" firstAttribute="leading" secondItem="csy-gO-qXS" secondAttribute="leading" constant="38" id="qZF-1e-jvF"/>
                             <constraint firstItem="Pzr-28-3nK" firstAttribute="centerX" secondItem="eZu-VV-TVg" secondAttribute="centerX" id="qbP-oS-2ZJ"/>
@@ -883,6 +792,7 @@
                         <outlet property="myMPLabel" destination="u8E-i7-3tN" id="1OL-Id-9zL"/>
                         <outlet property="timerLabel" destination="wN2-XP-sHn" id="z2G-Md-qYC"/>
                         <outlet property="trashCardLabel" destination="Pzr-28-3nK" id="Zrb-nd-LBv"/>
+                        <outlet property="victoryOrDefeatImage" destination="tlG-N6-usu" id="m3e-Bg-clY"/>
                         <segue destination="NMD-Ya-2ze" kind="show" identifier="showBigCardViewController" id="Lf7-oM-kkf"/>
                         <segue destination="cvA-Ke-BWN" kind="show" identifier="showSupplierViewController" id="ByE-IB-Top"/>
                         <segue destination="EiW-kN-JDT" kind="unwind" identifier="unwindMainViewController" unwindAction="unwindToMainViewControllerWithSegue:" id="nC1-WC-BMZ"/>
@@ -890,6 +800,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i6Q-nH-Xqv" sceneMemberID="firstResponder"/>
                 <exit id="EiW-kN-JDT" userLabel="Exit" sceneMemberID="exit"/>
+                <tapGestureRecognizer id="hZa-v9-CDh">
+                    <connections>
+                        <action selector="tapBackground:" destination="iwc-UT-k63" id="dKE-V1-saF"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="129" y="3626"/>
         </scene>
@@ -1881,6 +1796,7 @@
         <image name="이동 버튼_메인화면" width="630" height="472.33334350585938"/>
         <image name="젬파워_적" width="812" height="375"/>
         <image name="체력_적" width="812" height="375"/>
+        <image name="초급마법서" width="812" height="375"/>
         <image name="카드도감배경" width="812" height="375"/>
         <image name="카드도감카드큰거" width="812" height="375"/>
         <image name="캐릭터" width="666.66668701171875" height="666.66668701171875"/>
