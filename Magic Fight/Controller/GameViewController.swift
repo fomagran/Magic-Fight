@@ -10,6 +10,7 @@ import FirebaseDatabase
 
 class GameViewController: UIViewController {
 
+    @IBOutlet weak var endTurnButton: UIButton!
     @IBOutlet weak var enemyDeckLabel: UILabel!
     @IBOutlet weak var deckCountLabel: UILabel!
     @IBOutlet weak var cardButton: UIButton!
@@ -23,6 +24,8 @@ class GameViewController: UIViewController {
     @IBOutlet weak var timerLabel: UILabel!
     
     var ref = Database.database().reference()
+    
+    var isMyTurn:Bool = true
     
     var cards:[Card] = []
     
@@ -67,6 +70,10 @@ class GameViewController: UIViewController {
                 self.enemyDeckLabel.text = "\(value["deck"]!.count!)"
             }
         })
+    }
+    
+    @IBAction func tapEndTurnButton(_ sender: Any) {
+        
     }
     
     func showAlert(title:String,message:String) {

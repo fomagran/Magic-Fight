@@ -764,6 +764,13 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SCz-EW-6W1">
+                                <rect key="frame" x="775.5" y="233" width="100" height="50"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="tapEndTurnButton:" destination="iwc-UT-k63" eventType="touchUpInside" id="sb3-OR-vOa"/>
+                                </connections>
+                            </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="턴종료" translatesAutoresizingMaskIntoConstraints="NO" id="Zq2-If-2NP">
                                 <rect key="frame" x="775.5" y="233" width="100" height="50"/>
                                 <constraints>
@@ -816,6 +823,7 @@
                             <constraint firstItem="u8E-i7-3tN" firstAttribute="centerX" secondItem="dMm-RU-UJ7" secondAttribute="centerX" id="EoS-na-S81"/>
                             <constraint firstItem="eZu-VV-TVg" firstAttribute="trailing" secondItem="csy-gO-qXS" secondAttribute="trailing" constant="-38" id="H8o-9L-hQf"/>
                             <constraint firstItem="i0e-38-IPM" firstAttribute="leading" secondItem="csy-gO-qXS" secondAttribute="leading" constant="-400" id="HbW-C0-eaz"/>
+                            <constraint firstItem="SCz-EW-6W1" firstAttribute="bottom" secondItem="Zq2-If-2NP" secondAttribute="bottom" id="Hh2-Yy-mKK"/>
                             <constraint firstItem="MIc-ld-RdJ" firstAttribute="top" secondItem="Zq2-If-2NP" secondAttribute="top" id="IbW-sP-yA9"/>
                             <constraint firstItem="wN2-XP-sHn" firstAttribute="centerY" secondItem="sOR-zh-pMm" secondAttribute="centerY" constant="5" id="JLr-pX-XqM"/>
                             <constraint firstItem="MIc-ld-RdJ" firstAttribute="trailing" secondItem="Zq2-If-2NP" secondAttribute="trailing" id="Jy0-mI-lnK"/>
@@ -828,6 +836,7 @@
                             <constraint firstItem="sOR-zh-pMm" firstAttribute="top" secondItem="csy-gO-qXS" secondAttribute="top" constant="-20" id="QnV-Jd-mKN"/>
                             <constraint firstItem="ldb-aE-aHv" firstAttribute="top" secondItem="oB5-Xx-d5p" secondAttribute="top" id="RY2-bt-r9Y"/>
                             <constraint firstItem="zF4-Hu-dgF" firstAttribute="top" secondItem="sOR-zh-pMm" secondAttribute="bottom" constant="10" id="TAr-76-gIS"/>
+                            <constraint firstItem="SCz-EW-6W1" firstAttribute="trailing" secondItem="Zq2-If-2NP" secondAttribute="trailing" id="TxU-eT-Pdk"/>
                             <constraint firstItem="i0e-38-IPM" firstAttribute="top" secondItem="L6R-AQ-avs" secondAttribute="bottom" constant="30" id="V9A-EB-Yac"/>
                             <constraint firstItem="zF4-Hu-dgF" firstAttribute="centerX" secondItem="sOR-zh-pMm" secondAttribute="centerX" constant="50" id="VKf-b9-KMq"/>
                             <constraint firstItem="Zq2-If-2NP" firstAttribute="centerX" secondItem="eZu-VV-TVg" secondAttribute="centerX" id="Vua-eP-hfP"/>
@@ -848,6 +857,7 @@
                             <constraint firstItem="Pzr-28-3nK" firstAttribute="centerX" secondItem="eZu-VV-TVg" secondAttribute="centerX" id="qbP-oS-2ZJ"/>
                             <constraint firstItem="Iyg-MU-d9l" firstAttribute="trailing" secondItem="gbB-wg-aKf" secondAttribute="trailing" id="qwG-cO-mqR"/>
                             <constraint firstItem="u8E-i7-3tN" firstAttribute="centerY" secondItem="bdr-vb-log" secondAttribute="centerY" id="rLN-U5-sJX"/>
+                            <constraint firstItem="SCz-EW-6W1" firstAttribute="leading" secondItem="Zq2-If-2NP" secondAttribute="leading" id="rby-fU-oug"/>
                             <constraint firstItem="ldb-aE-aHv" firstAttribute="leading" secondItem="oB5-Xx-d5p" secondAttribute="leading" id="rlk-jp-uoV"/>
                             <constraint firstItem="rCr-fN-32d" firstAttribute="top" secondItem="zF4-Hu-dgF" secondAttribute="top" id="tvb-im-MBR"/>
                             <constraint firstItem="fHE-UM-Aaa" firstAttribute="top" secondItem="oB5-Xx-d5p" secondAttribute="bottom" constant="10" id="u3c-c1-ZES"/>
@@ -855,6 +865,7 @@
                             <constraint firstItem="wN2-XP-sHn" firstAttribute="centerX" secondItem="sOR-zh-pMm" secondAttribute="centerX" id="vym-hv-J6c"/>
                             <constraint firstItem="1tl-qi-z0y" firstAttribute="centerX" secondItem="XES-ge-0W1" secondAttribute="centerX" id="yAa-lT-9FD"/>
                             <constraint firstItem="bdr-vb-log" firstAttribute="centerX" secondItem="csy-gO-qXS" secondAttribute="centerX" id="yaz-no-7JA"/>
+                            <constraint firstItem="SCz-EW-6W1" firstAttribute="top" secondItem="Zq2-If-2NP" secondAttribute="top" id="zNy-Xo-pJd"/>
                             <constraint firstItem="oB5-Xx-d5p" firstAttribute="top" secondItem="csy-gO-qXS" secondAttribute="top" constant="30" id="zaY-iu-zHl"/>
                         </constraints>
                     </view>
@@ -862,6 +873,7 @@
                     <connections>
                         <outlet property="cardButton" destination="bdr-vb-log" id="dic-yE-I0l"/>
                         <outlet property="deckCountLabel" destination="1tl-qi-z0y" id="Jfc-Gv-eYj"/>
+                        <outlet property="endTurnButton" destination="SCz-EW-6W1" id="omr-xH-oha"/>
                         <outlet property="enemyDeckLabel" destination="d9s-lg-BJO" id="9bL-9N-jqA"/>
                         <outlet property="enemyHPLabel" destination="pKb-EM-T9T" id="1fn-k3-5Lj"/>
                         <outlet property="enemyMPLabel" destination="uUB-d1-Eck" id="7CT-6X-nJW"/>
@@ -1839,7 +1851,7 @@
     </designables>
     <inferredMetricsTieBreakers>
         <segue reference="ByE-IB-Top"/>
-        <segue reference="VKx-3q-ZgU"/>
+        <segue reference="Uvw-my-Zof"/>
         <segue reference="K07-Sw-hQb"/>
     </inferredMetricsTieBreakers>
     <resources>
