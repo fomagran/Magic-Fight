@@ -26,11 +26,11 @@ class TurnViewController: UIViewController {
         }
         
         if OPPONENT_USER == "acop" {
-            firstLabel.backgroundColor = .red
+            firstLabel.backgroundColor = .systemRed
             afterLabel.backgroundColor = . black
         }else {
             firstLabel.backgroundColor = .black
-            afterLabel.backgroundColor = . red
+            afterLabel.backgroundColor = .systemRed
         }
     }
     

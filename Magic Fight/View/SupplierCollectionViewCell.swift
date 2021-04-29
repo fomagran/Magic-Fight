@@ -8,6 +8,5 @@
 import UIKit
 
 class SupplierCollectionViewCell: UICollectionViewCell {
-    @IBOutlet weak var label: UILabel!
     @IBOutlet weak var image: UIImageView!
 }

@@ -10,6 +10,7 @@ import FirebaseDatabase
 
 class GameViewController: UIViewController {
 
+    @IBOutlet weak var bgImage: UIImageView!
     @IBOutlet weak var victoryOrDefeatImage: UIImageView!
     @IBOutlet weak var endTurnButton: UIButton!
     @IBOutlet weak var enemyDeckLabel: UILabel!
@@ -45,6 +46,9 @@ class GameViewController: UIViewController {
         start()
         observeDatabase()
         
+        let tap1 = UITapGestureRecognizer(target: self, action:#selector(tapBackground))
+        bgImage.addGestureRecognizer(tap1)
+        bgImage.isUserInteractionEnabled = true
 
     }
     
@@ -55,6 +59,7 @@ class GameViewController: UIViewController {
                 if "\(value["HP"]!)" == "0" {
                     self.victoryOrDefeatImage.image = #imageLiteral(resourceName: "defeat")
                     self.victoryOrDefeatImage.isHidden = false
+                    self.timer.invalidate()
                 }
                 
                 if value["turn"] as! Bool == true {
@@ -82,6 +87,7 @@ class GameViewController: UIViewController {
                 if "\(value["HP"]!)" == "0" {
                     self.victoryOrDefeatImage.image = #imageLiteral(resourceName: "victory")
                     self.victoryOrDefeatImage.isHidden = false
+                    self.timer.invalidate()
                 }
                 self.enemyHPLabel.text = "\(value["HP"]!)"
                 self.enemyMPLabel.text = "\(value["MP"]!)"
@@ -100,12 +106,14 @@ class GameViewController: UIViewController {
         ref.child("battle").child(CURRENT_USER).setValue(["HP":20,"MP":0,"turn":turn,"trash":0,"deck":["초급마법서","초급마법서","초급마법서","초급마법서","초급마법서","초급마법서","초급마법서","초급마법서","푸른젬","푸른젬"]])
     }
     
-    @IBAction func tapBackground(_ sender: Any) {
+    @objc func tapBackground() {
+        print(victoryOrDefeatImage.isHidden == false)
         if victoryOrDefeatImage.isHidden == false {
             self.ref.removeValue()
             self.performSegue(withIdentifier: "unwindMainViewController", sender: nil)
         }
     }
+    
     @IBAction func tapCardButton(_ sender: Any) {
         performSegue(withIdentifier: "showSupplierViewController", sender: nil)
     }
