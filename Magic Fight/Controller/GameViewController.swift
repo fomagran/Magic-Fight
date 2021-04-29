@@ -44,12 +44,28 @@ class GameViewController: UIViewController {
         configure()
         setDatabase()
         start()
+        observeDatabase()
         
+
+    }
+    
+    func observeDatabase() {
         ref.child("battle").child(CURRENT_USER).observe(DataEventType.value, with: { (snapshot) in
             if snapshot.exists() {
                 let value = snapshot.value as! [String : AnyObject]
                 if "\(value["HP"]!)" == "0" {
                     self.showAlert(title:"Lose" ,message:"아쉽게 패배하셨네요ㅜ")
+                }
+                
+                if value["turn"] as! Bool == true {
+                    self.setInitialState()
+                    self.start()
+                    self.timerLabel.backgroundColor = .clear
+                }else {
+                    self.timerLabel.backgroundColor = .red
+                    
+                    self.timerLabel.text = "상대턴"
+                    self.timer.invalidate()
                 }
                 
                 self.myHPLabel.text = "\(value["HP"]!)"
@@ -73,7 +89,8 @@ class GameViewController: UIViewController {
     }
     
     @IBAction func tapEndTurnButton(_ sender: Any) {
-        
+        ref.child("battle").child(CURRENT_USER).updateChildValues(["turn":false])
+        ref.child("battle").child(OPPONENT_USER).updateChildValues(["turn":true])
     }
     
     func showAlert(title:String,message:String) {
@@ -123,14 +140,6 @@ class GameViewController: UIViewController {
             vc.myHP = Int(myHPLabel.text!)!
             vc.enemyHP = Int(enemyHPLabel.text!)!
         }
-    }
-    
-  
-    
-   func reset(_ sender: Any) {
-        timer.invalidate()
-        (minutes,seconds) = (1,0)
-        timerLabel.text = "1:00"
     }
     
     func start() {
