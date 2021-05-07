@@ -993,10 +993,10 @@
             </objects>
             <point key="canvasLocation" x="1472.5446428571429" y="860.86956521739137"/>
         </scene>
-        <!--Sound Setting View Controller-->
+        <!--Setting View Controller-->
         <scene sceneID="UK7-vc-GBs">
             <objects>
-                <viewController modalPresentationStyle="overCurrentContext" id="8yP-i4-TCe" customClass="SoundSettingViewController" customModule="Magic_Fight" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="overCurrentContext" id="8yP-i4-TCe" customClass="SettingViewController" customModule="Magic_Fight" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1a2-9J-uIK">
                         <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1131,7 +1131,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RWl-69-6FI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="McB-p9-Ral">
                     <connections>
-                        <action selector="tapView:" destination="8yP-i4-TCe" id="GJP-IU-VYY"/>
+                        <action selector="tapBackground:" destination="8yP-i4-TCe" id="ypS-AD-omG"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
@@ -1450,7 +1450,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="ByE-IB-Top"/>
         <segue reference="Uvw-my-Zof"/>
-        <segue reference="6KE-ra-ZlF"/>
+        <segue reference="g9n-o3-wDF"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="게임종료" width="630" height="472.33334350585938"/>

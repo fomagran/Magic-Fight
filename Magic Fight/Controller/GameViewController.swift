@@ -94,8 +94,9 @@ class GameViewController: UIViewController {
                 
                 var newCards = [Card]()
                 for name in cards as! [String]{
-                    newCards.append(allCard.filter{$0.name == name}.first!)
+                    newCards.append(allCard.filter{$0.name == name}.first ?? Card(name: "스파크", price: 3, usePrice: 1, count: 20, effect: "상대에게 피해를 2 준다.",magicAttribute:.번개,gem: nil,image:UIImage(named: "스파크")!))
                 }
+                
                 self.myCards = newCards
                 guard let trash = value["trash"] else {return}
                 for name in trash as! [String] {
