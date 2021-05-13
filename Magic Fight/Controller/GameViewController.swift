@@ -212,7 +212,8 @@ class GameViewController: UIViewController {
             vc.myCards = myCards
         }else if segue.identifier == "showShowCardViewController" {
             let vc = segue.destination as! ShowCardViewController
-            vc.showCardImage = 스파크.image
+            vc.showCardImage = 화염구.image
+            vc.magic = 화염구.magicAttribute
             vc.delegate = self
         }
     }
@@ -266,9 +267,20 @@ class GameViewController: UIViewController {
 
 
 extension GameViewController:ShowCardViewControllerDelegate {
-    func didDissmiss() {
+    func didDissmiss(magic :Magic) {
         let skView:SKView = {
-            let view = SKView(withEmitter: "FireParticle")
+            var view = SKView()
+            if magic == .번개 {
+                view = SKView(withEmitter: "SparkParticle")
+            }else if magic == .불 {
+                view = SKView(withEmitter: "FireParticle")
+            }else if magic == .물 {
+                view = SKView(withEmitter: "WaterParticle")
+            }else if magic == .빛 {
+                view = SKView(withEmitter: "LightParticle")
+            }else if magic == .암흑 {
+                view = SKView(withEmitter: "DarkPartice")
+            }
             return view
         }()
         
@@ -284,7 +296,7 @@ extension GameViewController:ShowCardViewControllerDelegate {
                   .isActive = true
         skView.heightAnchor.constraint(equalToConstant: 200)
                   .isActive = true
-        skView.widthAnchor.constraint(equalToConstant: 700)
+        skView.widthAnchor.constraint(equalToConstant: 500)
                   .isActive = true
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {

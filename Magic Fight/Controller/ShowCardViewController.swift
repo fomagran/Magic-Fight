@@ -8,12 +8,13 @@
 import UIKit
 
 protocol ShowCardViewControllerDelegate:AnyObject {
-    func didDissmiss()
+    func didDissmiss(magic:Magic)
 }
 
 class ShowCardViewController: UIViewController {
     
     weak var delegate:ShowCardViewControllerDelegate?
+    var magic:Magic!
     var showCardImage:UIImage!
     
     @IBOutlet weak var backgroundImageView: UIImageView!
@@ -24,7 +25,7 @@ class ShowCardViewController: UIViewController {
         cardImageView.image = showCardImage
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             self.dismiss(animated: true, completion: nil)
-            self.delegate?.didDissmiss()
+            self.delegate?.didDissmiss(magic:self.magic)
         }
     }
     
