@@ -8,6 +8,10 @@
 import UIKit
 import FirebaseDatabase
 
+protocol SupplierViewControllerDelegate:AnyObject {
+    func didDismiss(card:Card)
+}
+
 class SupplierViewController: UIViewController {
 
     @IBOutlet weak var bigCard: UIImageView!
@@ -17,8 +21,9 @@ class SupplierViewController: UIViewController {
     @IBOutlet weak var buyButton: UIButton!
     @IBOutlet var tapGesture: UITapGestureRecognizer!
     
-    var currentCard:Card?
     
+    weak var delegate:SupplierViewControllerDelegate?
+    var currentCard:Card?
     var myCards:[Card] = []
     var enemyCards:[Card] = []
     var isSupplier:Bool = true
@@ -35,7 +40,7 @@ class SupplierViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(enemyHP,myHP)
+
         configure()
         tapGesture.delegate = self
         
@@ -56,6 +61,7 @@ class SupplierViewController: UIViewController {
                 }
             }
 
+        delegate?.didDismiss(card: currentCard!)
     }
     
     func configure() {

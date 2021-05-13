@@ -28,6 +28,7 @@ class GameViewController: UIViewController {
     @IBOutlet weak var timerLabel: UILabel!
     
     var ref = Database.database().reference()
+    var useCard:Card?
         
     var myCards:[Card] = []
     var enemyCards:[Card] = []
@@ -48,9 +49,9 @@ class GameViewController: UIViewController {
         super.viewDidLoad()
         
         configure()
-//        setDatabase()
-//        observeDatabase()
-//        start()
+        setDatabase()
+        observeDatabase()
+        start()
         
         let tap1 = UITapGestureRecognizer(target: self, action:#selector(tapBackground))
         bgImage.addGestureRecognizer(tap1)
@@ -114,8 +115,8 @@ class GameViewController: UIViewController {
             if snapshot.exists() {
                 
                 let value = snapshot.value as! [String : AnyObject]
-                self.enemyHPLabel.text = "\(value["HP"]!)"
-                self.enemyMPLabel.text = "\(value["MP"]!)"
+                self.enemyHPLabel.text = "\(value["HP"] as? Int ?? 0)"
+                self.enemyMPLabel.text = "\(value["MP"] as? Int ?? 0)"
                 guard let hp = value["HP"] else {return}
 
                 if (hp as! Int) <= 0 {
@@ -133,11 +134,13 @@ class GameViewController: UIViewController {
                 
                 guard let cards = value["cards"] else {return}
                 var newCards = [Card]()
+                
                 for name in cards as! [String]{
                     if allCard.filter({$0.name == name}).first != nil {
                     newCards.append(allCard.filter{$0.name == name}.first!)
                     }
                 }
+                
                 self.enemyCards = newCards
                 guard let trash = value["trash"] else {return}
                 for name in trash as! [String]{
@@ -163,7 +166,7 @@ class GameViewController: UIViewController {
     }
     
     @objc func tapBackground() {
-        print(victoryOrDefeatImage.isHidden == false)
+
         if victoryOrDefeatImage.isHidden == false {
             self.ref.removeValue()
             self.performSegue(withIdentifier: "unwindMainViewController", sender: nil)
@@ -171,7 +174,7 @@ class GameViewController: UIViewController {
     }
     
     @IBAction func tapCardButton(_ sender: Any) {
-        performSegue(withIdentifier: "showShowCardViewController", sender: nil)
+        performSegue(withIdentifier: "showSupplierViewController", sender: nil)
     }
     
     
@@ -198,6 +201,7 @@ class GameViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showSupplierViewController" {
             let vc = segue.destination as! SupplierViewController
+            vc.delegate = self
             vc.myCards = myCards
             vc.isSupplier = false
             vc.myHP = Int(myHPLabel.text!)!
@@ -212,9 +216,10 @@ class GameViewController: UIViewController {
             vc.myCards = myCards
         }else if segue.identifier == "showShowCardViewController" {
             let vc = segue.destination as! ShowCardViewController
-            vc.showCardImage = 화염구.image
-            vc.magic = 화염구.magicAttribute
+
             vc.delegate = self
+            vc.showCardImage = useCard!.image
+            vc.magic = useCard!.magicAttribute
         }
     }
     
@@ -304,6 +309,15 @@ extension GameViewController:ShowCardViewControllerDelegate {
             self.enemyCharacter.image = UIImage(named: "캐릭터.png")
             self.enemyCharacter.contentMode = .scaleAspectFit
         }
-        
+    }
+}
+
+extension GameViewController:SupplierViewControllerDelegate {
+    func didDismiss(card: Card) {
+        useCard = card
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.performSegue(withIdentifier: "showShowCardViewController", sender: nil)
+        }
+       
     }
 }
