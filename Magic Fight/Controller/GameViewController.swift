@@ -7,9 +7,11 @@
 
 import UIKit
 import FirebaseDatabase
+import SpriteKit
 
 class GameViewController: UIViewController {
 
+    @IBOutlet weak var enemyCharacter: UIImageView!
     @IBOutlet weak var bgImage: UIImageView!
     @IBOutlet weak var victoryOrDefeatImage: UIImageView!
     @IBOutlet weak var endTurnButton: UIButton!
@@ -46,9 +48,9 @@ class GameViewController: UIViewController {
         super.viewDidLoad()
         
         configure()
-        setDatabase()
-        observeDatabase()
-        start()
+//        setDatabase()
+//        observeDatabase()
+//        start()
         
         let tap1 = UITapGestureRecognizer(target: self, action:#selector(tapBackground))
         bgImage.addGestureRecognizer(tap1)
@@ -169,7 +171,7 @@ class GameViewController: UIViewController {
     }
     
     @IBAction func tapCardButton(_ sender: Any) {
-        performSegue(withIdentifier: "showSupplierViewController", sender: nil)
+        performSegue(withIdentifier: "showShowCardViewController", sender: nil)
     }
     
     
@@ -208,6 +210,10 @@ class GameViewController: UIViewController {
             vc.myDeck = myDeck
             vc.enemyCards = enemyCards
             vc.myCards = myCards
+        }else if segue.identifier == "showShowCardViewController" {
+            let vc = segue.destination as! ShowCardViewController
+            vc.showCardImage = 스파크.image
+            vc.delegate = self
         }
     }
     
@@ -255,5 +261,37 @@ class GameViewController: UIViewController {
             cardButton.isEnabled = false
             endTurnButton.isEnabled = false
         }
+    }
+}
+
+
+extension GameViewController:ShowCardViewControllerDelegate {
+    func didDissmiss() {
+        let skView:SKView = {
+            let view = SKView(withEmitter: "FireParticle")
+            return view
+        }()
+        
+        enemyCharacter.image = UIImage(named: "Character_Sick.png")
+        enemyCharacter.contentMode = .scaleAspectFill
+        view.addSubview(skView)
+        
+        
+        skView.translatesAutoresizingMaskIntoConstraints = false
+        skView.centerXAnchor.constraint(equalTo:view.centerXAnchor)
+                  .isActive = true
+        skView.centerYAnchor.constraint(equalTo:view.centerYAnchor)
+                  .isActive = true
+        skView.heightAnchor.constraint(equalToConstant: 200)
+                  .isActive = true
+        skView.widthAnchor.constraint(equalToConstant: 700)
+                  .isActive = true
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            skView.isHidden = true
+            self.enemyCharacter.image = UIImage(named: "캐릭터.png")
+            self.enemyCharacter.contentMode = .scaleAspectFit
+        }
+        
     }
 }

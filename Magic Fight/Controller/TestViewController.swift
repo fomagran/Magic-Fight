@@ -32,9 +32,9 @@ class TestViewController: UIViewController {
         skView.heightAnchor.constraint(equalToConstant: 200)
                   .isActive = true
         skView.widthAnchor.constraint(equalToConstant: 200)
-                  .isActive = true // ---- 4
-    
-      
+                  .isActive = true
+        
+       
     }
 
 

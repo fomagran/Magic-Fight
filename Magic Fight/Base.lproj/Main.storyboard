@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="SAn-GE-jWV">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="iwc-UT-k63">
     <device id="retina6_1" orientation="landscape" appearance="dark"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
@@ -768,6 +768,7 @@
                         <outlet property="cardButton" destination="bdr-vb-log" id="dic-yE-I0l"/>
                         <outlet property="deckCountLabel" destination="1tl-qi-z0y" id="Jfc-Gv-eYj"/>
                         <outlet property="endTurnButton" destination="SCz-EW-6W1" id="omr-xH-oha"/>
+                        <outlet property="enemyCharacter" destination="7fc-ke-5vx" id="iu7-AQ-XiG"/>
                         <outlet property="enemyDeckLabel" destination="d9s-lg-BJO" id="9bL-9N-jqA"/>
                         <outlet property="enemyHPLabel" destination="pKb-EM-T9T" id="1fn-k3-5Lj"/>
                         <outlet property="enemyMPLabel" destination="uUB-d1-Eck" id="7CT-6X-nJW"/>
@@ -780,6 +781,7 @@
                         <outlet property="victoryOrDefeatImage" destination="tlG-N6-usu" id="m3e-Bg-clY"/>
                         <segue destination="cvA-Ke-BWN" kind="show" identifier="showSupplierViewController" id="ByE-IB-Top"/>
                         <segue destination="EiW-kN-JDT" kind="unwind" identifier="unwindMainViewController" unwindAction="unwindToMainViewControllerWithSegue:" id="nC1-WC-BMZ"/>
+                        <segue destination="a72-bL-dG9" kind="show" identifier="showShowCardViewController" id="FhX-1t-rCv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i6Q-nH-Xqv" sceneMemberID="firstResponder"/>
@@ -800,7 +802,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SPp-u8-wzJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="129" y="4939"/>
+            <point key="canvasLocation" x="129" y="5304"/>
         </scene>
         <!--User Info View Controller-->
         <scene sceneID="pht-8a-k75">
@@ -1453,18 +1455,61 @@
             </objects>
             <point key="canvasLocation" x="792" y="3625"/>
         </scene>
+        <!--Show Card View Controller-->
+        <scene sceneID="0Yv-qe-540">
+            <objects>
+                <viewController modalPresentationStyle="overCurrentContext" id="a72-bL-dG9" customClass="ShowCardViewController" customModule="Magic_Fight" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="QY9-U3-eXf">
+                        <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="카드도감배경" translatesAutoresizingMaskIntoConstraints="NO" id="Vfi-iE-Sek">
+                                <rect key="frame" x="104" y="0.0" width="688" height="393"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="카드도감카드큰거" translatesAutoresizingMaskIntoConstraints="NO" id="Cb1-hH-pi3">
+                                <rect key="frame" x="104" y="0.0" width="688" height="393"/>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="c8b-RU-m0B"/>
+                        <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="0.29508042490000003" colorSpace="custom" customColorSpace="sRGB"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="Vfi-iE-Sek" firstAttribute="top" secondItem="c8b-RU-m0B" secondAttribute="top" id="8iu-jo-iYU"/>
+                            <constraint firstItem="Cb1-hH-pi3" firstAttribute="top" secondItem="c8b-RU-m0B" secondAttribute="top" id="GUb-eU-OmE"/>
+                            <constraint firstItem="Vfi-iE-Sek" firstAttribute="bottom" secondItem="c8b-RU-m0B" secondAttribute="bottom" id="LIy-rF-2rz"/>
+                            <constraint firstItem="Vfi-iE-Sek" firstAttribute="trailing" secondItem="c8b-RU-m0B" secondAttribute="trailing" constant="-60" id="Pfo-kj-ZCp"/>
+                            <constraint firstItem="Cb1-hH-pi3" firstAttribute="leading" secondItem="Vfi-iE-Sek" secondAttribute="leading" id="ZcS-cW-heo"/>
+                            <constraint firstItem="c8b-RU-m0B" firstAttribute="bottom" secondItem="Cb1-hH-pi3" secondAttribute="bottom" id="fmw-7f-emy"/>
+                            <constraint firstItem="Cb1-hH-pi3" firstAttribute="trailing" secondItem="Vfi-iE-Sek" secondAttribute="trailing" id="tDT-cG-fIN"/>
+                            <constraint firstItem="Vfi-iE-Sek" firstAttribute="leading" secondItem="c8b-RU-m0B" secondAttribute="leading" constant="60" id="um5-u8-frL"/>
+                        </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="v75-dW-9ou" appends="YES" id="HWk-fg-8qf"/>
+                        </connections>
+                    </view>
+                    <navigationItem key="navigationItem" id="s5l-8n-8Yi"/>
+                    <connections>
+                        <outlet property="backgroundImageView" destination="Vfi-iE-Sek" id="cSM-14-7TQ"/>
+                        <outlet property="cardImageView" destination="Cb1-hH-pi3" id="Z5l-6s-8Ic"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ixo-sO-drq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="v75-dW-9ou"/>
+            </objects>
+            <point key="canvasLocation" x="129" y="4510"/>
+        </scene>
     </scenes>
     <designables>
         <designable name="6qx-nb-TPT">
-            <size key="intrinsicContentSize" width="-1" height="30"/>
+            <size key="intrinsicContentSize" width="-1" height="471.33333333333331"/>
         </designable>
         <designable name="VfA-CK-D0I">
-            <size key="intrinsicContentSize" width="-1" height="30"/>
+            <size key="intrinsicContentSize" width="-1" height="471.33333333333331"/>
         </designable>
     </designables>
     <inferredMetricsTieBreakers>
         <segue reference="ByE-IB-Top"/>
-        <segue reference="Uvw-my-Zof"/>
+        <segue reference="VKx-3q-ZgU"/>
         <segue reference="g9n-o3-wDF"/>
     </inferredMetricsTieBreakers>
     <resources>

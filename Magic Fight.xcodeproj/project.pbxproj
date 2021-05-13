@@ -19,6 +19,10 @@
 		04BF55C2261D618D00BFD44E /* TurnViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BF55C1261D618D00BFD44E /* TurnViewController.swift */; };
 		04D5DE3E264CBB55009C6DBC /* MagicParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 04D5DE3D264CBB55009C6DBC /* MagicParticle.sks */; };
 		04D5DE40264CBBE8009C6DBC /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D5DE3F264CBBE8009C6DBC /* TestViewController.swift */; };
+		04D5DE42264CC29D009C6DBC /* ShowCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D5DE41264CC29D009C6DBC /* ShowCardViewController.swift */; };
+		04D5DE44264CC977009C6DBC /* SparkParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 04D5DE43264CC977009C6DBC /* SparkParticle.sks */; };
+		04D5DE46264CC9A0009C6DBC /* FireParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 04D5DE45264CC9A0009C6DBC /* FireParticle.sks */; };
+		04D5DE48264CC9BC009C6DBC /* BokehParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 04D5DE47264CC9BC009C6DBC /* BokehParticle.sks */; };
 		04D9FF7E2627D5810096BA6E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 04D9FF7D2627D5810096BA6E /* GoogleService-Info.plist */; };
 		04D9FF8E2627E85B0096BA6E /* CardService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D9FF8D2627E85B0096BA6E /* CardService.swift */; };
 		04D9FF972628186F0096BA6E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D9FF962628186F0096BA6E /* Constants.swift */; };
@@ -45,6 +49,10 @@
 		04BF55C1261D618D00BFD44E /* TurnViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TurnViewController.swift; sourceTree = "<group>"; };
 		04D5DE3D264CBB55009C6DBC /* MagicParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MagicParticle.sks; sourceTree = "<group>"; };
 		04D5DE3F264CBBE8009C6DBC /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
+		04D5DE41264CC29D009C6DBC /* ShowCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowCardViewController.swift; sourceTree = "<group>"; };
+		04D5DE43264CC977009C6DBC /* SparkParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SparkParticle.sks; sourceTree = "<group>"; };
+		04D5DE45264CC9A0009C6DBC /* FireParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = FireParticle.sks; sourceTree = "<group>"; };
+		04D5DE47264CC9BC009C6DBC /* BokehParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BokehParticle.sks; sourceTree = "<group>"; };
 		04D9FF7D2627D5810096BA6E /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		04D9FF8D2627E85B0096BA6E /* CardService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardService.swift; sourceTree = "<group>"; };
 		04D9FF962628186F0096BA6E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -92,6 +100,7 @@
 				0485CDD52632801300BD0791 /* LoadingViewController.swift */,
 				04F3963626452E1400795DB8 /* SettingViewController.swift */,
 				04D5DE3F264CBBE8009C6DBC /* TestViewController.swift */,
+				04D5DE41264CC29D009C6DBC /* ShowCardViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -147,6 +156,9 @@
 				04D9FF7D2627D5810096BA6E /* GoogleService-Info.plist */,
 				04D9FF962628186F0096BA6E /* Constants.swift */,
 				04D5DE3D264CBB55009C6DBC /* MagicParticle.sks */,
+				04D5DE43264CC977009C6DBC /* SparkParticle.sks */,
+				04D5DE45264CC9A0009C6DBC /* FireParticle.sks */,
+				04D5DE47264CC9BC009C6DBC /* BokehParticle.sks */,
 			);
 			path = "Magic Fight";
 			sourceTree = "<group>";
@@ -228,8 +240,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				04FFADB225B520000045D75D /* LaunchScreen.storyboard in Resources */,
+				04D5DE46264CC9A0009C6DBC /* FireParticle.sks in Resources */,
+				04D5DE44264CC977009C6DBC /* SparkParticle.sks in Resources */,
 				04FFADAF25B520000045D75D /* Assets.xcassets in Resources */,
 				04D5DE3E264CBB55009C6DBC /* MagicParticle.sks in Resources */,
+				04D5DE48264CC9BC009C6DBC /* BokehParticle.sks in Resources */,
 				04D9FF7E2627D5810096BA6E /* GoogleService-Info.plist in Resources */,
 				04FFADAD25B51FFF0045D75D /* Main.storyboard in Resources */,
 			);
@@ -286,6 +301,7 @@
 			files = (
 				04BF55BF261D612F00BFD44E /* BanCardViewController.swift in Sources */,
 				04D9FF8E2627E85B0096BA6E /* CardService.swift in Sources */,
+				04D5DE42264CC29D009C6DBC /* ShowCardViewController.swift in Sources */,
 				04D5DE40264CBBE8009C6DBC /* TestViewController.swift in Sources */,
 				04A79E7E25B6703B00754FDD /* GameViewController.swift in Sources */,
 				04BF55B7261D510400BFD44E /* Card.swift in Sources */,
