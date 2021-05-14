@@ -8,6 +8,7 @@
 import UIKit
 import FirebaseDatabase
 import SpriteKit
+import AVFoundation
 
 class GameViewController: UIViewController {
 
@@ -27,6 +28,7 @@ class GameViewController: UIViewController {
     @IBOutlet weak var logLabel: UIImageView!
     @IBOutlet weak var timerLabel: UILabel!
     
+    var soundIntroPlayer = AVAudioPlayer()
     var ref = Database.database().reference()
     var useCard:Card?
         
@@ -125,6 +127,14 @@ class GameViewController: UIViewController {
                     self.timer.invalidate()
                 }
                 
+                guard let showCard = value["useCard"] else {return}
+                
+                let card = allCard.filter({$0.name == showCard as! String}).first
+                
+                if card != nil && card?.name != self.useCard?.name {
+                    self.showCard(card: card!)
+                }
+                
                 guard let deck = value["deck"] else {return}
                 for name in deck as! [String] {
                     if allCard.filter({$0.name == name}).first != nil {
@@ -201,7 +211,6 @@ class GameViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showSupplierViewController" {
             let vc = segue.destination as! SupplierViewController
-            vc.delegate = self
             vc.myCards = myCards
             vc.isSupplier = false
             vc.myHP = Int(myHPLabel.text!)!
@@ -268,6 +277,32 @@ class GameViewController: UIViewController {
             endTurnButton.isEnabled = false
         }
     }
+    
+    func showCard(card:Card) {
+        useCard = card
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.performSegue(withIdentifier: "showShowCardViewController", sender: nil)
+        }
+    }
+    
+    func playSound(soundName:String) {
+
+        let soundintro = Bundle.main.path(forResource: soundName, ofType: "mp3")
+        do {
+                soundIntroPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: soundintro! ))
+                    
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.ambient)
+                try AVAudioSession.sharedInstance().setActive(true)
+            
+            }
+        
+            catch{
+                 print(error)
+            }
+        
+        soundIntroPlayer.play()
+        
+    }
 }
 
 
@@ -276,15 +311,20 @@ extension GameViewController:ShowCardViewControllerDelegate {
         let skView:SKView = {
             var view = SKView()
             if magic == .번개 {
+                playSound(soundName: "낙뢰")
                 view = SKView(withEmitter: "SparkParticle")
             }else if magic == .불 {
+                playSound(soundName: "화염구")
                 view = SKView(withEmitter: "FireParticle")
             }else if magic == .물 {
+                playSound(soundName: "물벼락")
                 view = SKView(withEmitter: "WaterParticle")
             }else if magic == .빛 {
+                playSound(soundName: "라파엘")
                 view = SKView(withEmitter: "LightParticle")
             }else if magic == .암흑 {
-                view = SKView(withEmitter: "DarkPartice")
+                playSound(soundName: "릴림")
+                view = SKView(withEmitter: "DarkParticle")
             }
             return view
         }()
@@ -309,15 +349,5 @@ extension GameViewController:ShowCardViewControllerDelegate {
             self.enemyCharacter.image = UIImage(named: "캐릭터.png")
             self.enemyCharacter.contentMode = .scaleAspectFit
         }
-    }
-}
-
-extension GameViewController:SupplierViewControllerDelegate {
-    func didDismiss(card: Card) {
-        useCard = card
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            self.performSegue(withIdentifier: "showShowCardViewController", sender: nil)
-        }
-       
     }
 }

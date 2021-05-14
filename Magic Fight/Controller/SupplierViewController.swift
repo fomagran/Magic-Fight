@@ -60,8 +60,9 @@ class SupplierViewController: UIViewController {
                     dismiss(animated: true, completion: nil)
                 }
             }
+        ref.child("battle").child(CURRENT_USER).updateChildValues(["useCard":"\(currentCard!.name)"])
+        ref.child("battle").child(OPPONENT_USER).updateChildValues(["useCard":currentCard!.name])
 
-        delegate?.didDismiss(card: currentCard!)
     }
     
     func configure() {

@@ -9,9 +9,11 @@ import UIKit
 import FirebaseDatabase
 
 
+
 class MainViewController: UIViewController {
     
     var ref = Database.database().reference()
+
     
     @IBOutlet weak var nicknameLabel: UILabel!
     @IBOutlet weak var battleButton: UIButton!
@@ -29,6 +31,7 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
         nicknameLabel.text = UserDefaults.standard.string(forKey: "nickname")
         self.view.addSubview(self.activityIndicator)
         activityIndicator.isHidden = true
@@ -40,7 +43,6 @@ class MainViewController: UIViewController {
         })
         
     }
-    
     
     
     @IBAction func unwindToMainViewController (segue : UIStoryboardSegue) {
