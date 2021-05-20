@@ -188,7 +188,7 @@ class GameViewController: UIViewController {
     
     func setDatabase() {
         let turn = CURRENT_USER == "fomagran" ? true:false
-        ref.child("battle").child(CURRENT_USER).setValue(["HP":20,"MP":100,"cards":[],"turn":turn,"trash":[],"deck":["초급마법서","초급마법서","초급마법서","초급마법서","초급마법서","초급마법서","초급마법서","초급마법서","푸른젬","푸른젬"]])
+        ref.child("battle").child(CURRENT_USER).setValue(["HP":20,"MP":8,"cards":[],"turn":turn,"trash":[],"deck":["초급마법서","초급마법서","푸른젬","푸른젬","푸른젬","푸른젬","푸른젬","푸른젬","푸른젬","푸른젬"]])
         setNameFromDeck()
     }
     

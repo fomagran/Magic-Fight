@@ -54,15 +54,8 @@ var allCard:[Card] = [
     수혈 ,
     불의순환 ,
     도깨비불 ,
-    서큐버스 ,
-    사타나치아 ,
-    아스타로트 ,
     금지된마법 ,
     릴림 ,
-    미카엘 ,
-    우리엘 ,
-    가브리엘,
-    라파엘,
     축전 ,
     방전 ,
     암흑광선 ,
@@ -71,9 +64,7 @@ var allCard:[Card] = [
     천사의깃털 ,
     최면 ,
     암시 ,
-    악몽 ,
     폭발의진 ,
-    초급마법서 ,
     가마솥 ,
     도둑 ,
     마법지팡이 ,
@@ -86,11 +77,7 @@ var allCard:[Card] = [
     위조기술자 ,
     불잉걸 ,
     수증기응결 ,
-    먹구름 ,
-    푸른젬 ,
-    붉은젬 ,
-    황금젬 ,
-    칠흑의젬
+    먹구름
     
 ]
 
@@ -141,6 +128,7 @@ let 위조기술자 = Card(name:"위조기술자", price: 3, usePrice: 3, count:
 let 불잉걸 = Card(name: "불잉걸", price: 6, usePrice: 4, count: 10, effect: "상대에게 피해를 1 주고, 화염구 카드 한 장을 가져온다.", magicAttribute: .불,gem: nil,image:UIImage(named: "불잉걸")!)
 let 수증기응결 = Card(name: "수증기응결", price: 6, usePrice: 4, count: 10, effect: "상대에게 피해를 1 주고, 물대포 카드 한 장을 가져온다.", magicAttribute: .물,gem: nil,image:UIImage(named: "수증기응결")!)
 let 먹구름 = Card(name: "먹구름", price: 6, usePrice: 4, count: 10, effect: "상대에게 피해를 1 주고, 낙뢰 카드 한 장을 가져온다.", magicAttribute: .번개,gem: nil,image:UIImage(named: "먹구름")!)
+
 let 푸른젬 = Card(name: "푸른젬", price: 1,usePrice: 0, count: 30, effect: "",magicAttribute:.무속성 ,gem:1,image:UIImage(named: "푸른젬")!)
 let 붉은젬 = Card(name: "붉은젬", price: 3,usePrice: 0, count: 30, effect: "",magicAttribute:.무속성 ,gem:3,image:UIImage(named: "붉은젬")!)
 let 황금젬 = Card(name: "황금젬", price: 6, usePrice: 0,count: 30, effect: "",magicAttribute:.무속성 ,gem:6,image:UIImage(named: "황금젬")!)

@@ -47,32 +47,37 @@ class SupplierViewController: UIViewController {
     @IBAction func tapBuyButton(_ sender: Any) {
         
         if !isSupplier {
+            if myMP < currentCard!.price {
+                showAlert(str: "젬이 부족해 카드를 사용할 수 없습니다.")
+            }else{
             var newCards = myCards.map{$0.name}
             print(newCards)
             let index = myCards.firstIndex(of: currentCard!)!
             newCards.remove(at: index)
             print(newCards)
             ref.child("battle").child(CURRENT_USER).updateChildValues(["cards":newCards])
+            ref.child("battle").child(CURRENT_USER).updateChildValues(["MP":myMP - currentCard!.usePrice])
             ref.child("battle").child(CURRENT_USER).updateChildValues(["useCard":"\(currentCard!.name)\(PLAYER_NUMBER)"])
             ref.child("battle").child(OPPONENT_USER).updateChildValues(["useCard":"\(currentCard!.name)\(PLAYER_NUMBER)"])
             cardEffect(name: currentCard!.name)
             dismiss(animated: true, completion: nil)
+            }
         }else {
-            if myMP < currentCard!.usePrice {
-                showCantBuyAlert()
+            if myMP < currentCard!.price {
+                showAlert(str: "젬이 부족해 살 수 없습니다.")
             }else {
                 var newCards = myCards.map{$0.name}
                 newCards.append(currentCard!.name)
                 ref.child("battle").child(CURRENT_USER).updateChildValues(["cards":newCards])
-                ref.child("battle").child(CURRENT_USER).updateChildValues(["MP":myMP - currentCard!.usePrice])
+                ref.child("battle").child(CURRENT_USER).updateChildValues(["MP":myMP - currentCard!.price])
                 dismiss(animated: true, completion: nil)
             }
         }
         
     }
     
-    func showCantBuyAlert() {
-        let alert = UIAlertController(title: "불가", message: "소유하신 젬으로는 구매할 수 없습니다.", preferredStyle: .alert)
+    func showAlert(str:String) {
+        let alert = UIAlertController(title: "불가", message: str, preferredStyle: .alert)
         let action = UIAlertAction(title: "확인", style: .default) { _ in }
         alert.addAction(action)
         present(alert, animated: true, completion: nil)
