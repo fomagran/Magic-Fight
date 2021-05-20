@@ -21,7 +21,6 @@ class SupplierViewController: UIViewController {
     @IBOutlet weak var buyButton: UIButton!
     @IBOutlet var tapGesture: UITapGestureRecognizer!
     
-    
     weak var delegate:SupplierViewControllerDelegate?
     var currentCard:Card?
     var myCards:[Card] = []
@@ -31,7 +30,7 @@ class SupplierViewController: UIViewController {
     var myTrash = [Card]()
     var enemyTrash = [Card]()
     var enemyHP = 0
-    var myMP = 0
+    var myMP:Int!
     var enemyMP = 0
     var myDeck = [Card]()
     var enemyDeck = [Card]()
@@ -47,22 +46,27 @@ class SupplierViewController: UIViewController {
     }
     @IBAction func tapBuyButton(_ sender: Any) {
         
-            if isLowMagic {
-                myCards.append(currentCard!)
-                ref.child("battle").child(CURRENT_USER).updateChildValues(["cards":myCards.map{$0.name}])
-                lowMagicCardCount += 1
-                if lowMagicCardCount == 4 {
-                    dismiss(animated: true, completion: nil)
-                }
+        if !isSupplier {
+            ref.child("battle").child(CURRENT_USER).updateChildValues(["useCard":"\(currentCard!.name)"])
+            ref.child("battle").child(OPPONENT_USER).updateChildValues(["useCard":currentCard!.name])
+            cardEffect(name: currentCard!.name)
+            dismiss(animated: true, completion: nil)
+        }else {
+            if myMP < currentCard!.usePrice {
+                showCantBuyAlert()
             }else {
-                cardEffect(name: currentCard!.name)
-                if !isLowMagic {
-                    dismiss(animated: true, completion: nil)
-                }
+                ref.child("battle").child(CURRENT_USER).updateChildValues(["MP":myMP - currentCard!.usePrice])
+                dismiss(animated: true, completion: nil)
             }
-        ref.child("battle").child(CURRENT_USER).updateChildValues(["useCard":"\(currentCard!.name)"])
-        ref.child("battle").child(OPPONENT_USER).updateChildValues(["useCard":currentCard!.name])
-
+        }
+        
+    }
+    
+    func showCantBuyAlert() {
+        let alert = UIAlertController(title: "불가", message: "소유하신 젬으로는 구매할 수 없습니다.", preferredStyle: .alert)
+        let action = UIAlertAction(title: "확인", style: .default) { _ in }
+        alert.addAction(action)
+        present(alert, animated: true, completion: nil)
     }
     
     func configure() {
@@ -223,7 +227,6 @@ extension SupplierViewController:UICollectionViewDataSource {
         case "초급마법서":
             configure()
             isLowMagic = true
-            isSupplier = true
             allCard = allCard.filter{$0.price < 5}
             collection.reloadData()
         case "마법지팡이":

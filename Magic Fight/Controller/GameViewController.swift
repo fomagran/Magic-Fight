@@ -12,6 +12,7 @@ import AVFoundation
 
 class GameViewController: UIViewController {
 
+    @IBOutlet weak var supplierButton: UIButton!
     @IBOutlet weak var enemyCharacter: UIImageView!
     @IBOutlet weak var bgImage: UIImageView!
     @IBOutlet weak var victoryOrDefeatImage: UIImageView!
@@ -31,7 +32,8 @@ class GameViewController: UIViewController {
     var soundIntroPlayer = AVAudioPlayer()
     var ref = Database.database().reference()
     var useCard:Card?
-        
+    
+    var isSupplier:Bool = false
     var myCards:[Card] = []
     var enemyCards:[Card] = []
     
@@ -117,8 +119,10 @@ class GameViewController: UIViewController {
             if snapshot.exists() {
                 
                 let value = snapshot.value as! [String : AnyObject]
+                
                 self.enemyHPLabel.text = "\(value["HP"] as? Int ?? 0)"
                 self.enemyMPLabel.text = "\(value["MP"] as? Int ?? 0)"
+                
                 guard let hp = value["HP"] else {return}
 
                 if (hp as! Int) <= 0 {
@@ -183,8 +187,14 @@ class GameViewController: UIViewController {
         }
     }
     
-    @IBAction func tapCardButton(_ sender: Any) {
+    @IBAction func tapSupplierButton(_ sender: Any) {
+        isSupplier = true
         performSegue(withIdentifier: "showSupplierViewController", sender: nil)
+    }
+    
+    @IBAction func tapCardButton(_ sender: Any) {
+        isSupplier = false
+        performSegue(withIdentifier: "showShowCardViewController", sender: nil)
     }
     
     
@@ -212,7 +222,7 @@ class GameViewController: UIViewController {
         if segue.identifier == "showSupplierViewController" {
             let vc = segue.destination as! SupplierViewController
             vc.myCards = myCards
-            vc.isSupplier = false
+            vc.isSupplier = isSupplier
             vc.myHP = Int(myHPLabel.text!)!
             vc.myMP = Int(myMPLabel.text!)!
             vc.enemyHP = Int(enemyHPLabel.text!)!
