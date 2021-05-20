@@ -32,6 +32,7 @@ class GameViewController: UIViewController {
     var soundIntroPlayer = AVAudioPlayer()
     var ref = Database.database().reference()
     var useCard:Card?
+    var useCardString:String = ""
     
     var isSupplier:Bool = false
     var myCards:[Card] = []
@@ -138,8 +139,11 @@ class GameViewController: UIViewController {
                 }
                 
                 if value["useCard"] != nil {
-                    let card = allCard.filter({$0.name == value["useCard"] as! String}).first
-                    if card != nil && card?.name != self.useCard?.name {
+                    var useCard = "\(value["useCard"]!)"
+                    useCard.removeLast()
+                    let card = allCard.filter({$0.name == useCard}).first
+                    if card != nil && "\(value["useCard"]!)" != self.useCardString {
+                        self.useCardString = "\(value["useCard"]!)"
                         self.showCard(card: card!)
                     }
                 }

@@ -47,8 +47,14 @@ class SupplierViewController: UIViewController {
     @IBAction func tapBuyButton(_ sender: Any) {
         
         if !isSupplier {
-            ref.child("battle").child(CURRENT_USER).updateChildValues(["useCard":"\(currentCard!.name)"])
-            ref.child("battle").child(OPPONENT_USER).updateChildValues(["useCard":currentCard!.name])
+            var newCards = myCards.map{$0.name}
+            print(newCards)
+            let index = myCards.firstIndex(of: currentCard!)!
+            newCards.remove(at: index)
+            print(newCards)
+            ref.child("battle").child(CURRENT_USER).updateChildValues(["cards":newCards])
+            ref.child("battle").child(CURRENT_USER).updateChildValues(["useCard":"\(currentCard!.name)\(PLAYER_NUMBER)"])
+            ref.child("battle").child(OPPONENT_USER).updateChildValues(["useCard":"\(currentCard!.name)\(PLAYER_NUMBER)"])
             cardEffect(name: currentCard!.name)
             dismiss(animated: true, completion: nil)
         }else {
