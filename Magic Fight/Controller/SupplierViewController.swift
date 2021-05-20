@@ -55,6 +55,9 @@ class SupplierViewController: UIViewController {
             if myMP < currentCard!.usePrice {
                 showCantBuyAlert()
             }else {
+                var newCards = myCards.map{$0.name}
+                newCards.append(currentCard!.name)
+                ref.child("battle").child(CURRENT_USER).updateChildValues(["cards":newCards])
                 ref.child("battle").child(CURRENT_USER).updateChildValues(["MP":myMP - currentCard!.usePrice])
                 dismiss(animated: true, completion: nil)
             }

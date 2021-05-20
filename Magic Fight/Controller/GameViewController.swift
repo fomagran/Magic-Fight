@@ -131,12 +131,11 @@ class GameViewController: UIViewController {
                     self.timer.invalidate()
                 }
                 
-                guard let showCard = value["useCard"] else {return}
-                
-                let card = allCard.filter({$0.name == showCard as! String}).first
-                
-                if card != nil && card?.name != self.useCard?.name {
-                    self.showCard(card: card!)
+                if value["useCard"] != nil {
+                    let card = allCard.filter({$0.name == value["useCard"] as! String}).first
+                    if card != nil && card?.name != self.useCard?.name {
+                        self.showCard(card: card!)
+                    }
                 }
                 
                 guard let deck = value["deck"] else {return}
@@ -175,7 +174,7 @@ class GameViewController: UIViewController {
     
     func setDatabase() {
         let turn = CURRENT_USER == "fomagran" ? true:false
-        ref.child("battle").child(CURRENT_USER).setValue(["HP":20,"MP":0,"cards":[],"turn":turn,"trash":[],"deck":["초급마법서","초급마법서","초급마법서","초급마법서","초급마법서","초급마법서","초급마법서","초급마법서","푸른젬","푸른젬"]])
+        ref.child("battle").child(CURRENT_USER).setValue(["HP":20,"MP":100,"cards":[],"turn":turn,"trash":[],"deck":["초급마법서","초급마법서","초급마법서","초급마법서","초급마법서","초급마법서","초급마법서","초급마법서","푸른젬","푸른젬"]])
         setNameFromDeck()
     }
     
@@ -194,7 +193,7 @@ class GameViewController: UIViewController {
     
     @IBAction func tapCardButton(_ sender: Any) {
         isSupplier = false
-        performSegue(withIdentifier: "showShowCardViewController", sender: nil)
+        performSegue(withIdentifier: "showSupplierViewController", sender: nil)
     }
     
     
@@ -237,7 +236,7 @@ class GameViewController: UIViewController {
             let vc = segue.destination as! ShowCardViewController
 
             vc.delegate = self
-            vc.showCardImage = useCard!.image
+            vc.showCardImage = useCard?.image
             vc.magic = useCard!.magicAttribute
         }
     }
