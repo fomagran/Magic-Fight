@@ -79,6 +79,8 @@
 		04D9FF7E2627D5810096BA6E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 04D9FF7D2627D5810096BA6E /* GoogleService-Info.plist */; };
 		04D9FF8E2627E85B0096BA6E /* CardService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D9FF8D2627E85B0096BA6E /* CardService.swift */; };
 		04D9FF972628186F0096BA6E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D9FF962628186F0096BA6E /* Constants.swift */; };
+		04E1E9E426563FC60034CFBC /* magic.gif in Resources */ = {isa = PBXBuildFile; fileRef = 04E1E9E326563FC60034CFBC /* magic.gif */; };
+		04E1E9E6265642610034CFBC /* purple effect.gif in Resources */ = {isa = PBXBuildFile; fileRef = 04E1E9E5265642610034CFBC /* purple effect.gif */; };
 		04E55197263A7BD70082124A /* Pods_Magic_Fight.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04A77C20ED6DD027540F20E8 /* Pods_Magic_Fight.framework */; };
 		04F3963726452E1400795DB8 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F3963626452E1400795DB8 /* SettingViewController.swift */; };
 		04FFADA625B51FFF0045D75D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FFADA525B51FFF0045D75D /* AppDelegate.swift */; };
@@ -162,6 +164,8 @@
 		04D9FF7D2627D5810096BA6E /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		04D9FF8D2627E85B0096BA6E /* CardService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardService.swift; sourceTree = "<group>"; };
 		04D9FF962628186F0096BA6E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		04E1E9E326563FC60034CFBC /* magic.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = magic.gif; sourceTree = "<group>"; };
+		04E1E9E5265642610034CFBC /* purple effect.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "purple effect.gif"; sourceTree = "<group>"; };
 		04F3963626452E1400795DB8 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		04FFADA225B51FFF0045D75D /* Magic Fight.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Magic Fight.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		04FFADA525B51FFF0045D75D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -326,6 +330,8 @@
 				04D5DE49264CCDEE009C6DBC /* LightParticle.sks */,
 				04D5DE4B264CCE2A009C6DBC /* WaterParticle.sks */,
 				04D5DE4F264CCE71009C6DBC /* DarkParticle.sks */,
+				04E1E9E326563FC60034CFBC /* magic.gif */,
+				04E1E9E5265642610034CFBC /* purple effect.gif */,
 			);
 			path = "Magic Fight";
 			sourceTree = "<group>";
@@ -436,6 +442,7 @@
 				04909495264E1370009E699A /* 수증기응결.mp3 in Resources */,
 				049094AE264E1370009E699A /* 물의순환.mp3 in Resources */,
 				04FFADAF25B520000045D75D /* Assets.xcassets in Resources */,
+				04E1E9E426563FC60034CFBC /* magic.gif in Resources */,
 				0490949B264E1370009E699A /* 릴림.mp3 in Resources */,
 				04D5DE3E264CBB55009C6DBC /* MagicParticle.sks in Resources */,
 				049094BD264E1370009E699A /* 선물상자.mp3 in Resources */,
@@ -445,6 +452,7 @@
 				04D9FF7E2627D5810096BA6E /* GoogleService-Info.plist in Resources */,
 				049094A4264E1370009E699A /* 최면.mp3 in Resources */,
 				04D5DE4D264CCE2A009C6DBC /* WaterParticle.sks in Resources */,
+				04E1E9E6265642610034CFBC /* purple effect.gif in Resources */,
 				04909497264E1370009E699A /* 물대포.mp3 in Resources */,
 				0490949C264E1370009E699A /* 0임시_소환의진.mp3 in Resources */,
 				049094BA264E1370009E699A /* 서큐버스.mp3 in Resources */,

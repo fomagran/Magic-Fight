@@ -12,32 +12,40 @@ import SpriteKit
 
 class TestViewController: UIViewController {
 
-    
-    var skView:SKView = {
-        let view = SKView(withEmitter: "MagicParticle")
-        view.frame = CGRect(x: 0, y: 0, width: 400, height: 400)
-        return view
-    }()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.addSubview(skView)
-        
-        skView.translatesAutoresizingMaskIntoConstraints = false
-        skView.centerXAnchor.constraint(equalTo:view.centerXAnchor)
-                  .isActive = true
-        skView.centerYAnchor.constraint(equalTo:view.centerYAnchor)
-                  .isActive = true
-        skView.heightAnchor.constraint(equalToConstant: 200)
-                  .isActive = true
-        skView.widthAnchor.constraint(equalToConstant: 200)
-                  .isActive = true
-        
+    
+        guard let confettiImageView = UIImageView.fromGif(frame: CGRect(x: 0, y: 0, width: 200, height: 200), resourceName: "purple effect") else { return }
+         view.addSubview(confettiImageView)
+         confettiImageView.startAnimating()
        
     }
 
 
+}
+
+extension UIImageView {
+    static func fromGif(frame: CGRect, resourceName: String) -> UIImageView? {
+        guard let path = Bundle.main.path(forResource: resourceName, ofType: "gif") else {
+            print("Gif does not exist at that path")
+            return nil
+        }
+        let url = URL(fileURLWithPath: path)
+        guard let gifData = try? Data(contentsOf: url),
+            let source =  CGImageSourceCreateWithData(gifData as CFData, nil) else { return nil }
+        var images = [UIImage]()
+        let imageCount = CGImageSourceGetCount(source)
+        for i in 0 ..< imageCount {
+            if let image = CGImageSourceCreateImageAtIndex(source, i, nil) {
+                images.append(UIImage(cgImage: image))
+            }
+        }
+        let gifImageView = UIImageView(frame: frame)
+        gifImageView.animationImages = images
+        return gifImageView
+    }
 }
 
 extension SKView {
