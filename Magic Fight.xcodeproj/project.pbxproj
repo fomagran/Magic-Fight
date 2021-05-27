@@ -66,6 +66,12 @@
 		04BF55B7261D510400BFD44E /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BF55B6261D510400BFD44E /* Card.swift */; };
 		04BF55BF261D612F00BFD44E /* BanCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BF55BE261D612F00BFD44E /* BanCardViewController.swift */; };
 		04BF55C2261D618D00BFD44E /* TurnViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BF55C1261D618D00BFD44E /* TurnViewController.swift */; };
+		04D4A36A265F48FE00F202FC /* 암_샘플.gif in Resources */ = {isa = PBXBuildFile; fileRef = 04D4A364265F48FC00F202FC /* 암_샘플.gif */; };
+		04D4A36B265F48FE00F202FC /* 불_샘플.gif in Resources */ = {isa = PBXBuildFile; fileRef = 04D4A365265F48FD00F202FC /* 불_샘플.gif */; };
+		04D4A36C265F48FE00F202FC /* 물_샘플.gif in Resources */ = {isa = PBXBuildFile; fileRef = 04D4A366265F48FD00F202FC /* 물_샘플.gif */; };
+		04D4A36D265F48FE00F202FC /* 성_회복.gif in Resources */ = {isa = PBXBuildFile; fileRef = 04D4A367265F48FD00F202FC /* 성_회복.gif */; };
+		04D4A36E265F48FE00F202FC /* 번개_샘플.gif in Resources */ = {isa = PBXBuildFile; fileRef = 04D4A368265F48FD00F202FC /* 번개_샘플.gif */; };
+		04D4A36F265F48FE00F202FC /* 무_샘플.gif in Resources */ = {isa = PBXBuildFile; fileRef = 04D4A369265F48FE00F202FC /* 무_샘플.gif */; };
 		04D5DE3E264CBB55009C6DBC /* MagicParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 04D5DE3D264CBB55009C6DBC /* MagicParticle.sks */; };
 		04D5DE40264CBBE8009C6DBC /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D5DE3F264CBBE8009C6DBC /* TestViewController.swift */; };
 		04D5DE42264CC29D009C6DBC /* ShowCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D5DE41264CC29D009C6DBC /* ShowCardViewController.swift */; };
@@ -152,6 +158,12 @@
 		04BF55B6261D510400BFD44E /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		04BF55BE261D612F00BFD44E /* BanCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BanCardViewController.swift; sourceTree = "<group>"; };
 		04BF55C1261D618D00BFD44E /* TurnViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TurnViewController.swift; sourceTree = "<group>"; };
+		04D4A364265F48FC00F202FC /* 암_샘플.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "암_샘플.gif"; sourceTree = "<group>"; };
+		04D4A365265F48FD00F202FC /* 불_샘플.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "불_샘플.gif"; sourceTree = "<group>"; };
+		04D4A366265F48FD00F202FC /* 물_샘플.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "물_샘플.gif"; sourceTree = "<group>"; };
+		04D4A367265F48FD00F202FC /* 성_회복.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "성_회복.gif"; sourceTree = "<group>"; };
+		04D4A368265F48FD00F202FC /* 번개_샘플.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "번개_샘플.gif"; sourceTree = "<group>"; };
+		04D4A369265F48FE00F202FC /* 무_샘플.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "무_샘플.gif"; sourceTree = "<group>"; };
 		04D5DE3D264CBB55009C6DBC /* MagicParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MagicParticle.sks; sourceTree = "<group>"; };
 		04D5DE3F264CBBE8009C6DBC /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		04D5DE41264CC29D009C6DBC /* ShowCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowCardViewController.swift; sourceTree = "<group>"; };
@@ -281,6 +293,29 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		04D4A363265F48B400F202FC /* AnimationFile */ = {
+			isa = PBXGroup;
+			children = (
+				04E1E9E7265647960034CFBC /* 푸른_칼_섬광.gif */,
+				04D5DE3D264CBB55009C6DBC /* MagicParticle.sks */,
+				04D5DE43264CC977009C6DBC /* SparkParticle.sks */,
+				04D5DE45264CC9A0009C6DBC /* FireParticle.sks */,
+				04D5DE47264CC9BC009C6DBC /* BokehParticle.sks */,
+				04D5DE49264CCDEE009C6DBC /* LightParticle.sks */,
+				04D5DE4B264CCE2A009C6DBC /* WaterParticle.sks */,
+				04D4A369265F48FE00F202FC /* 무_샘플.gif */,
+				04D4A366265F48FD00F202FC /* 물_샘플.gif */,
+				04D4A368265F48FD00F202FC /* 번개_샘플.gif */,
+				04D4A365265F48FD00F202FC /* 불_샘플.gif */,
+				04D4A367265F48FD00F202FC /* 성_회복.gif */,
+				04D4A364265F48FC00F202FC /* 암_샘플.gif */,
+				04D5DE4F264CCE71009C6DBC /* DarkParticle.sks */,
+				04E1E9E326563FC60034CFBC /* magic.gif */,
+				04E1E9E5265642610034CFBC /* purple effect.gif */,
+			);
+			path = AnimationFile;
+			sourceTree = "<group>";
+		};
 		04D9FF8C2627E8430096BA6E /* Service */ = {
 			isa = PBXGroup;
 			children = (
@@ -311,6 +346,7 @@
 		04FFADA425B51FFF0045D75D /* Magic Fight */ = {
 			isa = PBXGroup;
 			children = (
+				04D4A363265F48B400F202FC /* AnimationFile */,
 				04909460264E1357009E699A /* Sound */,
 				04D9FF8C2627E8430096BA6E /* Service */,
 				04284D14261EA5F50081540E /* View */,
@@ -325,16 +361,6 @@
 				0467E6A6260B45F900C1C416 /* DesignableSlider.swift */,
 				04D9FF7D2627D5810096BA6E /* GoogleService-Info.plist */,
 				04D9FF962628186F0096BA6E /* Constants.swift */,
-				04D5DE3D264CBB55009C6DBC /* MagicParticle.sks */,
-				04D5DE43264CC977009C6DBC /* SparkParticle.sks */,
-				04D5DE45264CC9A0009C6DBC /* FireParticle.sks */,
-				04D5DE47264CC9BC009C6DBC /* BokehParticle.sks */,
-				04D5DE49264CCDEE009C6DBC /* LightParticle.sks */,
-				04D5DE4B264CCE2A009C6DBC /* WaterParticle.sks */,
-				04D5DE4F264CCE71009C6DBC /* DarkParticle.sks */,
-				04E1E9E326563FC60034CFBC /* magic.gif */,
-				04E1E9E5265642610034CFBC /* purple effect.gif */,
-				04E1E9E7265647960034CFBC /* 푸른_칼_섬광.gif */,
 			);
 			path = "Magic Fight";
 			sourceTree = "<group>";
@@ -423,6 +449,7 @@
 				049094BC264E1370009E699A /* 암흑광선.mp3 in Resources */,
 				049094C2264E1370009E699A /* 헌납.mp3 in Resources */,
 				049094B3264E1370009E699A /* 물벼락.mp3 in Resources */,
+				04D4A36D265F48FE00F202FC /* 성_회복.gif in Resources */,
 				049094A1264E1370009E699A /* 폭주.mp3 in Resources */,
 				049094A3264E1370009E699A /* 도깨비불.mp3 in Resources */,
 				049094A2264E1370009E699A /* 보석세공사.mp3 in Resources */,
@@ -438,15 +465,18 @@
 				04D5DE44264CC977009C6DBC /* SparkParticle.sks in Resources */,
 				049094A9264E1370009E699A /* 물의감옥.mp3 in Resources */,
 				04909494264E1370009E699A /* 우리엘.mp3 in Resources */,
+				04D4A36C265F48FE00F202FC /* 물_샘플.gif in Resources */,
 				0490949F264E1370009E699A /* 금광.mp3 in Resources */,
 				049094B9264E1370009E699A /* 0임시_기도.mp3 in Resources */,
 				049094B5264E1370009E699A /* 라파엘.mp3 in Resources */,
 				049094BE264E1370009E699A /* 성수.mp3 in Resources */,
 				0490949A264E1370009E699A /* 아스타로트.mp3 in Resources */,
 				04909495264E1370009E699A /* 수증기응결.mp3 in Resources */,
+				04D4A36F265F48FE00F202FC /* 무_샘플.gif in Resources */,
 				049094AE264E1370009E699A /* 물의순환.mp3 in Resources */,
 				04FFADAF25B520000045D75D /* Assets.xcassets in Resources */,
 				04E1E9E426563FC60034CFBC /* magic.gif in Resources */,
+				04D4A36B265F48FE00F202FC /* 불_샘플.gif in Resources */,
 				0490949B264E1370009E699A /* 릴림.mp3 in Resources */,
 				04D5DE3E264CBB55009C6DBC /* MagicParticle.sks in Resources */,
 				049094BD264E1370009E699A /* 선물상자.mp3 in Resources */,
@@ -469,6 +499,7 @@
 				049094AB264E1370009E699A /* 마법지팡이.mp3 in Resources */,
 				049094C0264E1370009E699A /* 폭발의진.mp3 in Resources */,
 				049094B0264E1370009E699A /* 암시.mp3 in Resources */,
+				04D4A36E265F48FE00F202FC /* 번개_샘플.gif in Resources */,
 				049094A8264E1370009E699A /* 화염구.mp3 in Resources */,
 				049094B7264E1370009E699A /* 정신집중.mp3 in Resources */,
 				049094AF264E1370009E699A /* 불의순환.mp3 in Resources */,
@@ -479,6 +510,7 @@
 				049094AA264E1370009E699A /* 위조기술자.mp3 in Resources */,
 				04909499264E1370009E699A /* 낙뢰.mp3 in Resources */,
 				049094A5264E1370009E699A /* 불잉걸.mp3 in Resources */,
+				04D4A36A265F48FE00F202FC /* 암_샘플.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

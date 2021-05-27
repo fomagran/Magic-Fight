@@ -78,7 +78,6 @@ var allCard:[Card] = [
     불잉걸 ,
     수증기응결 ,
     먹구름
-    
 ]
 
 let 스파크 = Card(name: "스파크", price: 3, usePrice: 1, count: 20, effect: "상대에게 피해를 2 준다.",magicAttribute:.번개,gem: nil,image:UIImage(named: "스파크")!)

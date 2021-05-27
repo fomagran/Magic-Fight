@@ -188,7 +188,7 @@ class GameViewController: UIViewController {
     
     func setDatabase() {
         let turn = CURRENT_USER == "fomagran" ? true:false
-        ref.child("battle").child(CURRENT_USER).setValue(["HP":20,"MP":8,"cards":[],"turn":turn,"trash":[],"deck":["초급마법서","초급마법서","푸른젬","푸른젬","푸른젬","푸른젬","푸른젬","푸른젬","푸른젬","푸른젬"]])
+        ref.child("battle").child(CURRENT_USER).setValue(["HP":20,"MP":100,"cards":[],"turn":turn,"trash":[],"deck":["초급마법서","초급마법서","푸른젬","푸른젬","푸른젬","푸른젬","푸른젬","푸른젬","푸른젬","푸른젬"]])
         setNameFromDeck()
     }
     
@@ -213,8 +213,6 @@ class GameViewController: UIViewController {
     
     func configure() {
         victoryOrDefeatImage.isHidden = true
-        let 초급마법서 = allCard.filter{$0.name == "초급마법서"}.first!
-        let 푸른젬 = allCard.filter{$0.name == "푸른젬"}.first!
         myDeck = [초급마법서,초급마법서,초급마법서,초급마법서,초급마법서,초급마법서,초급마법서,초급마법서,푸른젬,푸른젬]
         deckCountLabel.text = "\(myDeck.count)"
     }
@@ -331,44 +329,44 @@ class GameViewController: UIViewController {
 
 extension GameViewController:ShowCardViewControllerDelegate {
     func didDissmiss(magic :Magic) {
-        let skView:SKView = {
-            var view = SKView()
-            if magic == .번개 {
-                playSound(soundName: "낙뢰")
-                view = SKView(withEmitter: "SparkParticle")
-            }else if magic == .불 {
-                playSound(soundName: "화염구")
-                view = SKView(withEmitter: "FireParticle")
-            }else if magic == .물 {
-                playSound(soundName: "물벼락")
-                view = SKView(withEmitter: "WaterParticle")
-            }else if magic == .빛 {
-                playSound(soundName: "라파엘")
-                view = SKView(withEmitter: "LightParticle")
-            }else if magic == .암흑 {
-                playSound(soundName: "릴림")
-                view = SKView(withEmitter: "DarkParticle")
-            }
-            return view
-        }()
+        
+        var imageView:UIImageView = UIImageView()
+        
+        switch magic {
+        case .무속성:
+            imageView =  UIImageView.fromGif(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height), resourceName: "무_샘플")!
+        case .물:
+            imageView =  UIImageView.fromGif(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height), resourceName: "물_샘플")!
+        case .불:
+            imageView = UIImageView.fromGif(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height), resourceName: "불_샘플")!
+        case .빛:
+            imageView = UIImageView.fromGif(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height), resourceName: "성_회복")!
+        case .번개:
+            imageView = UIImageView.fromGif(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height), resourceName: "번개_샘플")!
+        default:
+            imageView = UIImageView.fromGif(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height), resourceName: "암_샘플")!
+        }
+
         
         enemyCharacter.image = UIImage(named: "Character_Sick.png")
         enemyCharacter.contentMode = .scaleAspectFill
-        view.addSubview(skView)
+        view.addSubview(imageView)
+        imageView.startAnimating()
         
-        
-        skView.translatesAutoresizingMaskIntoConstraints = false
-        skView.centerXAnchor.constraint(equalTo:view.centerXAnchor)
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.centerXAnchor.constraint(equalTo:view.centerXAnchor)
                   .isActive = true
-        skView.centerYAnchor.constraint(equalTo:view.centerYAnchor)
+        imageView.centerYAnchor.constraint(equalTo:view.centerYAnchor)
                   .isActive = true
-        skView.heightAnchor.constraint(equalToConstant: 200)
+        imageView.heightAnchor.constraint(equalToConstant: self.view.frame.size.height)
                   .isActive = true
-        skView.widthAnchor.constraint(equalToConstant: 500)
+        imageView.widthAnchor.constraint(equalToConstant: self.view.frame.size.width)
                   .isActive = true
+        imageView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
+
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            skView.isHidden = true
+            imageView.isHidden = true
             self.enemyCharacter.image = UIImage(named: "캐릭터.png")
             self.enemyCharacter.contentMode = .scaleAspectFit
         }

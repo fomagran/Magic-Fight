@@ -17,7 +17,7 @@ class TestViewController: UIViewController {
         super.viewDidLoad()
         
     
-        guard let confettiImageView = UIImageView.fromGif(frame: CGRect(x: 0, y: 0, width: 200, height: 200), resourceName: "purple effect") else { return }
+        guard let confettiImageView = UIImageView.fromGif(frame: CGRect(x: 0, y: 0, width: 200, height: 200), resourceName: "무_샘플") else { return }
          view.addSubview(confettiImageView)
          confettiImageView.startAnimating()
        
