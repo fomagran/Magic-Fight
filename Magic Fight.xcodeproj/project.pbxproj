@@ -12,6 +12,7 @@
 		04284D1A261EB1810081540E /* BigCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04284D19261EB1810081540E /* BigCardViewController.swift */; };
 		0467E6A7260B45F900C1C416 /* DesignableSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0467E6A6260B45F900C1C416 /* DesignableSlider.swift */; };
 		0485CDD62632801300BD0791 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0485CDD52632801300BD0791 /* LoadingViewController.swift */; };
+		048882902669FCB100C98A96 /* BGM.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0488828F2669FCB100C98A96 /* BGM.mp3 */; };
 		04909492264E1370009E699A /* 축전.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 04909461264E1364009E699A /* 축전.mp3 */; };
 		04909493264E1370009E699A /* 먹구름.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 04909462264E1364009E699A /* 먹구름.mp3 */; };
 		04909494264E1370009E699A /* 우리엘.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 04909463264E1365009E699A /* 우리엘.mp3 */; };
@@ -103,6 +104,7 @@
 		04284D19261EB1810081540E /* BigCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigCardViewController.swift; sourceTree = "<group>"; };
 		0467E6A6260B45F900C1C416 /* DesignableSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableSlider.swift; sourceTree = "<group>"; };
 		0485CDD52632801300BD0791 /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
+		0488828F2669FCB100C98A96 /* BGM.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = BGM.mp3; sourceTree = "<group>"; };
 		04909461264E1364009E699A /* 축전.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "축전.mp3"; sourceTree = "<group>"; };
 		04909462264E1364009E699A /* 먹구름.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "먹구름.mp3"; sourceTree = "<group>"; };
 		04909463264E1365009E699A /* 우리엘.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "우리엘.mp3"; sourceTree = "<group>"; };
@@ -264,6 +266,7 @@
 				04909470264E1368009E699A /* 폭주.mp3 */,
 				04909491264E1370009E699A /* 헌납.mp3 */,
 				04909477264E1369009E699A /* 화염구.mp3 */,
+				0488828F2669FCB100C98A96 /* BGM.mp3 */,
 			);
 			path = Sound;
 			sourceTree = "<group>";
@@ -459,6 +462,7 @@
 				049094AC264E1370009E699A /* 방전.mp3 in Resources */,
 				04D5DE46264CC9A0009C6DBC /* FireParticle.sks in Resources */,
 				049094AD264E1370009E699A /* 사타나치아.mp3 in Resources */,
+				048882902669FCB100C98A96 /* BGM.mp3 in Resources */,
 				049094A6264E1370009E699A /* 마나물약.mp3 in Resources */,
 				049094BF264E1370009E699A /* 악몽.mp3 in Resources */,
 				04D5DE4E264CCE2A009C6DBC /* Assets.xcassets in Resources */,

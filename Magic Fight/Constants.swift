@@ -9,7 +9,8 @@ import Foundation
 import FirebaseDatabase
 
 let CURRENT_USER = UserDefaults.standard.string(forKey: "nickname")!
-let OPPONENT_USER = CURRENT_USER == "fomagran" ? "acop" : "fomagran"
-let PLAYER_NUMBER = CURRENT_USER == "fomagran" ? "1" : "2"
+var OPPONENT_USER:String = ""
+var PLAYER_NUMBER = "1"
+var documentID:String = ""
 
 var ref = Database.database().reference()

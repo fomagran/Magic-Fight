@@ -7,6 +7,7 @@
 
 import UIKit
 import FirebaseDatabase
+import FirebaseFirestore
 
 class BanCardViewController: UIViewController {
     
@@ -29,6 +30,7 @@ class BanCardViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        documentID = Firestore.firestore().collection("Battle").addDocument(data: ["timeStamp":FieldValue.serverTimestamp()]).documentID
         setTap()
         setNameFromRandomCard()
         ref.child("battle").child("isReady").observe(DataEventType.value, with: { (snapshot) in
@@ -59,12 +61,10 @@ class BanCardViewController: UIViewController {
         allCardCopy.remove(at: allCardCopy.firstIndex { $0 == randomCard1}!)
         card1.image = randomCard1?.image
        
-        
         randomCard2 = allCardCopy.randomElement()!
         allCardCopy.remove(at: allCardCopy.firstIndex { $0 == randomCard2}!)
         card2.image = randomCard2?.image
      
-        
         randomCard3 = allCardCopy.randomElement()!
         allCardCopy.remove(at: allCardCopy.firstIndex { $0 == randomCard3}!)
         card3.image = randomCard3?.image
@@ -73,7 +73,6 @@ class BanCardViewController: UIViewController {
         allCardCopy.remove(at: allCardCopy.firstIndex { $0 == randomCard4}!)
         card4.image = randomCard4?.image
 
-        
     }
     
     func setTap() {
@@ -96,26 +95,22 @@ class BanCardViewController: UIViewController {
     }
     
     @objc func tapCard1() {
-
         card1.isHidden = true
         allCard.remove(at: allCard.firstIndex{$0 == randomCard1}!)
     }
     
     @objc func tapCard2() {
-
         card2.isHidden = true
         allCard.remove(at: allCard.firstIndex{$0 == randomCard2}!)
         
     }
     
     @objc func tapCard3() {
-  
         card3.isHidden = true
         allCard.remove(at: allCard.firstIndex{$0 == randomCard3}!)
     }
     
     @objc func tapCard4() {
-
         card4.isHidden = true
         allCard.remove(at: allCard.firstIndex{$0 == randomCard4}!)
     }

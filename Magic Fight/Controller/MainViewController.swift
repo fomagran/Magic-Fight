@@ -8,8 +8,6 @@
 import UIKit
 import FirebaseDatabase
 
-
-
 class MainViewController: UIViewController {
     
     var ref = Database.database().reference()
@@ -38,6 +36,8 @@ class MainViewController: UIViewController {
         ref.child("battle").child("name").observe(DataEventType.value, with: { (snapshot) in
             guard let value = snapshot.value else { return }
             if "\(value)" != UserDefaults.standard.string(forKey: "nickname")! && "\(value)" != "<null>" {
+                OPPONENT_USER = "\(value)"
+                PLAYER_NUMBER = "2"
                 self.showAlert()
             }
         })

@@ -52,7 +52,7 @@ class GameViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         configure()
         setDatabase()
         observeDatabase()
@@ -61,7 +61,7 @@ class GameViewController: UIViewController {
         let tap1 = UITapGestureRecognizer(target: self, action:#selector(tapBackground))
         bgImage.addGestureRecognizer(tap1)
         bgImage.isUserInteractionEnabled = true
-
+        
     }
     
     func observeDatabase() {
@@ -72,11 +72,15 @@ class GameViewController: UIViewController {
                 self.myHPLabel.text = "\(value["HP"]!)"
                 self.myMPLabel.text = "\(value["MP"]!)"
                 
-                guard let hp = value["HP"] else {return}
-                if (hp as! Int) <= 0 {
-                    self.victoryOrDefeatImage.image = #imageLiteral(resourceName: "defeat")
-                    self.victoryOrDefeatImage.isHidden = false
-                    self.timer.invalidate()
+                if let hp = value["HP"] {
+                    
+                    if (hp as! Int) <= 0 {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                            self.victoryOrDefeatImage.image = #imageLiteral(resourceName: "defeat")
+                            self.victoryOrDefeatImage.isHidden = false
+                            self.timer.invalidate()
+                        }
+                    }
                 }
                 
                 if value["turn"] as! Bool == true {
@@ -91,34 +95,33 @@ class GameViewController: UIViewController {
                     self.timer.invalidate()
                 }
                 
-                guard let deck = value["deck"] else {return}
-                
-                self.myDeck = []
-                for name in deck as! [String]{
-                    if allCard.filter({$0.name == name}).first != nil {
+                if let deck = value["deck"] {
                     
-                    self.myDeck.append(allCard.filter{$0.name == name}.first!)
+                    self.myDeck = []
+                    for name in deck as! [String]{
+                        if allCard.filter({$0.name == name}).first != nil {
+                            
+                            self.myDeck.append(allCard.filter{$0.name == name}.first!)
+                        }
                     }
+                    
+                    self.deckCountLabel.text = "\(self.myDeck.count)"
                 }
                 
-                self.deckCountLabel.text = "\(self.myDeck.count)"
-                
-                guard let cards = value["cards"] else {return}
-                
-                var newCards = [Card]()
-                for name in cards as! [String]{
-                    newCards.append(allCard.filter{$0.name == name}.first ?? Card(name: "스파크", price: 3, usePrice: 1, count: 20, effect: "상대에게 피해를 2 준다.",magicAttribute:.번개,gem: nil,image:UIImage(named: "스파크")!))
+                if let cards = value["cards"] {
+                    var newCards = [Card]()
+                    for name in cards as! [String]{
+                        newCards.append(allCard.filter{$0.name == name}.first ?? Card(name: "스파크", price: 3, usePrice: 1, count: 20, effect: "상대에게 피해를 2 준다.",magicAttribute:.번개,gem: nil,image:UIImage(named: "스파크")!))
+                    }
+                    self.myCards = newCards
                 }
-                
-                
-                self.myCards = newCards
-                guard let trash = value["trash"] else {return}
-                for name in trash as! [String] {
-                    self.myTrash.append(allCard.filter{$0.name == name}.first!)
+                if let trash = value["trash"] {
+                    for name in trash as! [String] {
+                        self.myTrash.append(allCard.filter{$0.name == name}.first!)
+                    }
+                    
+                    self.trashCardLabel.text = "\(self.myTrash.count)"
                 }
-
-                self.trashCardLabel.text = "\(self.myTrash.count)"
-               
             }
         })
         
@@ -130,14 +133,16 @@ class GameViewController: UIViewController {
                 self.enemyHPLabel.text = "\(value["HP"] as? Int ?? 0)"
                 self.enemyMPLabel.text = "\(value["MP"] as? Int ?? 0)"
                 
-                guard let hp = value["HP"] else {return}
-
-                if (hp as! Int) <= 0 {
-                    self.victoryOrDefeatImage.image = #imageLiteral(resourceName: "victory")
-                    self.victoryOrDefeatImage.isHidden = false
-                    self.timer.invalidate()
+                if let hp = value["HP"] {
+                    
+                    if (hp as! Int) <= 0 {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                            self.victoryOrDefeatImage.image = #imageLiteral(resourceName: "victory")
+                            self.victoryOrDefeatImage.isHidden = false
+                            self.timer.invalidate()
+                        }
+                    }
                 }
-                
                 if value["useCard"] != nil {
                     var useCard = "\(value["useCard"]!)"
                     useCard.removeLast()
@@ -148,35 +153,36 @@ class GameViewController: UIViewController {
                     }
                 }
                 
-                guard let deck = value["deck"] else {return}
-                
-                self.enemyDeck = []
-                for name in deck as! [String] {
-                    if allCard.filter({$0.name == name}).first != nil {
-                    self.enemyDeck.append(allCard.filter{$0.name == name}.first!)
+                if let deck = value["deck"] {
+                    
+                    self.enemyDeck = []
+                    for name in deck as! [String] {
+                        if allCard.filter({$0.name == name}).first != nil {
+                            self.enemyDeck.append(allCard.filter{$0.name == name}.first!)
+                        }
                     }
-                }
-    
-                self.enemyDeckLabel.text = "\(self.enemyDeck.count)"
-                
-                guard let cards = value["cards"] else {return}
-                var newCards = [Card]()
-                
-                for name in cards as! [String]{
-                    if allCard.filter({$0.name == name}).first != nil {
-                    newCards.append(allCard.filter{$0.name == name}.first!)
-                    }
+                    
+                    self.enemyDeckLabel.text = "\(self.enemyDeck.count)"
                 }
                 
-                self.enemyCards = newCards
-                guard let trash = value["trash"] else {return}
-                for name in trash as! [String]{
-                    if allCard.filter({$0.name == name}).first != nil {
-                    self.enemyTrash.append(allCard.filter{$0.name == name}.first!)
+                if let cards = value["cards"] {
+                    var newCards = [Card]()
+                    
+                    for name in cards as! [String]{
+                        if allCard.filter({$0.name == name}).first != nil {
+                            newCards.append(allCard.filter{$0.name == name}.first!)
+                        }
+                    }
+                    
+                    self.enemyCards = newCards
+                }
+                if let trash = value["trash"] {
+                    for name in trash as! [String]{
+                        if allCard.filter({$0.name == name}).first != nil {
+                            self.enemyTrash.append(allCard.filter{$0.name == name}.first!)
+                        }
                     }
                 }
-                
-  
             }
         })
     }
@@ -188,8 +194,11 @@ class GameViewController: UIViewController {
     
     func setDatabase() {
         let turn = CURRENT_USER == "fomagran" ? true:false
-        ref.child("battle").child(CURRENT_USER).setValue(["HP":20,"MP":100,"cards":[],"turn":turn,"trash":[],"deck":["초급마법서","초급마법서","푸른젬","푸른젬","푸른젬","푸른젬","푸른젬","푸른젬","푸른젬","푸른젬"]])
-        setNameFromDeck()
+        var newCards = [String]()
+        for _ in 0...7 {
+            newCards.append(allCard.randomElement()?.name ?? "스파크")
+        }
+        ref.child("battle").child(CURRENT_USER).setValue(["HP":20,"MP":30,"cards":newCards,"turn":turn,"trash":[],"deck":[]])
     }
     
     @objc func tapBackground() {
@@ -213,20 +222,8 @@ class GameViewController: UIViewController {
     
     func configure() {
         victoryOrDefeatImage.isHidden = true
-        myDeck = [초급마법서,초급마법서,초급마법서,초급마법서,초급마법서,초급마법서,초급마법서,초급마법서,푸른젬,푸른젬]
+        myDeck = []
         deckCountLabel.text = "\(myDeck.count)"
-    }
-    
-    func setNameFromDeck(){
-        
-//        for _ in 0...4 {
-//        let randomCard = myDeck.randomElement()!
-//            myCards.append(myDeck.randomElement()!)
-//            myDeck.remove(at: myDeck.firstIndex { $0 == randomCard}!)
-//        }
-        
-        ref.child("battle").child(CURRENT_USER).updateChildValues(["cards":["릴림","화염구","물대포","낙뢰","에너지재생"]])
-        ref.child("battle").child(CURRENT_USER).updateChildValues(["deck":myDeck.map{$0.name}])
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -246,7 +243,6 @@ class GameViewController: UIViewController {
             vc.myCards = myCards
         }else if segue.identifier == "showShowCardViewController" {
             let vc = segue.destination as! ShowCardViewController
-
             vc.delegate = self
             vc.showCardImage = useCard?.image
             vc.magic = useCard!.magicAttribute
@@ -314,7 +310,6 @@ class GameViewController: UIViewController {
                     
             try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.ambient)
                 try AVAudioSession.sharedInstance().setActive(true)
-            
             }
         
             catch{
@@ -322,7 +317,6 @@ class GameViewController: UIViewController {
             }
         
         soundIntroPlayer.play()
-        
     }
 }
 
@@ -335,16 +329,22 @@ extension GameViewController:ShowCardViewControllerDelegate {
         switch magic {
         case .무속성:
             imageView =  UIImageView.fromGif(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height), resourceName: "무_샘플")!
+            playSound(soundName: "금지된마법")
         case .물:
             imageView =  UIImageView.fromGif(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height), resourceName: "물_샘플")!
+            playSound(soundName: "물의감옥")
         case .불:
             imageView = UIImageView.fromGif(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height), resourceName: "불_샘플")!
+            playSound(soundName: "화염구")
         case .빛:
             imageView = UIImageView.fromGif(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height), resourceName: "성_회복")!
+            playSound(soundName: "라파엘")
         case .번개:
             imageView = UIImageView.fromGif(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height), resourceName: "번개_샘플")!
+            playSound(soundName: "낙뢰")
         default:
             imageView = UIImageView.fromGif(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height), resourceName: "암_샘플")!
+            playSound(soundName: "릴림")
         }
 
         

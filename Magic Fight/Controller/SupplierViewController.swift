@@ -7,6 +7,7 @@
 
 import UIKit
 import FirebaseDatabase
+import FirebaseFirestore
 
 protocol SupplierViewControllerDelegate:AnyObject {
     func didDismiss(card:Card)
@@ -39,7 +40,6 @@ class SupplierViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         configure()
         tapGesture.delegate = self
         
@@ -51,15 +51,16 @@ class SupplierViewController: UIViewController {
                 showAlert(str: "젬이 부족해 카드를 사용할 수 없습니다.")
             }else{
             var newCards = myCards.map{$0.name}
-            print(newCards)
             let index = myCards.firstIndex(of: currentCard!)!
             newCards.remove(at: index)
-            print(newCards)
             ref.child("battle").child(CURRENT_USER).updateChildValues(["cards":newCards])
             ref.child("battle").child(CURRENT_USER).updateChildValues(["MP":myMP - currentCard!.usePrice])
             ref.child("battle").child(CURRENT_USER).updateChildValues(["useCard":"\(currentCard!.name)\(PLAYER_NUMBER)"])
             ref.child("battle").child(OPPONENT_USER).updateChildValues(["useCard":"\(currentCard!.name)\(PLAYER_NUMBER)"])
             cardEffect(name: currentCard!.name)
+                
+                Firestore.firestore().collection("Battle").document(documentID).collection("UserCard").addDocument(data: ["player":CURRENT_USER, "card":currentCard?.name ?? "","MP":myMP ?? 0,"HP":myHP ?? 0])
+        
             dismiss(animated: true, completion: nil)
             }
         }else {
@@ -69,13 +70,13 @@ class SupplierViewController: UIViewController {
                 var newCards = myCards.map{$0.name}
                 newCards.append(currentCard!.name)
                 ref.child("battle").child(CURRENT_USER).updateChildValues(["cards":newCards])
-                ref.child("battle").child(CURRENT_USER).updateChildValues(["MP":myMP - currentCard!.price])
+                let newMP = myMP - currentCard!.price
+                ref.child("battle").child(CURRENT_USER).updateChildValues(["MP":newMP])
                 dismiss(animated: true, completion: nil)
             }
         }
-        
     }
-    
+
     func showAlert(str:String) {
         let alert = UIAlertController(title: "불가", message: str, preferredStyle: .alert)
         let action = UIAlertAction(title: "확인", style: .default) { _ in }
@@ -115,8 +116,8 @@ extension SupplierViewController:UICollectionViewDataSource {
         case "에너지재생":
             ref.child("battle").child(CURRENT_USER).updateChildValues(["HP":myHP + 4])
         case "정신과부하":
-            let newCards = myCards + ["푸른젬","푸른젬","푸른젬","푸른젬","푸른젬"]
-            ref.child("battle").child(CURRENT_USER).updateChildValues(["cards":newCards ])
+            let newMP = myMP + 5
+            ref.child("battle").child(CURRENT_USER).updateChildValues(["MP":newMP ])
         case "화염구":
             ref.child("battle").child(OPPONENT_USER).updateChildValues(["HP":enemyHP - 5])
         case "물대포":
@@ -141,12 +142,11 @@ extension SupplierViewController:UICollectionViewDataSource {
             ref.child("battle").child(CURRENT_USER).updateChildValues(["HP":myHP + 2])
         case "수혈":
             ref.child("battle").child(OPPONENT_USER).updateChildValues(["HP":enemyHP - 3])
-            let newCards = myCards + ["붉은젬"]
-            ref.child("battle").child(CURRENT_USER).updateChildValues(["cards":newCards ])
-            print(name)
+            let newMP = myMP + 3
+            ref.child("battle").child(CURRENT_USER).updateChildValues(["MP":newMP])
         case "불의순환":
             ref.child("battle").child(OPPONENT_USER).updateChildValues(["HP":enemyHP - 1])
-            let newCards = myCards + ["불의순환"]
+            let newCards = myCards.map{$0.name} + ["불의순환"]
             ref.child("battle").child(CURRENT_USER).updateChildValues(["cards":newCards])
         case "도깨비불":
             ref.child("battle").child(OPPONENT_USER).updateChildValues(["HP":enemyHP - 1])
@@ -183,11 +183,11 @@ extension SupplierViewController:UICollectionViewDataSource {
             ref.child("battle").child(CURRENT_USER).updateChildValues(["MP":myMP + 5])
         case "축전":
             ref.child("battle").child(CURRENT_USER).updateChildValues(["HP":myHP - 5])
-            let newCards = myCards + ["방전"]
+            let newCards = myCards.map{$0.name} + ["방전"]
             ref.child("battle").child(CURRENT_USER).updateChildValues(["cards":newCards])
-        case "방점":
+        case "방전":
             ref.child("battle").child(OPPONENT_USER).updateChildValues(["HP":enemyHP - 8])
-            let newCards = myCards + ["축전"]
+            let newCards = myCards.map{$0.name} + ["축전"]
             ref.child("battle").child(CURRENT_USER).updateChildValues(["cards":newCards])
         case "암흑광선":
             var index = -1
@@ -201,34 +201,6 @@ extension SupplierViewController:UICollectionViewDataSource {
             }
             ref.child("battle").child(CURRENT_USER).updateChildValues(["deck":myDeck])
             ref.child("battle").child(OPPONENT_USER).updateChildValues(["HP":enemyHP - 5])
-        case "헌납":
-            var index = -1
-            var name = ""
-            for (i,d) in myDeck.enumerated() {
-                if d.name.contains("젬") {
-                    index = i
-                    name = d.name
-                }
-            }
-            if index != -1 {
-                myDeck.remove(at: index)
-            }
-            var hp = 0
-            if name == "푸른젬" {
-                hp = 1
-            }else if name == "붉은젬" {
-                hp = 3
-            }else if name == "황금젬" {
-                hp = 6
-            }else {
-                hp = 10
-            }
-            ref.child("battle").child(CURRENT_USER).updateChildValues(["HP":myHP + hp])
-        case "폭주":
-            print(name)
-        case "천사의깃털":
-            let newCards = myCards + ["불의 순환"] //랜덤으로 바뀌어야함
-            ref.child("battle").child(CURRENT_USER).updateChildValues(["cards":newCards])
         case "최면":
             ref.child("battle").child(OPPONENT_USER).updateChildValues(["deck":enemyDeck + ["악몽","악몽"]])
         case "암시":
@@ -238,44 +210,38 @@ extension SupplierViewController:UICollectionViewDataSource {
             ref.child("battle").child(CURRENT_USER).updateChildValues(["HP":myHP - 1])
         case "폭발의진":
             ref.child("battle").child(OPPONENT_USER).updateChildValues(["HP":enemyHP - 12])
-        case "초급마법서":
-            configure()
-            isLowMagic = true
-            allCard = allCard.filter{$0.price < 5}
-            collection.reloadData()
         case "마법지팡이":
-            print(name)
-        case "도둑":
-            ref.child("battle").child(CURRENT_USER).updateChildValues(["MP":myMP + enemyHP])
-        case "금광":
-            let newCards = myCards + ["황금젬"]
+            let randomCard1 = allCard.randomElement()?.name ?? ""
+            let randomCard2 = allCard.randomElement()?.name ?? ""
+            let newCards = myCards.map{$0.name} + [randomCard1,randomCard2]
             ref.child("battle").child(CURRENT_USER).updateChildValues(["cards":newCards])
+        case "도둑":
+            ref.child("battle").child(CURRENT_USER).updateChildValues(["MP":myMP + enemyMP])
+        case "금광":
+            ref.child("battle").child(CURRENT_USER).updateChildValues(["MP":myMP + 6])
         case "보석세공사":
-            print(name)
-        case "사기꾼":
-            print(name)
+            let gem = [1,3,6,10].randomElement() ?? 0
+            ref.child("battle").child(CURRENT_USER).updateChildValues(["MP":myMP + gem])
         case "기도":
-            //1장 뽑기도 해야함
+            let randomCard = allCard.randomElement()?.name ?? ""
+            let newCards = myCards.map{$0.name} + [randomCard]
+            ref.child("battle").child(CURRENT_USER).updateChildValues(["cards":newCards])
             ref.child("battle").child(CURRENT_USER).updateChildValues(["HP":myHP + 1])
         case "성수":
             ref.child("battle").child(CURRENT_USER).updateChildValues(["HP":myHP + 3])
         case "마나물약":
             ref.child("battle").child(CURRENT_USER).updateChildValues(["MP":myMP + 3])
-        case "선물상자":
-            print(name)
-        case "위조기술자":
-            print(name)
         case "불잉걸":
             ref.child("battle").child(OPPONENT_USER).updateChildValues(["HP":enemyHP - 1])
-            let newCards = myCards + ["화염구"]
+            let newCards = myCards.map{$0.name} + ["화염구"]
             ref.child("battle").child(CURRENT_USER).updateChildValues(["cards":newCards])
         case "수증기응결":
             ref.child("battle").child(OPPONENT_USER).updateChildValues(["HP":enemyHP - 1])
-            let newCards = myCards + ["물대포"]
+            let newCards = myCards.map{$0.name} + ["물대포"]
             ref.child("battle").child(CURRENT_USER).updateChildValues(["cards":newCards])
         case "먹구름":
             ref.child("battle").child(OPPONENT_USER).updateChildValues(["HP":enemyHP - 1])
-            let newCards = myCards + ["낙뢰"]
+            let newCards = myCards.map{$0.name} + ["낙뢰"]
             ref.child("battle").child(CURRENT_USER).updateChildValues(["cards":newCards])
         default:
             print(name)
