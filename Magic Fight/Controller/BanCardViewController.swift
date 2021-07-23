@@ -97,21 +97,25 @@ class BanCardViewController: UIViewController {
     @objc func tapCard1() {
         card1.isHidden = true
         allCard.remove(at: allCard.firstIndex{$0 == randomCard1}!)
+        Firestore.firestore().collection("Battle").document(documentID).collection("BanCard").addDocument(data: ["banCard":randomCard1?.name ?? ""])
     }
     
     @objc func tapCard2() {
         card2.isHidden = true
         allCard.remove(at: allCard.firstIndex{$0 == randomCard2}!)
+        Firestore.firestore().collection("Battle").document(documentID).collection("BanCard").addDocument(data: ["banCard":randomCard1?.name ?? ""])
         
     }
     
     @objc func tapCard3() {
         card3.isHidden = true
         allCard.remove(at: allCard.firstIndex{$0 == randomCard3}!)
+        Firestore.firestore().collection("Battle").document(documentID).collection("BanCard").addDocument(data: ["banCard":randomCard1?.name ?? ""])
     }
     
     @objc func tapCard4() {
         card4.isHidden = true
         allCard.remove(at: allCard.firstIndex{$0 == randomCard4}!)
+        Firestore.firestore().collection("Battle").document(documentID).collection("BanCard").addDocument(data: ["banCard":randomCard1?.name ?? ""])
     }
 }

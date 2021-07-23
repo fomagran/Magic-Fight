@@ -58,8 +58,7 @@ class SupplierViewController: UIViewController {
             ref.child("battle").child(CURRENT_USER).updateChildValues(["useCard":"\(currentCard!.name)\(PLAYER_NUMBER)"])
             ref.child("battle").child(OPPONENT_USER).updateChildValues(["useCard":"\(currentCard!.name)\(PLAYER_NUMBER)"])
             cardEffect(name: currentCard!.name)
-                
-                Firestore.firestore().collection("Battle").document(documentID).collection("UserCard").addDocument(data: ["player":CURRENT_USER, "card":currentCard?.name ?? "","MP":myMP ?? 0,"HP":myHP ?? 0])
+            Firestore.firestore().collection("Battle").document(documentID).collection("UsedCard").addDocument(data: ["player":CURRENT_USER, "card":currentCard?.name ?? ""])
         
             dismiss(animated: true, completion: nil)
             }
@@ -72,6 +71,7 @@ class SupplierViewController: UIViewController {
                 ref.child("battle").child(CURRENT_USER).updateChildValues(["cards":newCards])
                 let newMP = myMP - currentCard!.price
                 ref.child("battle").child(CURRENT_USER).updateChildValues(["MP":newMP])
+                Firestore.firestore().collection("Battle").document(documentID).collection("BoughtCard").addDocument(data: ["player":CURRENT_USER, "card":currentCard?.name ?? ""])
                 dismiss(animated: true, completion: nil)
             }
         }

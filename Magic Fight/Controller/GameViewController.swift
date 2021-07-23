@@ -9,6 +9,7 @@ import UIKit
 import FirebaseDatabase
 import SpriteKit
 import AVFoundation
+import FirebaseFirestore
 
 class GameViewController: UIViewController {
 
@@ -44,7 +45,6 @@ class GameViewController: UIViewController {
     var name = ""
     var descriptionLabel = ""
     
-    
     var myDeck = [Card]()
     var myTrash = [Card]()
     var enemyDeck = [Card]()
@@ -79,6 +79,7 @@ class GameViewController: UIViewController {
                             self.victoryOrDefeatImage.image = #imageLiteral(resourceName: "defeat")
                             self.victoryOrDefeatImage.isHidden = false
                             self.timer.invalidate()
+                            Firestore.firestore().collection("Battle").document(documentID).updateData(["winner":OPPONENT_USER])
                         }
                     }
                 }
@@ -140,6 +141,7 @@ class GameViewController: UIViewController {
                             self.victoryOrDefeatImage.image = #imageLiteral(resourceName: "victory")
                             self.victoryOrDefeatImage.isHidden = false
                             self.timer.invalidate()
+                            Firestore.firestore().collection("Battle").document(documentID).updateData(["winner":CURRENT_USER])
                         }
                     }
                 }
@@ -190,6 +192,8 @@ class GameViewController: UIViewController {
     @IBAction func tapEndTurnButton(_ sender: Any) {
         ref.child("battle").child(CURRENT_USER).updateChildValues(["turn":false])
         ref.child("battle").child(OPPONENT_USER).updateChildValues(["turn":true])
+        
+        Firestore.firestore().collection("Battle").document(documentID).collection("Turn").addDocument(data: ["player":CURRENT_USER, "turnTime":seconds,"HP":myHPLabel.text ?? "","MP":myMPLabel.text ?? ""])
     }
     
     func setDatabase() {
@@ -304,9 +308,11 @@ class GameViewController: UIViewController {
     
     func playSound(soundName:String) {
 
-        let soundintro = Bundle.main.path(forResource: soundName, ofType: "mp3")
+        let soundintro = Bundle.main.path(forResource: soundName, ofType: "mp3") ?? "화염구"
         do {
-                soundIntroPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: soundintro! ))
+            if let player = try? AVAudioPlayer(contentsOf: URL(fileURLWithPath: soundintro)) {
+                soundIntroPlayer = player
+            }
                     
             try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.ambient)
                 try AVAudioSession.sharedInstance().setActive(true)
