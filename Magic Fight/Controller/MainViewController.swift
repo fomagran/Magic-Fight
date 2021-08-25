@@ -12,7 +12,6 @@ class MainViewController: UIViewController {
     
     @IBOutlet weak var nicknameLabel: UILabel!
     @IBOutlet weak var battleButton: UIButton!
-    private var documentID:String?
     
     lazy var activityIndicator: UIActivityIndicatorView = {
         let activityIndicator = UIActivityIndicatorView()
@@ -41,14 +40,14 @@ class MainViewController: UIViewController {
         collectionRef.addSnapshotListener({ snapshot, error in
             guard let snapshot = snapshot else { return }
             if !snapshot.documents.isEmpty {
-                self.documentID = snapshot.documents.first?.documentID ?? ""
+                documentID = snapshot.documents.first?.documentID ?? ""
                 self.showAlert()
             }
         })
     }
     
     private func enterRoom() {
-        collectionRef.document(documentID ?? "").updateData(["user2":CURRENT_USER])
+        collectionRef.document(documentID).updateData(["user2":CURRENT_USER])
         self.activityIndicator.isHidden = true
         self.performSegue(withIdentifier: "showBanCardViewController", sender: nil)
     }

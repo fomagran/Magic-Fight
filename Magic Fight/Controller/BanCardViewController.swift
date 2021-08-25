@@ -23,37 +23,34 @@ class BanCardViewController: UIViewController {
     var randomCard3:Card?
     var randomCard4:Card?
     
-    var ref = Database.database().reference()
-    var opponentConfirm = false
-    
+    var ready:[Bool] = []
     var allCardCopy = allCard.filter{$0.gem == nil}
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        documentID = Firestore.firestore().collection("Battle").addDocument(data: ["timeStamp":FieldValue.serverTimestamp()]).documentID
-//        setTap()
-//        setNameFromRandomCard()
-//        ref.child("battle").child("isReady").observe(DataEventType.value, with: { (snapshot) in
-//            if snapshot.exists() {
-//                if snapshot.value as! String == "아직" {
-//                    self.opponentConfirm = true
-//                }else{
-//                    self.performSegue(withIdentifier: "showTurnViewController", sender: nil)
-//                }
-//            }
-//        })
+        setTap()
+        setNameFromRandomCard()
+        observeRoom()
+    }
+    
+    private func observeRoom() {
+        collectionRef.addSnapshotListener({ snapshot, error in
+            guard let snapshot = snapshot else { return }
+            if !snapshot.documents.isEmpty {
+                let first = snapshot.documents.first
+                self.ready = first?.get("ready") as? [Bool] ?? []
+                if self.ready.count == 2 {
+                    self.performSegue(withIdentifier: "showTurnViewController", sender: nil)
+                }
+            }
+        })
     }
     
     @IBAction func tapDoneBttn(_ sender: Any) {
-        if opponentConfirm == true {
-            ref.child("battle").setValue(["isReady":"됐어"])
-           performSegue(withIdentifier: "showTurnViewController", sender: nil)
-        }else {
-            self.opponentConfirm = true
+            ready.append(true)
+            collectionRef.document(documentID).updateData(["ready":ready])
             self.doneBtn.isHidden = true
             self.pickBanCard.text = "YOU READY"
-            ref.child("battle").setValue(["isReady":"아직"])
-        }
     }
     func setNameFromRandomCard(){
         
