@@ -71,6 +71,19 @@ class GameViewController: UIViewController {
             self.myMPLabel.text =  "\(snapshot?.get("\(CURRENT_USER)MP") as? Int ?? 0)"
             self.enemyHPLabel.text =  "\(snapshot?.get("\(OPPONENT_USER)HP") as? Int ?? 0)"
             self.enemyMPLabel.text =  "\(snapshot?.get("\(OPPONENT_USER)MP") as? Int ?? 0)"
+            
+            if (snapshot?.get("turn") as? String ?? "") == CURRENT_USER {
+                self.setInitialState()
+                self.start()
+                self.timerLabel.backgroundColor = .clear
+                self.setTurn(isMyturn: true)
+            }else {
+                self.timerLabel.backgroundColor = .red
+                self.setTurn(isMyturn: false)
+                self.timerLabel.text = "상대턴"
+                self.timer.invalidate()
+            }
+            
         }
     }
     
@@ -200,9 +213,7 @@ class GameViewController: UIViewController {
     }
     
     @IBAction func tapEndTurnButton(_ sender: Any) {
-        ref.child("battle").child(CURRENT_USER).updateChildValues(["turn":false])
-        ref.child("battle").child(OPPONENT_USER).updateChildValues(["turn":true])
-        
+        collectionRef.document(documentID).updateData(["turn":OPPONENT_USER])
         Firestore.firestore().collection("Battle").document(documentID).collection("Turn").addDocument(data: ["player":CURRENT_USER, "turnTime":seconds,"HP":myHPLabel.text ?? "","MP":myMPLabel.text ?? ""])
     }
     
