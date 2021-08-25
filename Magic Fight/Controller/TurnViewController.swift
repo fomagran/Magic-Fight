@@ -11,7 +11,6 @@ import FirebaseFirestore
 class TurnViewController: UIViewController {
 
     @IBOutlet weak var image: UIImageView!
-    var user1:String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,19 +20,16 @@ class TurnViewController: UIViewController {
         }
         
         collectionRef.document(documentID).getDocument { snapshot, error in
-            self.user1 = snapshot?.get("user1") as? String ?? ""
-        }
-        collectionRef.document(documentID).updateData(["turn":user1])
-        
-        if user1 == CURRENT_USER {
-            image.image = #imageLiteral(resourceName: "후공")
-        }else {
-            image.image = #imageLiteral(resourceName: "선공")
+            let turn = snapshot?.get("turn") as? String ?? ""
+            if turn == CURRENT_USER {
+                self.image.image = #imageLiteral(resourceName: "후공")
+            }else {
+                self.image.image = #imageLiteral(resourceName: "선공")
+            }
         }
     }
     
     func goToGameViewController() {
         performSegue(withIdentifier: "showGameViewController", sender: nil)
     }
-    
 }

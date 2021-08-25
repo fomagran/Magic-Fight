@@ -12,6 +12,7 @@ class MainViewController: UIViewController {
     
     @IBOutlet weak var nicknameLabel: UILabel!
     @IBOutlet weak var battleButton: UIButton!
+    var listener:ListenerRegistration?
     
     lazy var activityIndicator: UIActivityIndicatorView = {
         let activityIndicator = UIActivityIndicatorView()
@@ -29,6 +30,10 @@ class MainViewController: UIViewController {
         configure()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        listener?.remove()
+    }
+    
     private func configure() {
         nicknameLabel.text = UserDefaults.standard.string(forKey: "nickname")
         self.view.addSubview(self.activityIndicator)
@@ -37,11 +42,10 @@ class MainViewController: UIViewController {
     }
     
     private func observeRoom() {
-        collectionRef.addSnapshotListener({ snapshot, error in
+        listener =  collectionRef.addSnapshotListener({ snapshot, error in
             guard let snapshot = snapshot else { return }
             if !snapshot.documents.isEmpty {
                 documentID = snapshot.documents.first?.documentID ?? ""
-                OPPONENT_USER = snapshot.documents.first?.get("user1") as? String ?? ""
                 self.showAlert()
             }
         })
@@ -73,6 +77,6 @@ class MainViewController: UIViewController {
             self.enterRoom()
         }
         alert.addAction(수락)
-        present(alert, animated: true, completion: nil)
+        self.present(alert, animated: true, completion: nil)
     }
 }

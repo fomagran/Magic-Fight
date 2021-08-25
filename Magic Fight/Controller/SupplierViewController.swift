@@ -245,10 +245,7 @@ extension SupplierViewController:UICollectionViewDataSource {
         default:
             print(name)
         }
-    }
-
-    
-    
+    }    
 }
 
 extension SupplierViewController:UICollectionViewDelegate {

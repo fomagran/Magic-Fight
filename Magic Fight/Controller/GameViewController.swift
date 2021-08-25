@@ -56,12 +56,22 @@ class GameViewController: UIViewController {
         configure()
 //        setDatabase()
 //        observeDatabase()
+        observeUserInfo()
         start()
         
         let tap1 = UITapGestureRecognizer(target: self, action:#selector(tapBackground))
         bgImage.addGestureRecognizer(tap1)
         bgImage.isUserInteractionEnabled = true
         
+    }
+    
+    func observeUserInfo() {
+        collectionRef.document(documentID).addSnapshotListener { snapshot, error in
+            self.myHPLabel.text =  "\(snapshot?.get("\(CURRENT_USER)HP") as? Int ?? 0)"
+            self.myMPLabel.text =  "\(snapshot?.get("\(CURRENT_USER)MP") as? Int ?? 0)"
+            self.enemyHPLabel.text =  "\(snapshot?.get("\(OPPONENT_USER)HP") as? Int ?? 0)"
+            self.enemyMPLabel.text =  "\(snapshot?.get("\(OPPONENT_USER)MP") as? Int ?? 0)"
+        }
     }
     
     func observeDatabase() {

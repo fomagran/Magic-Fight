@@ -25,6 +25,7 @@ class BanCardViewController: UIViewController {
     
     var ready:[Bool] = []
     var allCardCopy = allCard.filter{$0.gem == nil}
+    var listener:ListenerRegistration?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,14 +34,26 @@ class BanCardViewController: UIViewController {
         observeRoom()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        listener?.remove()
+    }
+    
     private func observeRoom() {
-        collectionRef.addSnapshotListener({ snapshot, error in
+        listener =  collectionRef.addSnapshotListener({ snapshot, error in
             guard let snapshot = snapshot else { return }
             if !snapshot.documents.isEmpty {
                 let first = snapshot.documents.first
-                OPPONENT_USER = first?.get("user2") as? String ?? ""
+                let user1 = first?.get("user1") as? String ?? ""
+                let user2 = first?.get("user2") as? String ?? ""
+                if user1 == CURRENT_USER {
+                    OPPONENT_USER = user2
+                }else {
+                    OPPONENT_USER = user1
+                }
                 self.ready = first?.get("ready") as? [Bool] ?? []
                 if self.ready.count == 2 {
+                    self.ready.append(true)
+                    collectionRef.document(documentID).updateData(["ready":self.ready])
                     self.performSegue(withIdentifier: "showTurnViewController", sender: nil)
                 }
             }
@@ -48,8 +61,19 @@ class BanCardViewController: UIViewController {
     }
     
     private func setGameInitialSetting() {
-        collectionRef.document(documentID).collection(CURRENT_USER).document(CURRENT_USER).setData(["HP":20,"MP":30])
-        collectionRef.document(documentID).collection(CURRENT_USER).document(CURRENT_USER).collection("Card")
+        let cards:[Card] = [스파크,물벼락,물의감옥,물의순환]
+        for card in cards {
+            collectionRef.document(documentID).collection(CURRENT_USER).document(CURRENT_USER).collection("Card").addDocument(data:card.toDictionary!)
+        }
+        collectionRef.document(documentID).updateData(["\(CURRENT_USER)HP":20,"\(CURRENT_USER)MP":30])
+        detectUser1()
+    }
+    
+    func detectUser1() {
+        collectionRef.document(documentID).getDocument { snapshot, error in
+            let user1 = snapshot?.get("user1") as? String ?? ""
+            collectionRef.document(documentID).updateData(["turn":user1])
+        }
     }
     
     @IBAction func tapDoneBttn(_ sender: Any) {
