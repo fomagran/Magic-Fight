@@ -47,6 +47,7 @@ class MainViewController: UIViewController {
             if !snapshot.documents.isEmpty {
                 documentID = snapshot.documents.first?.documentID ?? ""
                 self.showAlert()
+                self.listener?.remove()
             }
         })
     }

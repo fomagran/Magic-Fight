@@ -106,8 +106,12 @@ class SupplierViewController: UIViewController {
     
     func setBeginnerMagic() {
         isSupplier = true
-        cards = cards.filter{$0.price <= 4}
+        cards = allCard.filter{$0.price <= 4}
+        cards.forEach{print($0)}
         isBeginnerMagic = true
+        currentCard = nil
+        bigCard.isHidden = true
+        collectionRef.document(documentID).updateData(["\(CURRENT_USER)MP":myMP-1])
         collection.reloadData()
     }
     
@@ -270,9 +274,8 @@ extension SupplierViewController:UICollectionViewDataSource {
 
 extension SupplierViewController:UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        currentCard = isSupplier ? allCard[indexPath.item] : myCards[indexPath.item]
-        bigCard.image = isSupplier ? UIImage(named: allCard[indexPath.row].image) : UIImage(named:myCards[indexPath.row].image)
+        currentCard = cards[indexPath.item]
+        bigCard.image = UIImage(named:cards[indexPath.row].image)
         bigCard.isHidden = false
         bigCardBackground.isHidden = false
         buyButton.isHidden = false

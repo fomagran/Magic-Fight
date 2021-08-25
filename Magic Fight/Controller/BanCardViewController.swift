@@ -34,10 +34,6 @@ class BanCardViewController: UIViewController {
         observeRoom()
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        listener?.remove()
-    }
-    
     private func observeRoom() {
         listener =  collectionRef.addSnapshotListener({ snapshot, error in
             guard let snapshot = snapshot else { return }
@@ -54,6 +50,7 @@ class BanCardViewController: UIViewController {
                 if self.ready.count == 2 {
                     self.ready.append(true)
                     collectionRef.document(documentID).updateData(["ready":self.ready])
+                    self.listener?.remove()
                     self.performSegue(withIdentifier: "showTurnViewController", sender: nil)
                 }
             }

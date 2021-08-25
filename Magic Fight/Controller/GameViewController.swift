@@ -81,7 +81,6 @@ class GameViewController: UIViewController {
                 self.timerLabel.text = "상대턴"
                 self.timer.invalidate()
             }
-            
         }
     }
     
@@ -89,6 +88,7 @@ class GameViewController: UIViewController {
         victoryOrDefeatImage.isHidden = true
         myDeck = []
         deckCountLabel.text = "\(myDeck.count)"
+        setCards()
     }
     
     func setCards() {
