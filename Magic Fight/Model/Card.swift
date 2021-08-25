@@ -29,7 +29,7 @@ struct Card :Equatable{
     }
 }
 
-enum Magic {
+enum Magic:String {
     case 암흑
     case 번개
     case 빛

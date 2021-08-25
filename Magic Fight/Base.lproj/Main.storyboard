@@ -316,6 +316,7 @@
                         <outlet property="battleButton" destination="S1M-2V-1bn" id="NpX-Fm-L4E"/>
                         <outlet property="nicknameLabel" destination="Hkq-Y4-8Zx" id="fyb-10-rpv"/>
                         <segue destination="vDE-I1-T7w" kind="show" identifier="showBanCardViewController" id="2kZ-aS-AZ5"/>
+                        <segue destination="7N2-i6-VUB" kind="show" identifier="showTurnViewController" id="rmK-IU-jz6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VMw-Vb-Hdh" sceneMemberID="firstResponder"/>
@@ -1509,7 +1510,8 @@
         </designable>
     </designables>
     <inferredMetricsTieBreakers>
-        <segue reference="Uvw-my-Zof"/>
+        <segue reference="VKx-3q-ZgU"/>
+        <segue reference="rmK-IU-jz6"/>
         <segue reference="g9n-o3-wDF"/>
     </inferredMetricsTieBreakers>
     <resources>

@@ -6,15 +6,14 @@
 //
 
 import UIKit
-import FirebaseDatabase
+import FirebaseFirestore
 
 class MainViewController: UIViewController {
     
-    var ref = Database.database().reference()
-
-    
     @IBOutlet weak var nicknameLabel: UILabel!
     @IBOutlet weak var battleButton: UIButton!
+    private var documentID:String?
+    
     lazy var activityIndicator: UIActivityIndicatorView = {
         let activityIndicator = UIActivityIndicatorView()
         activityIndicator.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
@@ -26,52 +25,54 @@ class MainViewController: UIViewController {
         return activityIndicator
     }()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        configure()
+    }
+    
+    private func configure() {
         nicknameLabel.text = UserDefaults.standard.string(forKey: "nickname")
         self.view.addSubview(self.activityIndicator)
         activityIndicator.isHidden = true
-        ref.child("battle").child("name").observe(DataEventType.value, with: { (snapshot) in
-            guard let value = snapshot.value else { return }
-            if "\(value)" != UserDefaults.standard.string(forKey: "nickname")! && "\(value)" != "<null>" {
-                OPPONENT_USER = "\(value)"
-                PLAYER_NUMBER = "2"
+        observeRoom()
+    }
+    
+    private func observeRoom() {
+        collectionRef.addSnapshotListener({ snapshot, error in
+            guard let snapshot = snapshot else { return }
+            if !snapshot.documents.isEmpty {
+                self.documentID = snapshot.documents.first?.documentID ?? ""
                 self.showAlert()
             }
         })
-        
     }
     
+    private func enterRoom() {
+        collectionRef.document(documentID ?? "").updateData(["user2":CURRENT_USER])
+        self.activityIndicator.isHidden = true
+        self.performSegue(withIdentifier: "showBanCardViewController", sender: nil)
+    }
+    
+    private func createRoom() {
+        collectionRef.addDocument(data: ["user1":CURRENT_USER])
+        self.performSegue(withIdentifier: "showBanCardViewController", sender: nil)
+    }
     
     @IBAction func unwindToMainViewController (segue : UIStoryboardSegue) {
-           
-       }
+    }
     
     @IBAction func tapBattleButton(_ sender: Any) {
         self.activityIndicator.isHidden = false
-        if self.activityIndicator.isAnimating {
-            self.activityIndicator.stopAnimating()
-        } else {
-            self.activityIndicator.startAnimating()
-        }
-        
-        ref.child("battle").setValue(["name":UserDefaults.standard.string(forKey: "nickname")!])
-        
+        self.activityIndicator.startAnimating()
+        createRoom()
     }
     
     func showAlert() {
         let alert = UIAlertController(title: "매칭 수락하기", message: "수락하시겠습니까?", preferredStyle: .alert)
         let 수락 = UIAlertAction(title: "수락", style: .default) { (_) in
-            self.ref.child("battle").setValue(["name":UserDefaults.standard.string(forKey: "nickname")!])
-            self.activityIndicator.isHidden = true
-            self.performSegue(withIdentifier: "showBanCardViewController", sender: nil)
-        }
-        let 거절 = UIAlertAction(title: "거절", style: .cancel) { (_) in
+            self.enterRoom()
         }
         alert.addAction(수락)
-        alert.addAction(거절)
         present(alert, animated: true, completion: nil)
     }
 }

@@ -58,8 +58,7 @@ class SupplierViewController: UIViewController {
             ref.child("battle").child(CURRENT_USER).updateChildValues(["useCard":"\(currentCard!.name)\(PLAYER_NUMBER)"])
             ref.child("battle").child(OPPONENT_USER).updateChildValues(["useCard":"\(currentCard!.name)\(PLAYER_NUMBER)"])
             cardEffect(name: currentCard!.name)
-            Firestore.firestore().collection("Battle").document(documentID).collection("UsedCard").addDocument(data: ["player":CURRENT_USER, "card":currentCard?.name ?? ""])
-        
+                Firestore.firestore().collection("Battle").document(documentID).collection("UsedCard").addDocument(data: ["player":CURRENT_USER, "card":currentCard?.name ?? "","attribute":currentCard?.magicAttribute.rawValue ?? ""])
             dismiss(animated: true, completion: nil)
             }
         }else {

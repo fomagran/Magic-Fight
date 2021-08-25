@@ -30,18 +30,18 @@ class BanCardViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        documentID = Firestore.firestore().collection("Battle").addDocument(data: ["timeStamp":FieldValue.serverTimestamp()]).documentID
-        setTap()
-        setNameFromRandomCard()
-        ref.child("battle").child("isReady").observe(DataEventType.value, with: { (snapshot) in
-            if snapshot.exists() {
-                if snapshot.value as! String == "아직" {
-                    self.opponentConfirm = true
-                }else{
-                    self.performSegue(withIdentifier: "showTurnViewController", sender: nil)
-                }
-            }
-        })
+//        documentID = Firestore.firestore().collection("Battle").addDocument(data: ["timeStamp":FieldValue.serverTimestamp()]).documentID
+//        setTap()
+//        setNameFromRandomCard()
+//        ref.child("battle").child("isReady").observe(DataEventType.value, with: { (snapshot) in
+//            if snapshot.exists() {
+//                if snapshot.value as! String == "아직" {
+//                    self.opponentConfirm = true
+//                }else{
+//                    self.performSegue(withIdentifier: "showTurnViewController", sender: nil)
+//                }
+//            }
+//        })
     }
     
     @IBAction func tapDoneBttn(_ sender: Any) {
