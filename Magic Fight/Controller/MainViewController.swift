@@ -42,7 +42,7 @@ class MainViewController: UIViewController {
     }
     
     private func observeRoom() {
-        listener =  collectionRef.addSnapshotListener({ snapshot, error in
+        listener = collectionRef.addSnapshotListener({ snapshot, error in
             guard let snapshot = snapshot else { return }
             if !snapshot.documents.isEmpty {
                 documentID = snapshot.documents.first?.documentID ?? ""
@@ -77,6 +77,6 @@ class MainViewController: UIViewController {
             self.enterRoom()
         }
         alert.addAction(수락)
-        self.present(alert, animated: true, completion: nil)
+        self.present(alert, animated: false, completion: nil)
     }
 }

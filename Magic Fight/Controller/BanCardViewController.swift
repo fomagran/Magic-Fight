@@ -61,12 +61,26 @@ class BanCardViewController: UIViewController {
     }
     
     private func setGameInitialSetting() {
-        let cards:[Card] = [스파크,물벼락,물의감옥,물의순환]
+        let cards:[Card] = [푸른젬,푸른젬,푸른젬,푸른젬,푸른젬,푸른젬,푸른젬,푸른젬,초급마법서,초급마법서]
         for card in cards {
-            collectionRef.document(documentID).collection(CURRENT_USER).document(CURRENT_USER).collection("Card").addDocument(data:card.toDictionary!)
+            collectionRef.document(documentID).collection(CURRENT_USER).document(CURRENT_USER).collection("Deck").addDocument(data:card.toDictionary!)
         }
-        collectionRef.document(documentID).updateData(["\(CURRENT_USER)HP":20,"\(CURRENT_USER)MP":30])
+        collectionRef.document(documentID).updateData(["\(CURRENT_USER)HP":20,"\(CURRENT_USER)MP":0])
+        drawFiveCardFromDeck()
         detectUser1()
+    }
+    
+    func drawFiveCardFromDeck() {
+        collectionRef.document(documentID).collection(CURRENT_USER).document(CURRENT_USER).collection("Deck").getDocuments { snapshot,error in
+            guard let snapshot = snapshot else { return }
+            var cards = snapshot.documents.map{Card(dictionary: $0.data(), documentID: $0.documentID)}
+            for _ in 0...4 {
+                let index = (0..<cards.count).randomElement()!
+                collectionRef.document(documentID).collection(CURRENT_USER).document(CURRENT_USER).collection("Card").addDocument(data:cards[index].toDictionary!)
+                collectionRef.document(documentID).collection(CURRENT_USER).document(CURRENT_USER).collection("Deck").document(cards[index].documentID).delete()
+                cards.remove(at: index)
+            }
+        }
     }
     
     func detectUser1() {

@@ -50,12 +50,10 @@ class GameViewController: UIViewController {
     var enemyDeck = [Card]()
     var enemyTrash = [Card]()
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
         configure()
-//        setDatabase()
-//        observeDatabase()
         observeUserInfo()
         start()
         
@@ -87,129 +85,18 @@ class GameViewController: UIViewController {
         }
     }
     
-    func observeDatabase() {
-        ref.child("battle").child(CURRENT_USER).observe(DataEventType.value, with: { (snapshot) in
-            if snapshot.exists() {
-                let value = snapshot.value as! [String : AnyObject]
-                
-                self.myHPLabel.text = "\(value["HP"]!)"
-                self.myMPLabel.text = "\(value["MP"]!)"
-                
-                if let hp = value["HP"] {
-                    
-                    if (hp as! Int) <= 0 {
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                            self.victoryOrDefeatImage.image = #imageLiteral(resourceName: "defeat")
-                            self.victoryOrDefeatImage.isHidden = false
-                            self.timer.invalidate()
-                            Firestore.firestore().collection("Battle").document(documentID).updateData(["winner":OPPONENT_USER])
-                        }
-                    }
-                }
-                
-                if value["turn"] as! Bool == true {
-                    self.setInitialState()
-                    self.start()
-                    self.timerLabel.backgroundColor = .clear
-                    self.setTurn(isMyturn: true)
-                }else {
-                    self.timerLabel.backgroundColor = .red
-                    self.setTurn(isMyturn: false)
-                    self.timerLabel.text = "상대턴"
-                    self.timer.invalidate()
-                }
-                
-                if let deck = value["deck"] {
-                    
-                    self.myDeck = []
-                    for name in deck as! [String]{
-                        if allCard.filter({$0.name == name}).first != nil {
-                            
-                            self.myDeck.append(allCard.filter{$0.name == name}.first!)
-                        }
-                    }
-                    
-                    self.deckCountLabel.text = "\(self.myDeck.count)"
-                }
-                
-                if let cards = value["cards"] {
-                    var newCards = [Card]()
-                    for name in cards as! [String]{
-                        newCards.append(allCard.filter{$0.name == name}.first ?? Card(name: "스파크", price: 3, usePrice: 1, count: 20, effect: "상대에게 피해를 2 준다.",magicAttribute:Magic.번개.rawValue,gem: nil,image:"스파크"))
-                    }
-                    self.myCards = newCards
-                }
-                if let trash = value["trash"] {
-                    for name in trash as! [String] {
-                        self.myTrash.append(allCard.filter{$0.name == name}.first!)
-                    }
-                    
-                    self.trashCardLabel.text = "\(self.myTrash.count)"
-                }
-            }
-        })
-        
-        ref.child("battle").child(OPPONENT_USER).observe(DataEventType.value, with: { (snapshot) in
-            if snapshot.exists() {
-                
-                let value = snapshot.value as! [String : AnyObject]
-                
-                self.enemyHPLabel.text = "\(value["HP"] as? Int ?? 0)"
-                self.enemyMPLabel.text = "\(value["MP"] as? Int ?? 0)"
-                
-                if let hp = value["HP"] {
-                    
-                    if (hp as! Int) <= 0 {
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                            self.victoryOrDefeatImage.image = #imageLiteral(resourceName: "victory")
-                            self.victoryOrDefeatImage.isHidden = false
-                            self.timer.invalidate()
-                            Firestore.firestore().collection("Battle").document(documentID).updateData(["winner":CURRENT_USER])
-                        }
-                    }
-                }
-                if value["useCard"] != nil {
-                    var useCard = "\(value["useCard"]!)"
-                    useCard.removeLast()
-                    let card = allCard.filter({$0.name == useCard}).first
-                    if card != nil && "\(value["useCard"]!)" != self.useCardString {
-                        self.useCardString = "\(value["useCard"]!)"
-                        self.showCard(card: card!)
-                    }
-                }
-                
-                if let deck = value["deck"] {
-                    
-                    self.enemyDeck = []
-                    for name in deck as! [String] {
-                        if allCard.filter({$0.name == name}).first != nil {
-                            self.enemyDeck.append(allCard.filter{$0.name == name}.first!)
-                        }
-                    }
-                    
-                    self.enemyDeckLabel.text = "\(self.enemyDeck.count)"
-                }
-                
-                if let cards = value["cards"] {
-                    var newCards = [Card]()
-                    
-                    for name in cards as! [String]{
-                        if allCard.filter({$0.name == name}).first != nil {
-                            newCards.append(allCard.filter{$0.name == name}.first!)
-                        }
-                    }
-                    
-                    self.enemyCards = newCards
-                }
-                if let trash = value["trash"] {
-                    for name in trash as! [String]{
-                        if allCard.filter({$0.name == name}).first != nil {
-                            self.enemyTrash.append(allCard.filter{$0.name == name}.first!)
-                        }
-                    }
-                }
-            }
-        })
+    func configure() {
+        victoryOrDefeatImage.isHidden = true
+        myDeck = []
+        deckCountLabel.text = "\(myDeck.count)"
+    }
+    
+    func setCards() {
+        collectionRef.document(documentID).collection(CURRENT_USER).document(CURRENT_USER).collection("Card").getDocuments { snapshot,error in
+            guard let snapshot = snapshot else { return }
+            let cards = snapshot.documents.map{Card(dictionary: $0.data(), documentID: $0.documentID)}
+            self.myCards = cards
+        }
     }
     
     @IBAction func tapEndTurnButton(_ sender: Any) {
@@ -217,17 +104,7 @@ class GameViewController: UIViewController {
         Firestore.firestore().collection("Battle").document(documentID).collection("Turn").addDocument(data: ["player":CURRENT_USER, "turnTime":seconds,"HP":myHPLabel.text ?? "","MP":myMPLabel.text ?? ""])
     }
     
-    func setDatabase() {
-        let turn = CURRENT_USER == "fomagran" ? true:false
-        var newCards = [String]()
-        for _ in 0...7 {
-            newCards.append(allCard.randomElement()?.name ?? "스파크")
-        }
-        ref.child("battle").child(CURRENT_USER).setValue(["HP":20,"MP":30,"cards":newCards,"turn":turn,"trash":[],"deck":[]])
-    }
-    
     @objc func tapBackground() {
-
         if victoryOrDefeatImage.isHidden == false {
             self.ref.removeValue()
             self.performSegue(withIdentifier: "unwindMainViewController", sender: nil)
@@ -242,13 +119,6 @@ class GameViewController: UIViewController {
     @IBAction func tapCardButton(_ sender: Any) {
         isSupplier = false
         performSegue(withIdentifier: "showSupplierViewController", sender: nil)
-    }
-    
-    
-    func configure() {
-        victoryOrDefeatImage.isHidden = true
-        myDeck = []
-        deckCountLabel.text = "\(myDeck.count)"
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -266,6 +136,7 @@ class GameViewController: UIViewController {
             vc.myDeck = myDeck
             vc.enemyCards = enemyCards
             vc.myCards = myCards
+            vc.cards = isSupplier ? allCard : myCards
         }else if segue.identifier == "showShowCardViewController" {
             let vc = segue.destination as! ShowCardViewController
             vc.delegate = self

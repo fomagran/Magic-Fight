@@ -37,6 +37,8 @@ class SupplierViewController: UIViewController {
     var enemyDeck = [Card]()
     var isLowMagic:Bool = false
     var lowMagicCardCount = 0
+    var cards:[Card] = []
+    var isBeginnerMagic:Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,6 +47,16 @@ class SupplierViewController: UIViewController {
         
     }
     @IBAction func tapBuyButton(_ sender: Any) {
+        
+        if currentCard?.name == "초급마법서" {
+            setBeginnerMagic()
+            return
+        }
+        
+        if isBeginnerMagic {
+            collectionRef.document(documentID).collection(CURRENT_USER).document(CURRENT_USER).collection("Card").addDocument(data:currentCard!.toDictionary!)
+            dismiss(animated: true, completion: nil)
+        }
         
         if !isSupplier {
             if myMP < currentCard!.price {
@@ -91,6 +103,14 @@ class SupplierViewController: UIViewController {
             buyButton.setTitle("Use this card", for: .normal)
         }
     }
+    
+    func setBeginnerMagic() {
+        isSupplier = true
+        cards = cards.filter{$0.price <= 4}
+        isBeginnerMagic = true
+        collection.reloadData()
+    }
+    
     @IBAction func tapBackGround(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
@@ -98,12 +118,12 @@ class SupplierViewController: UIViewController {
 
 extension SupplierViewController:UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return isSupplier ? allCard.count : myCards.count
+        return cards.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collection.dequeueReusableCell(withReuseIdentifier: "SupplierCollectionViewCell", for: indexPath) as! SupplierCollectionViewCell
-        cell.image.image = isSupplier ? UIImage(named: allCard[indexPath.row].image) :  UIImage(named:myCards[indexPath.row].image)
+        cell.image.image = UIImage(named: cards[indexPath.row].image)
         return cell
     }
     
@@ -277,11 +297,9 @@ extension SupplierViewController:UICollectionViewDelegateFlowLayout {
 
 
 extension SupplierViewController: UIGestureRecognizerDelegate {
-    
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
         return !self.collection.frame.contains(touch.location(in: self.view))
     }
-    
 }
 
 
