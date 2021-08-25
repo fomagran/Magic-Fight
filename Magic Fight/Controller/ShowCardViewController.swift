@@ -8,13 +8,13 @@
 import UIKit
 
 protocol ShowCardViewControllerDelegate:AnyObject {
-    func didDissmiss(magic:Magic)
+    func didDissmiss(magic:String)
 }
 
 class ShowCardViewController: UIViewController {
     
     weak var delegate:ShowCardViewControllerDelegate?
-    var magic:Magic!
+    var magic:String!
     var showCardImage:UIImage!
     
     @IBOutlet weak var backgroundImageView: UIImageView!

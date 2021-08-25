@@ -58,7 +58,7 @@ class SupplierViewController: UIViewController {
             ref.child("battle").child(CURRENT_USER).updateChildValues(["useCard":"\(currentCard!.name)\(PLAYER_NUMBER)"])
             ref.child("battle").child(OPPONENT_USER).updateChildValues(["useCard":"\(currentCard!.name)\(PLAYER_NUMBER)"])
             cardEffect(name: currentCard!.name)
-                Firestore.firestore().collection("Battle").document(documentID).collection("UsedCard").addDocument(data: ["player":CURRENT_USER, "card":currentCard?.name ?? "","attribute":currentCard?.magicAttribute.rawValue ?? ""])
+                Firestore.firestore().collection("Battle").document(documentID).collection("UsedCard").addDocument(data: ["player":CURRENT_USER, "card":currentCard?.name ?? "","attribute":currentCard?.magicAttribute ?? ""])
             dismiss(animated: true, completion: nil)
             }
         }else {
@@ -103,7 +103,7 @@ extension SupplierViewController:UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collection.dequeueReusableCell(withReuseIdentifier: "SupplierCollectionViewCell", for: indexPath) as! SupplierCollectionViewCell
-        cell.image.image = isSupplier ? allCard[indexPath.row].image : myCards[indexPath.row].image
+        cell.image.image = isSupplier ? UIImage(named: allCard[indexPath.row].image) :  UIImage(named:myCards[indexPath.row].image)
         return cell
     }
     
@@ -255,7 +255,7 @@ extension SupplierViewController:UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         currentCard = isSupplier ? allCard[indexPath.item] : myCards[indexPath.item]
-        bigCard.image = isSupplier ? allCard[indexPath.item].image : myCards[indexPath.item].image
+        bigCard.image = isSupplier ? UIImage(named: allCard[indexPath.row].image) : UIImage(named:myCards[indexPath.row].image)
         bigCard.isHidden = false
         bigCardBackground.isHidden = false
         buyButton.isHidden = false

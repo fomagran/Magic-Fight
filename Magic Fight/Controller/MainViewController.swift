@@ -41,6 +41,7 @@ class MainViewController: UIViewController {
             guard let snapshot = snapshot else { return }
             if !snapshot.documents.isEmpty {
                 documentID = snapshot.documents.first?.documentID ?? ""
+                OPPONENT_USER = snapshot.documents.first?.get("user1") as? String ?? ""
                 self.showAlert()
             }
         })

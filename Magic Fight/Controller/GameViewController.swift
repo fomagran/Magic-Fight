@@ -54,8 +54,8 @@ class GameViewController: UIViewController {
         super.viewDidLoad()
 
         configure()
-        setDatabase()
-        observeDatabase()
+//        setDatabase()
+//        observeDatabase()
         start()
         
         let tap1 = UITapGestureRecognizer(target: self, action:#selector(tapBackground))
@@ -112,7 +112,7 @@ class GameViewController: UIViewController {
                 if let cards = value["cards"] {
                     var newCards = [Card]()
                     for name in cards as! [String]{
-                        newCards.append(allCard.filter{$0.name == name}.first ?? Card(name: "스파크", price: 3, usePrice: 1, count: 20, effect: "상대에게 피해를 2 준다.",magicAttribute:.번개,gem: nil,image:UIImage(named: "스파크")!))
+                        newCards.append(allCard.filter{$0.name == name}.first ?? Card(name: "스파크", price: 3, usePrice: 1, count: 20, effect: "상대에게 피해를 2 준다.",magicAttribute:Magic.번개.rawValue,gem: nil,image:"스파크"))
                     }
                     self.myCards = newCards
                 }
@@ -248,7 +248,7 @@ class GameViewController: UIViewController {
         }else if segue.identifier == "showShowCardViewController" {
             let vc = segue.destination as! ShowCardViewController
             vc.delegate = self
-            vc.showCardImage = useCard?.image
+            vc.showCardImage = UIImage(named: useCard?.image ?? "스파크")
             vc.magic = useCard!.magicAttribute
         }
     }
@@ -328,24 +328,24 @@ class GameViewController: UIViewController {
 
 
 extension GameViewController:ShowCardViewControllerDelegate {
-    func didDissmiss(magic :Magic) {
+    func didDissmiss(magic:String) {
         
         var imageView:UIImageView = UIImageView()
         
         switch magic {
-        case .무속성:
+        case Magic.무속성.rawValue:
             imageView =  UIImageView.fromGif(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height), resourceName: "무_샘플")!
             playSound(soundName: "금지된마법")
-        case .물:
+        case Magic.물.rawValue:
             imageView =  UIImageView.fromGif(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height), resourceName: "물_샘플")!
             playSound(soundName: "물의감옥")
-        case .불:
+        case Magic.불.rawValue:
             imageView = UIImageView.fromGif(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height), resourceName: "불_샘플")!
             playSound(soundName: "화염구")
-        case .빛:
+        case Magic.빛.rawValue:
             imageView = UIImageView.fromGif(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height), resourceName: "성_회복")!
             playSound(soundName: "라파엘")
-        case .번개:
+        case Magic.번개.rawValue:
             imageView = UIImageView.fromGif(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height), resourceName: "번개_샘플")!
             playSound(soundName: "낙뢰")
         default:

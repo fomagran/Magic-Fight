@@ -38,6 +38,7 @@ class BanCardViewController: UIViewController {
             guard let snapshot = snapshot else { return }
             if !snapshot.documents.isEmpty {
                 let first = snapshot.documents.first
+                OPPONENT_USER = first?.get("user2") as? String ?? ""
                 self.ready = first?.get("ready") as? [Bool] ?? []
                 if self.ready.count == 2 {
                     self.performSegue(withIdentifier: "showTurnViewController", sender: nil)
@@ -46,29 +47,36 @@ class BanCardViewController: UIViewController {
         })
     }
     
+    private func setGameInitialSetting() {
+        collectionRef.document(documentID).collection(CURRENT_USER).document(CURRENT_USER).setData(["HP":20,"MP":30])
+        collectionRef.document(documentID).collection(CURRENT_USER).document(CURRENT_USER).collection("Card")
+    }
+    
     @IBAction func tapDoneBttn(_ sender: Any) {
             ready.append(true)
             collectionRef.document(documentID).updateData(["ready":ready])
             self.doneBtn.isHidden = true
             self.pickBanCard.text = "YOU READY"
+            setGameInitialSetting()
     }
+    
     func setNameFromRandomCard(){
         
         randomCard1 = allCardCopy.randomElement()!
         allCardCopy.remove(at: allCardCopy.firstIndex { $0 == randomCard1}!)
-        card1.image = randomCard1?.image
+        card1.image = UIImage(named: randomCard1?.image ?? "스파크")
        
         randomCard2 = allCardCopy.randomElement()!
         allCardCopy.remove(at: allCardCopy.firstIndex { $0 == randomCard2}!)
-        card2.image = randomCard2?.image
+        card2.image = UIImage(named: randomCard2?.image ?? "스파크")
      
         randomCard3 = allCardCopy.randomElement()!
         allCardCopy.remove(at: allCardCopy.firstIndex { $0 == randomCard3}!)
-        card3.image = randomCard3?.image
+        card3.image = UIImage(named: randomCard3?.image ?? "스파크")
        
         randomCard4 = allCardCopy.randomElement()!
         allCardCopy.remove(at: allCardCopy.firstIndex { $0 == randomCard4}!)
-        card4.image = randomCard4?.image
+        card4.image = UIImage(named: randomCard4?.image ?? "스파크")
 
     }
     
