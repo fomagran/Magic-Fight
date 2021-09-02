@@ -58,36 +58,45 @@ enum Magic:String {
 var allCard:[Card] = [
     스파크,
     에너지재생,
-    정신과부하,
     화염구 ,
     물대포,
     낙뢰 ,
-    물벼락,
-    물의감옥 ,
-    신성한불꽃 ,
-    물의순환 ,
-    수혈 ,
-    불의순환 ,
-    도깨비불 ,
-    금지된마법 ,
-    릴림 ,
-    축전 ,
-    방전 ,
+    재충전,
     암흑광선 ,
+    수혈 ,
+    정신집중,
     최면 ,
     암시 ,
-    폭발의진 ,
-    가마솥 ,
-    도둑 ,
-    마법지팡이 ,
-    금광 ,
-    보석세공사 ,
+    초급마법서,
+    선물상자,
+    악몽,
     성수 ,
-    마나물약 ,
-    불잉걸 ,
-    수증기응결 ,
-    먹구름
+    푸른젬,
+    붉은젬,
+    황금젬,
+    칠흑의젬
 ]
+
+//정신과부하,
+//물벼락,
+//물의감옥 ,
+//신성한불꽃 ,
+//물의순환 ,
+//불의순환 ,
+//도깨비불 ,
+//금지된마법 ,
+//릴림 ,
+//축전 ,
+//방전 ,
+//가마솥 ,
+//도둑 ,
+//마법지팡이 ,
+//금광 ,
+//보석세공사 ,
+//마나물약 ,
+//불잉걸 ,
+//수증기응결 ,
+//먹구름
 
 let 초급마법서 = Card(name: "초급마법서", price: 0, usePrice: 1, count: 0, effect: "가격 4 이하의 주문 카드 하나를 공급처에서 선택하여 가져온다. 게임을 시작할 때만 얻을 수 있으며, 구매할 수 없고, 사용 후 파괴된다.",magicAttribute:Magic.무속성.rawValue,gem: nil,image:"초급마법서",isBroke:true)
 let 스파크 = Card(name: "스파크", price: 3, usePrice: 1, count: 20, effect: "상대에게 피해를 2 준다.",magicAttribute:Magic.번개.rawValue,gem: nil,image:"스파크",isBroke:false)
@@ -130,10 +139,13 @@ let 마나물약 = Card(name: "마나물약", price: 3, usePrice: 5, count: 10, 
 let 불잉걸 = Card(name: "불잉걸", price: 6, usePrice: 4, count: 10, effect: "상대에게 피해를 1 주고, 화염구 카드 한 장을 가져온다.", magicAttribute: Magic.불.rawValue,gem: nil,image:"불잉걸",isBroke:false)
 let 수증기응결 = Card(name: "수증기응결", price: 6, usePrice: 4, count: 10, effect: "상대에게 피해를 1 주고, 물대포 카드 한 장을 가져온다.", magicAttribute: Magic.물.rawValue,gem: nil,image:"수증기응결",isBroke:false)
 let 먹구름 = Card(name: "먹구름", price: 6, usePrice: 4, count: 10, effect: "상대에게 피해를 1 주고, 낙뢰 카드 한 장을 가져온다.", magicAttribute:Magic.번개.rawValue,gem: nil,image:"먹구름",isBroke:false)
-let 푸른젬 = Card(name: "푸른젬", price: 0, usePrice: 0, count: 0, effect: "", magicAttribute:Magic.무속성.rawValue,gem: 1,image:"푸른젬",isBroke:false)
-let 붉은젬 = Card(name: "붉은젬", price: 0, usePrice:0, count: 0, effect: "", magicAttribute:Magic.무속성.rawValue,gem: 3,image:"붉은젬",isBroke:false)
-let 황금젬 = Card(name: "황금젬", price: 0, usePrice:0, count:0, effect: "", magicAttribute:Magic.무속성.rawValue,gem: 6,image:"황금젬",isBroke:false)
-let 칠흑의젬 = Card(name: "칠흑의젬", price: 0, usePrice:0, count:0, effect: "", magicAttribute:Magic.무속성.rawValue,gem: 10,image:"칠흑의젬",isBroke:false)
+let 푸른젬 = Card(name: "푸른젬", price: 1, usePrice: 0, count: 0, effect: "", magicAttribute:Magic.무속성.rawValue,gem: 1,image:"푸른젬",isBroke:false)
+let 붉은젬 = Card(name: "붉은젬", price: 3, usePrice:0, count: 0, effect: "", magicAttribute:Magic.무속성.rawValue,gem: 2,image:"붉은젬",isBroke:false)
+let 황금젬 = Card(name: "황금젬", price: 6, usePrice:0, count:0, effect: "", magicAttribute:Magic.무속성.rawValue,gem: 4,image:"황금젬",isBroke:false)
+let 칠흑의젬 = Card(name: "칠흑의젬", price: 10, usePrice:0, count:0, effect: "", magicAttribute:Magic.무속성.rawValue,gem: 5,image:"칠흑의젬",isBroke:false)
+let 정신집중 = Card(name: "정신집중", price: 7, usePrice: 5, count: 8, effect: "카드를세장뽑는다.",magicAttribute:Magic.무속성.rawValue,gem: nil,image:"정신집중",isBroke:true)
+let 재충전 = Card(name: "정신집중", price: 1, usePrice: 2, count: 10, effect: "체력을 2 회복한다.",magicAttribute:Magic.번개.rawValue,gem: nil,image:"재충전",isBroke:true)
+let 선물상자 = Card(name: "선물상자", price: 1, usePrice: 2, count: 10, effect: "내 손패의 카드 한 장을 선택한다. 상대가 그 카드를 가져온다.",magicAttribute:Magic.무속성.rawValue,gem: nil,image:"선물상자",isBroke:true)
 
 extension Encodable {
     var toDictionary : [String: Any]? {

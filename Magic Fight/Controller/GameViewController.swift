@@ -69,8 +69,23 @@ class GameViewController: UIViewController {
             self.myMPLabel.text =  "\(snapshot?.get("\(CURRENT_USER)MP") as? Int ?? 0)"
             self.enemyHPLabel.text =  "\(snapshot?.get("\(OPPONENT_USER)HP") as? Int ?? 0)"
             self.enemyMPLabel.text =  "\(snapshot?.get("\(OPPONENT_USER)MP") as? Int ?? 0)"
+            if self.useCardString != "\(snapshot?.get("useCard") as? String ?? "")" {
+                let name = "\(snapshot?.get("useCard") as? String ?? "")".split(separator: " ")[0]
+                let index = allCard.firstIndex{$0.name == name}!
+                self.showCard(card: allCard[index])
+            }
+            self.useCardString = "\(snapshot?.get("useCard") as? String ?? "")"
+            
             
             if (snapshot?.get("turn") as? String ?? "") == CURRENT_USER {
+                collectionRef.document(documentID).collection(CURRENT_USER).document(CURRENT_USER).collection("Deck").getDocuments { snapshot, error in
+                    guard let snapshot = snapshot else { return }
+                    if snapshot.documents.count < 5 {
+                        self.addDeckAndTrash()
+                    }else {
+                        self.drawFiveCardFromDeck()
+                    }
+                }
                 self.setInitialState()
                 self.start()
                 self.timerLabel.backgroundColor = .clear
@@ -99,9 +114,47 @@ class GameViewController: UIViewController {
         }
     }
     
+    func drawFiveCardFromDeck() {
+        collectionRef.document(documentID).collection(CURRENT_USER).document(CURRENT_USER).collection("Deck").getDocuments { snapshot,error in
+            guard let snapshot = snapshot else { return }
+            var cards = snapshot.documents.map{Card(dictionary: $0.data(), documentID: $0.documentID)}
+            for _ in 0...4 {
+                let index = (0..<cards.count).randomElement()!
+                collectionRef.document(documentID).collection(CURRENT_USER).document(CURRENT_USER).collection("Card").addDocument(data:cards[index].toDictionary!)
+                print("draw")
+                collectionRef.document(documentID).collection(CURRENT_USER).document(CURRENT_USER).collection("Deck").document(cards[index].documentID).delete()
+                cards.remove(at: index)
+            }
+        }
+    }
+    
+    func addDeckAndTrash() {
+        collectionRef.document(documentID).collection(CURRENT_USER).document(CURRENT_USER).collection("Trash").getDocuments { snapshot, error in
+            guard let snapshot = snapshot else { return }
+            for document in snapshot.documents {
+                let card = Card(dictionary: document.data(), documentID: document.documentID)
+                collectionRef.document(documentID).collection(CURRENT_USER).document(CURRENT_USER).collection("Trash").document(document.documentID).delete()
+                collectionRef.document(documentID).collection(CURRENT_USER).document(CURRENT_USER).collection("Deck").addDocument(data:card.toDictionary!)
+            }
+            self.drawFiveCardFromDeck()
+        }
+    }
+    
+    func endTurn() {
+        collectionRef.document(documentID).collection(CURRENT_USER).document(CURRENT_USER).collection("Card").getDocuments { snapshot, error in
+            guard let snapshot = snapshot else { return }
+            for document in snapshot.documents {
+                let card = Card(dictionary: document.data(), documentID: document.documentID)
+                collectionRef.document(documentID).collection(CURRENT_USER).document(CURRENT_USER).collection("Card").document(document.documentID).delete()
+                collectionRef.document(documentID).collection(CURRENT_USER).document(CURRENT_USER).collection("Trash").addDocument(data:card.toDictionary!)
+            }
+        }
+    }
+    
     @IBAction func tapEndTurnButton(_ sender: Any) {
         collectionRef.document(documentID).updateData(["turn":OPPONENT_USER])
-        Firestore.firestore().collection("Battle").document(documentID).collection("Turn").addDocument(data: ["player":CURRENT_USER, "turnTime":seconds,"HP":myHPLabel.text ?? "","MP":myMPLabel.text ?? ""])
+        endTurn()
+//        Firestore.firestore().collection("Battle").document(documentID).collection("Turn").addDocument(data: ["player":CURRENT_USER, "turnTime":seconds,"HP":myHPLabel.text ?? "","MP":myMPLabel.text ?? ""])
     }
     
     @objc func tapBackground() {
@@ -118,6 +171,7 @@ class GameViewController: UIViewController {
     
     @IBAction func tapCardButton(_ sender: Any) {
         isSupplier = false
+        setCards()
         performSegue(withIdentifier: "showSupplierViewController", sender: nil)
     }
     

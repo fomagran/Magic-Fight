@@ -42,25 +42,41 @@ class MainViewController: UIViewController {
     }
     
     private func observeRoom() {
-        listener = collectionRef.addSnapshotListener({ snapshot, error in
+        Firestore.firestore().collection("WaitList").getDocuments { snapshot, error in
             guard let snapshot = snapshot else { return }
             if !snapshot.documents.isEmpty {
                 documentID = snapshot.documents.first?.documentID ?? ""
                 self.showAlert()
-                self.listener?.remove()
             }
-        })
+        }
     }
     
     private func enterRoom() {
-        collectionRef.document(documentID).updateData(["user2":CURRENT_USER])
+        if documentID != CURRENT_USER {
+            Firestore.firestore().collection("WaitList").document(documentID).updateData(["user2":CURRENT_USER])
+        }else {
+            Firestore.firestore().collection("WaitList").document(documentID).getDocument { snapshot,error in
+                guard let snapshot = snapshot else { return }
+                let user1 = snapshot.get("user1") as? String ?? ""
+                let user2 = snapshot.get("user2") as? String ?? ""
+                collectionRef.document(CURRENT_USER).setData(["user1":user1,"user2":user2])
+                Firestore.firestore().collection("WaitList").document(CURRENT_USER).delete()
+            }
+        }
         self.activityIndicator.isHidden = true
         self.performSegue(withIdentifier: "showBanCardViewController", sender: nil)
     }
     
     private func createRoom() {
-        collectionRef.addDocument(data: ["user1":CURRENT_USER])
-        self.performSegue(withIdentifier: "showBanCardViewController", sender: nil)
+        Firestore.firestore().collection("WaitList").document(CURRENT_USER).setData(["user1":CURRENT_USER])
+        documentID = CURRENT_USER
+        listener = Firestore.firestore().collection("WaitList").document(CURRENT_USER).addSnapshotListener { snapshot, error in
+            guard let snapshot = snapshot else { return }
+            if snapshot.get("user2") != nil {
+                self.showAlert()
+                self.listener?.remove()
+            }
+        }
     }
     
     @IBAction func unwindToMainViewController (segue : UIStoryboardSegue) {

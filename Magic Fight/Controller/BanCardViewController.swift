@@ -63,21 +63,7 @@ class BanCardViewController: UIViewController {
             collectionRef.document(documentID).collection(CURRENT_USER).document(CURRENT_USER).collection("Deck").addDocument(data:card.toDictionary!)
         }
         collectionRef.document(documentID).updateData(["\(CURRENT_USER)HP":20,"\(CURRENT_USER)MP":0])
-        drawFiveCardFromDeck()
         detectUser1()
-    }
-    
-    func drawFiveCardFromDeck() {
-        collectionRef.document(documentID).collection(CURRENT_USER).document(CURRENT_USER).collection("Deck").getDocuments { snapshot,error in
-            guard let snapshot = snapshot else { return }
-            var cards = snapshot.documents.map{Card(dictionary: $0.data(), documentID: $0.documentID)}
-            for _ in 0...4 {
-                let index = (0..<cards.count).randomElement()!
-                collectionRef.document(documentID).collection(CURRENT_USER).document(CURRENT_USER).collection("Card").addDocument(data:cards[index].toDictionary!)
-                collectionRef.document(documentID).collection(CURRENT_USER).document(CURRENT_USER).collection("Deck").document(cards[index].documentID).delete()
-                cards.remove(at: index)
-            }
-        }
     }
     
     func detectUser1() {
