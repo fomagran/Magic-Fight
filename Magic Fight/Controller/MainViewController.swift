@@ -12,6 +12,8 @@ class MainViewController: UIViewController {
     
     @IBOutlet weak var nicknameLabel: UILabel!
     @IBOutlet weak var battleButton: UIButton!
+    
+    var ready:[Bool] = []
     var listener:ListenerRegistration?
     
     lazy var activityIndicator: UIActivityIndicatorView = {
@@ -28,55 +30,47 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        listener?.remove()
+        observeRoom()
     }
     
     private func configure() {
         nicknameLabel.text = UserDefaults.standard.string(forKey: "nickname")
         self.view.addSubview(self.activityIndicator)
         activityIndicator.isHidden = true
-        observeRoom()
-    }
-    
-    private func observeRoom() {
-        Firestore.firestore().collection("WaitList").getDocuments { snapshot, error in
-            guard let snapshot = snapshot else { return }
-            if !snapshot.documents.isEmpty {
-                documentID = snapshot.documents.first?.documentID ?? ""
-                self.showAlert()
-            }
-        }
     }
     
     private func enterRoom() {
         if documentID != CURRENT_USER {
             Firestore.firestore().collection("WaitList").document(documentID).updateData(["user2":CURRENT_USER])
-        }else {
-            Firestore.firestore().collection("WaitList").document(documentID).getDocument { snapshot,error in
-                guard let snapshot = snapshot else { return }
-                let user1 = snapshot.get("user1") as? String ?? ""
-                let user2 = snapshot.get("user2") as? String ?? ""
-                collectionRef.document(CURRENT_USER).setData(["user1":user1,"user2":user2])
-                Firestore.firestore().collection("WaitList").document(CURRENT_USER).delete()
-            }
         }
-        self.activityIndicator.isHidden = true
-        self.performSegue(withIdentifier: "showBanCardViewController", sender: nil)
     }
     
     private func createRoom() {
         Firestore.firestore().collection("WaitList").document(CURRENT_USER).setData(["user1":CURRENT_USER])
         documentID = CURRENT_USER
-        listener = Firestore.firestore().collection("WaitList").document(CURRENT_USER).addSnapshotListener { snapshot, error in
+    }
+    
+    private func observeRoom() {
+        listener =  Firestore.firestore().collection("WaitList").addSnapshotListener({ snapshot, error in
             guard let snapshot = snapshot else { return }
-            if snapshot.get("user2") != nil {
-                self.showAlert()
-                self.listener?.remove()
+            if !snapshot.documents.isEmpty {
+                let first = snapshot.documents.first
+                let user1 = first?.get("user1")
+                let user2 = first?.get("user2")
+    
+                if user1 as? String ?? "" == CURRENT_USER {
+                    OPPONENT_USER = user2 as? String ?? ""
+                }else {
+                    OPPONENT_USER = user1 as? String ?? ""
+                }
+                
+                if user1 != nil && user2 != nil {
+                    Firestore.firestore().collection("WaitList").document(CURRENT_USER).delete()
+                    collectionRef.document(CURRENT_USER).setData(["user1":user1 as! String,"user2":user2 as! String])
+                    self.performSegue(withIdentifier: "showTurnViewController", sender: nil)
+                }
             }
-        }
+        })
     }
     
     @IBAction func unwindToMainViewController (segue : UIStoryboardSegue) {
@@ -85,12 +79,21 @@ class MainViewController: UIViewController {
     @IBAction func tapBattleButton(_ sender: Any) {
         self.activityIndicator.isHidden = false
         self.activityIndicator.startAnimating()
-        createRoom()
+        Firestore.firestore().collection("WaitList").getDocuments { snapshot, error in
+            guard let snapshot = snapshot else { return }
+            if snapshot.documents.isEmpty {
+                self.createRoom()
+            }else {
+                documentID = snapshot.documents.first?.documentID ?? ""
+                self.showAlert()
+            }
+        }
     }
     
     func showAlert() {
         let alert = UIAlertController(title: "매칭 수락하기", message: "수락하시겠습니까?", preferredStyle: .alert)
         let 수락 = UIAlertAction(title: "수락", style: .default) { (_) in
+            self.ready.append(true)
             self.enterRoom()
         }
         alert.addAction(수락)

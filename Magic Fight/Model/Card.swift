@@ -39,7 +39,7 @@ struct Card :Equatable,Encodable{
         self.count = dictionary["count"] as? Int ?? 0
         self.effect = dictionary["effect"] as? String ?? ""
         self.magicAttribute = dictionary["magicAttribute"] as? String ?? ""
-        self.gem = dictionary["Int"] as? Int ?? 0
+        self.gem = dictionary["gem"] as? Int ?? 0
         self.image = dictionary["image"] as? String ?? ""
         self.isBroke = dictionary["isBroke"] as? Bool ?? false
         self.documentID = documentID
@@ -64,10 +64,10 @@ var allCard:[Card] = [
     재충전,
     암흑광선 ,
     수혈 ,
+    초급마법서,
     정신집중,
     최면 ,
     암시 ,
-    초급마법서,
     선물상자,
     악몽,
     성수 ,

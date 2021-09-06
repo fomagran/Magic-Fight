@@ -14,17 +14,30 @@ class TurnViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setGameInitialSetting()
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            self.goToGameViewController()
+    }
+    
+    private func setGameInitialSetting() {
+        let cards:[Card] = [푸른젬,푸른젬,푸른젬,푸른젬,푸른젬,푸른젬,푸른젬,푸른젬,초급마법서,초급마법서]
+        for card in cards {
+            collectionRef.document(documentID).collection(CURRENT_USER).document(CURRENT_USER).collection("Deck").addDocument(data:card.toDictionary!)
         }
-        
+        collectionRef.document(documentID).updateData(["\(CURRENT_USER)HP":20,"\(CURRENT_USER)MP":0])
+        setTurn()
+    }
+    
+    func setTurn() {
         collectionRef.document(documentID).getDocument { snapshot, error in
-            let turn = snapshot?.get("turn") as? String ?? ""
-            if turn == CURRENT_USER {
-                self.image.image = #imageLiteral(resourceName: "후공")
-            }else {
+            let user1 = snapshot?.get("user1") as? String ?? ""
+            if user1 == CURRENT_USER {
                 self.image.image = #imageLiteral(resourceName: "선공")
+            }else {
+                self.image.image = #imageLiteral(resourceName: "후공")
+            }
+            collectionRef.document(documentID).updateData(["turn":user1])
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                self.goToGameViewController()
             }
         }
     }

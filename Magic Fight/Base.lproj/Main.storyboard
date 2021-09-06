@@ -1503,15 +1503,15 @@
     </scenes>
     <designables>
         <designable name="6qx-nb-TPT">
-            <size key="intrinsicContentSize" width="-1" height="471.33333333333331"/>
+            <size key="intrinsicContentSize" width="-1" height="30"/>
         </designable>
         <designable name="VfA-CK-D0I">
-            <size key="intrinsicContentSize" width="-1" height="471.33333333333331"/>
+            <size key="intrinsicContentSize" width="-1" height="30"/>
         </designable>
     </designables>
     <inferredMetricsTieBreakers>
         <segue reference="VKx-3q-ZgU"/>
-        <segue reference="xaD-tT-ewB"/>
+        <segue reference="rmK-IU-jz6"/>
         <segue reference="g9n-o3-wDF"/>
     </inferredMetricsTieBreakers>
     <resources>

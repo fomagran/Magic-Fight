@@ -31,46 +31,6 @@ class BanCardViewController: UIViewController {
         super.viewDidLoad()
         setTap()
         setNameFromRandomCard()
-        observeRoom()
-    }
-    
-    private func observeRoom() {
-        listener =  collectionRef.addSnapshotListener({ snapshot, error in
-            guard let snapshot = snapshot else { return }
-            if !snapshot.documents.isEmpty {
-                let first = snapshot.documents.first
-                let user1 = first?.get("user1") as? String ?? ""
-                let user2 = first?.get("user2") as? String ?? ""
-                if user1 == CURRENT_USER {
-                    OPPONENT_USER = user2
-                }else {
-                    OPPONENT_USER = user1
-                }
-                self.ready = first?.get("ready") as? [Bool] ?? []
-                if self.ready.count == 2 {
-                    self.ready.append(true)
-                    collectionRef.document(documentID).updateData(["ready":self.ready])
-                    self.listener?.remove()
-                    self.performSegue(withIdentifier: "showTurnViewController", sender: nil)
-                }
-            }
-        })
-    }
-    
-    private func setGameInitialSetting() {
-        let cards:[Card] = [푸른젬,푸른젬,푸른젬,푸른젬,푸른젬,푸른젬,푸른젬,푸른젬,초급마법서,초급마법서]
-        for card in cards {
-            collectionRef.document(documentID).collection(CURRENT_USER).document(CURRENT_USER).collection("Deck").addDocument(data:card.toDictionary!)
-        }
-        collectionRef.document(documentID).updateData(["\(CURRENT_USER)HP":20,"\(CURRENT_USER)MP":0])
-        detectUser1()
-    }
-    
-    func detectUser1() {
-        collectionRef.document(documentID).getDocument { snapshot, error in
-            let user1 = snapshot?.get("user1") as? String ?? ""
-            collectionRef.document(documentID).updateData(["turn":user1])
-        }
     }
     
     @IBAction func tapDoneBttn(_ sender: Any) {
@@ -78,7 +38,6 @@ class BanCardViewController: UIViewController {
             collectionRef.document(documentID).updateData(["ready":ready])
             self.doneBtn.isHidden = true
             self.pickBanCard.text = "YOU READY"
-            setGameInitialSetting()
     }
     
     func setNameFromRandomCard(){

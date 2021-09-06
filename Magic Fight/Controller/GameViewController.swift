@@ -49,6 +49,7 @@ class GameViewController: UIViewController {
     var myTrash = [Card]()
     var enemyDeck = [Card]()
     var enemyTrash = [Card]()
+    var listener:ListenerRegistration?
     
     
     override func viewDidLoad() {
@@ -56,6 +57,7 @@ class GameViewController: UIViewController {
         configure()
         observeUserInfo()
         start()
+        drawFiveCardFromDeck()
         
         let tap1 = UITapGestureRecognizer(target: self, action:#selector(tapBackground))
         bgImage.addGestureRecognizer(tap1)
@@ -64,28 +66,34 @@ class GameViewController: UIViewController {
     }
     
     func observeUserInfo() {
-        collectionRef.document(documentID).addSnapshotListener { snapshot, error in
-            self.myHPLabel.text =  "\(snapshot?.get("\(CURRENT_USER)HP") as? Int ?? 0)"
+        listener = collectionRef.document(documentID).addSnapshotListener { snapshot, error in
+            if let win = snapshot?.get("win") {
+                if (win as? String ?? "") != CURRENT_USER  {
+                    self.victoryOrDefeatImage.image = #imageLiteral(resourceName: "defeat")
+                    self.victoryOrDefeatImage.isHidden = false
+                    self.listener?.remove()
+                }else {
+                    self.victoryOrDefeatImage.image = #imageLiteral(resourceName: "victory")
+                    self.victoryOrDefeatImage.isHidden = false
+                    self.listener?.remove()
+                }
+            }
+           
+            self.myHPLabel.text =  "\(snapshot?.get("\(CURRENT_USER)HP") as? Int ?? 20)"
+            if self.myHPLabel.text == "0" {
+                collectionRef.document(documentID).updateData(["win":OPPONENT_USER])
+            }
             self.myMPLabel.text =  "\(snapshot?.get("\(CURRENT_USER)MP") as? Int ?? 0)"
             self.enemyHPLabel.text =  "\(snapshot?.get("\(OPPONENT_USER)HP") as? Int ?? 0)"
             self.enemyMPLabel.text =  "\(snapshot?.get("\(OPPONENT_USER)MP") as? Int ?? 0)"
-            if self.useCardString != "\(snapshot?.get("useCard") as? String ?? "")" {
-                let name = "\(snapshot?.get("useCard") as? String ?? "")".split(separator: " ")[0]
+            if self.useCardString != "\(snapshot?.get("\(OPPONENT_USER)useCard") as? String ?? "")" {
+                let name = "\(snapshot?.get("\(OPPONENT_USER)useCard") as? String ?? "")"
                 let index = allCard.firstIndex{$0.name == name}!
                 self.showCard(card: allCard[index])
             }
-            self.useCardString = "\(snapshot?.get("useCard") as? String ?? "")"
-            
+            self.useCardString = "\(snapshot?.get("\(OPPONENT_USER)useCard") as? String ?? "")"
             
             if (snapshot?.get("turn") as? String ?? "") == CURRENT_USER {
-                collectionRef.document(documentID).collection(CURRENT_USER).document(CURRENT_USER).collection("Deck").getDocuments { snapshot, error in
-                    guard let snapshot = snapshot else { return }
-                    if snapshot.documents.count < 5 {
-                        self.addDeckAndTrash()
-                    }else {
-                        self.drawFiveCardFromDeck()
-                    }
-                }
                 self.setInitialState()
                 self.start()
                 self.timerLabel.backgroundColor = .clear
@@ -103,29 +111,14 @@ class GameViewController: UIViewController {
         victoryOrDefeatImage.isHidden = true
         myDeck = []
         deckCountLabel.text = "\(myDeck.count)"
-        setCards()
     }
     
-    func setCards() {
-        collectionRef.document(documentID).collection(CURRENT_USER).document(CURRENT_USER).collection("Card").getDocuments { snapshot,error in
-            guard let snapshot = snapshot else { return }
-            let cards = snapshot.documents.map{Card(dictionary: $0.data(), documentID: $0.documentID)}
-            self.myCards = cards
-        }
-    }
     
-    func drawFiveCardFromDeck() {
-        collectionRef.document(documentID).collection(CURRENT_USER).document(CURRENT_USER).collection("Deck").getDocuments { snapshot,error in
-            guard let snapshot = snapshot else { return }
-            var cards = snapshot.documents.map{Card(dictionary: $0.data(), documentID: $0.documentID)}
-            for _ in 0...4 {
-                let index = (0..<cards.count).randomElement()!
-                collectionRef.document(documentID).collection(CURRENT_USER).document(CURRENT_USER).collection("Card").addDocument(data:cards[index].toDictionary!)
-                print("draw")
-                collectionRef.document(documentID).collection(CURRENT_USER).document(CURRENT_USER).collection("Deck").document(cards[index].documentID).delete()
-                cards.remove(at: index)
-            }
+    func endTurn() {
+        for card in MY_CARDS {
+            collectionRef.document(documentID).collection(CURRENT_USER).document(CURRENT_USER).collection("Trash").addDocument(data:card.toDictionary!)
         }
+        MY_CARDS.removeAll()
     }
     
     func addDeckAndTrash() {
@@ -140,13 +133,16 @@ class GameViewController: UIViewController {
         }
     }
     
-    func endTurn() {
-        collectionRef.document(documentID).collection(CURRENT_USER).document(CURRENT_USER).collection("Card").getDocuments { snapshot, error in
+    func drawFiveCardFromDeck() {
+        collectionRef.document(documentID).collection(CURRENT_USER).document(CURRENT_USER).collection("Deck").getDocuments { snapshot,error in
             guard let snapshot = snapshot else { return }
-            for document in snapshot.documents {
-                let card = Card(dictionary: document.data(), documentID: document.documentID)
-                collectionRef.document(documentID).collection(CURRENT_USER).document(CURRENT_USER).collection("Card").document(document.documentID).delete()
-                collectionRef.document(documentID).collection(CURRENT_USER).document(CURRENT_USER).collection("Trash").addDocument(data:card.toDictionary!)
+            var cards = snapshot.documents.map{Card(dictionary: $0.data(), documentID: $0.documentID)}
+            for _ in 0...4 {
+                let index = (0..<cards.count).randomElement()!
+                MY_CARDS.append(cards[index])
+                collectionRef.document(documentID).updateData(["\(CURRENT_USER)MP":FieldValue.increment(Int64(cards[index].gem ?? 0))])
+                collectionRef.document(documentID).collection(CURRENT_USER).document(CURRENT_USER).collection("Deck").document(cards[index].documentID).delete()
+                cards.remove(at: index)
             }
         }
     }
@@ -154,7 +150,16 @@ class GameViewController: UIViewController {
     @IBAction func tapEndTurnButton(_ sender: Any) {
         collectionRef.document(documentID).updateData(["turn":OPPONENT_USER])
         endTurn()
-//        Firestore.firestore().collection("Battle").document(documentID).collection("Turn").addDocument(data: ["player":CURRENT_USER, "turnTime":seconds,"HP":myHPLabel.text ?? "","MP":myMPLabel.text ?? ""])
+        collectionRef.document(documentID).collection(CURRENT_USER).document(CURRENT_USER).collection("Deck").getDocuments { snapshot, error in
+            guard let snapshot = snapshot else { return }
+            if snapshot.documents.count < 5 {
+                self.addDeckAndTrash()
+            }else {
+                self.drawFiveCardFromDeck()
+            }
+        }
+        
+        //        Firestore.firestore().collection("Battle").document(documentID).collection("Turn").addDocument(data: ["player":CURRENT_USER, "turnTime":seconds,"HP":myHPLabel.text ?? "","MP":myMPLabel.text ?? ""])
     }
     
     @objc func tapBackground() {
@@ -171,14 +176,12 @@ class GameViewController: UIViewController {
     
     @IBAction func tapCardButton(_ sender: Any) {
         isSupplier = false
-        setCards()
         performSegue(withIdentifier: "showSupplierViewController", sender: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showSupplierViewController" {
             let vc = segue.destination as! SupplierViewController
-            vc.myCards = myCards
             vc.isSupplier = isSupplier
             vc.myHP = Int(myHPLabel.text!)!
             vc.myMP = Int(myMPLabel.text!)!
@@ -189,8 +192,7 @@ class GameViewController: UIViewController {
             vc.myTrash = myTrash
             vc.myDeck = myDeck
             vc.enemyCards = enemyCards
-            vc.myCards = myCards
-            vc.cards = isSupplier ? allCard : myCards
+            vc.cards = isSupplier ? allCard : MY_CARDS
         }else if segue.identifier == "showShowCardViewController" {
             let vc = segue.destination as! ShowCardViewController
             vc.delegate = self
@@ -217,12 +219,19 @@ class GameViewController: UIViewController {
     @objc private func keepTimer(){
         if seconds == 0 {
             if minutes == 1 {
-            minutes -= 1
-            seconds = 59
+                minutes -= 1
+                seconds = 59
             }else{
-                ref.child("battle").child(CURRENT_USER).updateChildValues(["turn":false])
-                ref.child("battle").child(OPPONENT_USER).updateChildValues(["turn":true])
-                setTurn(isMyturn: false)
+                collectionRef.document(documentID).updateData(["turn":OPPONENT_USER])
+                endTurn()
+                collectionRef.document(documentID).collection(CURRENT_USER).document(CURRENT_USER).collection("Deck").getDocuments { snapshot, error in
+                    guard let snapshot = snapshot else { return }
+                    if snapshot.documents.count < 5 {
+                        self.addDeckAndTrash()
+                    }else {
+                        self.drawFiveCardFromDeck()
+                    }
+                }
                 timer.invalidate()
             }
         }else{
