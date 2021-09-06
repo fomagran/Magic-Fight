@@ -15,5 +15,8 @@ var PLAYER_NUMBER = "1"
 var documentID:String = ""
 
 var collectionRef = Firestore.firestore().collection("Battle")
+var recordRef = Firestore.firestore().collection("Record")
+var recordDocument = ""
+var turnLastDocument = ""
 var MY_CARDS:[Card] = []
 var ref = Database.database().reference()

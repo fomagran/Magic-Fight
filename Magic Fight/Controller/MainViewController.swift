@@ -47,6 +47,9 @@ class MainViewController: UIViewController {
     
     private func createRoom() {
         Firestore.firestore().collection("WaitList").document(CURRENT_USER).setData(["user1":CURRENT_USER])
+        recordDocument = recordRef.addDocument(data: ["timeStamp":FieldValue.serverTimestamp()]).documentID
+        Firestore.firestore().collection("WaitList").document(CURRENT_USER).updateData(["recordDocument":recordDocument])
+        turnLastDocument = recordRef.document(recordDocument).collection("Turn").addDocument(data: ["timeStamp":FieldValue.serverTimestamp()]).documentID
         documentID = CURRENT_USER
     }
     
@@ -57,12 +60,14 @@ class MainViewController: UIViewController {
                 let first = snapshot.documents.first
                 let user1 = first?.get("user1")
                 let user2 = first?.get("user2")
+                recordDocument = first?.get("recordDocument") as? String ?? ""
     
                 if user1 as? String ?? "" == CURRENT_USER {
                     OPPONENT_USER = user2 as? String ?? ""
                 }else {
                     OPPONENT_USER = user1 as? String ?? ""
                 }
+                
                 
                 if user1 != nil && user2 != nil {
                     Firestore.firestore().collection("WaitList").document(CURRENT_USER).delete()

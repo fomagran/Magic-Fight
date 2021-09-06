@@ -51,6 +51,7 @@ class GameViewController: UIViewController {
     var enemyTrash = [Card]()
     var listener:ListenerRegistration?
     
+    var isMyTurn:Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,6 +79,8 @@ class GameViewController: UIViewController {
                     self.listener?.remove()
                 }
             }
+            
+            turnLastDocument = snapshot?.get("turnLastDocument") as? String ?? ""
            
             self.myHPLabel.text =  "\(snapshot?.get("\(CURRENT_USER)HP") as? Int ?? 20)"
             if self.myHPLabel.text == "0" {
@@ -94,10 +97,13 @@ class GameViewController: UIViewController {
             self.useCardString = "\(snapshot?.get("\(OPPONENT_USER)useCard") as? String ?? "")"
             
             if (snapshot?.get("turn") as? String ?? "") == CURRENT_USER {
-                self.setInitialState()
-                self.start()
-                self.timerLabel.backgroundColor = .clear
-                self.setTurn(isMyturn: true)
+                if !self.isMyTurn {
+                    self.setInitialState()
+                    self.start()
+                    self.timerLabel.backgroundColor = .clear
+                    self.setTurn(isMyturn: true)
+                    self.isMyTurn = true
+                }
             }else {
                 self.timerLabel.backgroundColor = .red
                 self.setTurn(isMyturn: false)
@@ -118,7 +124,12 @@ class GameViewController: UIViewController {
         for card in MY_CARDS {
             collectionRef.document(documentID).collection(CURRENT_USER).document(CURRENT_USER).collection("Trash").addDocument(data:card.toDictionary!)
         }
+        isMyTurn = false
         MY_CARDS.removeAll()
+        recordRef.document(recordDocument).collection("Turn").document(turnLastDocument).updateData(["user":CURRENT_USER,"gem":myMPLabel.text ?? "","turnTime":timerLabel.text ?? ""])
+        let lastDocument = recordRef.document(recordDocument).collection("Turn").addDocument(data: ["timeStamp":FieldValue.serverTimestamp()]).documentID
+        collectionRef.document(documentID).updateData(["turnLastDocument":lastDocument])
+        
     }
     
     func addDeckAndTrash() {
@@ -192,7 +203,7 @@ class GameViewController: UIViewController {
             vc.myTrash = myTrash
             vc.myDeck = myDeck
             vc.enemyCards = enemyCards
-            vc.cards = isSupplier ? allCard : MY_CARDS
+            vc.cards = isSupplier ? allCard.filter{$0.name != "초급마법서" } : MY_CARDS
         }else if segue.identifier == "showShowCardViewController" {
             let vc = segue.destination as! ShowCardViewController
             vc.delegate = self

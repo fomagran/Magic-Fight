@@ -15,7 +15,7 @@ class TurnViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setGameInitialSetting()
-        
+        collectionRef.document(documentID).updateData(["turn":CURRENT_USER])
     }
     
     private func setGameInitialSetting() {
@@ -23,7 +23,8 @@ class TurnViewController: UIViewController {
         for card in cards {
             collectionRef.document(documentID).collection(CURRENT_USER).document(CURRENT_USER).collection("Deck").addDocument(data:card.toDictionary!)
         }
-        collectionRef.document(documentID).updateData(["\(CURRENT_USER)HP":20,"\(CURRENT_USER)MP":0])
+    
+        collectionRef.document(documentID).updateData(["\(CURRENT_USER)HP":20,"\(CURRENT_USER)MP":0,"turnLastDocument":turnLastDocument])
         setTurn()
     }
     
@@ -35,7 +36,6 @@ class TurnViewController: UIViewController {
             }else {
                 self.image.image = #imageLiteral(resourceName: "후공")
             }
-            collectionRef.document(documentID).updateData(["turn":user1])
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                 self.goToGameViewController()
             }
