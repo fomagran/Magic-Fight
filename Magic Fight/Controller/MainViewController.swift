@@ -72,6 +72,7 @@ class MainViewController: UIViewController {
                 if user1 != nil && user2 != nil {
                     Firestore.firestore().collection("WaitList").document(CURRENT_USER).delete()
                     collectionRef.document(CURRENT_USER).setData(["user1":user1 as! String,"user2":user2 as! String])
+                    self.activityIndicator.isHidden = true
                     self.performSegue(withIdentifier: "showTurnViewController", sender: nil)
                 }
             }

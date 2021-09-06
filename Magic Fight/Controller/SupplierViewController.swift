@@ -51,6 +51,7 @@ class SupplierViewController: UIViewController {
     @IBAction func tapBuyButton(_ sender: Any) {
         
         if currentCard?.name == "선물상자" {
+            setGiftBox()
             return
         }
         
@@ -60,12 +61,8 @@ class SupplierViewController: UIViewController {
         }
         
         if isGiftBox {
-            if myMP < currentCard!.price {
-                showAlert(str: "젬이 부족해 카드를 사용할 수 없습니다.")
-            }else {
             collectionRef.document(documentID).collection(OPPONENT_USER).document(OPPONENT_USER).collection("Deck").addDocument(data: currentCard.toDictionary!)
             dismiss(animated: true, completion: nil)
-            }
             return
         }
         
@@ -92,7 +89,7 @@ class SupplierViewController: UIViewController {
             if myMP < currentCard!.price {
                 showAlert(str: "젬이 부족해 살 수 없습니다.")
             }else {
-                MY_CARDS.append(currentCard!)
+                collectionRef.document(documentID).collection(CURRENT_USER).document(CURRENT_USER).collection("Deck").addDocument(data: currentCard!.toDictionary!)
                 collectionRef.document(documentID).updateData(["\(CURRENT_USER)MP":FieldValue.increment(-Int64(currentCard?.price ?? 0))])
                 recordRef.document(recordDocument).collection("Turn").document(turnLastDocument).collection("BoughtCard").addDocument(data: ["player":CURRENT_USER, "card":currentCard?.name ?? "","price":currentCard?.price ?? 0])
                 dismiss(animated: true, completion: nil)

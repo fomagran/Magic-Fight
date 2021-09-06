@@ -144,7 +144,7 @@ let 붉은젬 = Card(name: "붉은젬", price: 3, usePrice:0, count: 0, effect: 
 let 황금젬 = Card(name: "황금젬", price: 6, usePrice:0, count:0, effect: "", magicAttribute:Magic.무속성.rawValue,gem: 4,image:"황금젬",isBroke:false)
 let 칠흑의젬 = Card(name: "칠흑의젬", price: 10, usePrice:0, count:0, effect: "", magicAttribute:Magic.무속성.rawValue,gem: 5,image:"칠흑의젬",isBroke:false)
 let 정신집중 = Card(name: "정신집중", price: 7, usePrice: 5, count: 8, effect: "카드를세장뽑는다.",magicAttribute:Magic.무속성.rawValue,gem: nil,image:"정신집중",isBroke:true)
-let 재충전 = Card(name: "정신집중", price: 1, usePrice: 2, count: 10, effect: "체력을 2 회복한다.",magicAttribute:Magic.번개.rawValue,gem: nil,image:"재충전",isBroke:true)
+let 재충전 = Card(name: "재충전", price: 1, usePrice: 2, count: 10, effect: "체력을 2 회복한다.",magicAttribute:Magic.번개.rawValue,gem: nil,image:"재충전",isBroke:true)
 let 선물상자 = Card(name: "선물상자", price: 1, usePrice: 2, count: 10, effect: "내 손패의 카드 한 장을 선택한다. 상대가 그 카드를 가져온다.",magicAttribute:Magic.무속성.rawValue,gem: nil,image:"선물상자",isBroke:true)
 
 extension Encodable {

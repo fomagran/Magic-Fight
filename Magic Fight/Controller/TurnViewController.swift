@@ -19,12 +19,16 @@ class TurnViewController: UIViewController {
     }
     
     private func setGameInitialSetting() {
-        let cards:[Card] = [푸른젬,푸른젬,푸른젬,푸른젬,푸른젬,푸른젬,푸른젬,푸른젬,초급마법서,초급마법서]
+        let cards:[Card] =  [푸른젬,푸른젬,푸른젬,푸른젬,푸른젬,푸른젬,푸른젬,푸른젬,초급마법서,초급마법서,정신집중]
+        
+
+
+   
         for card in cards {
             collectionRef.document(documentID).collection(CURRENT_USER).document(CURRENT_USER).collection("Deck").addDocument(data:card.toDictionary!)
         }
     
-        collectionRef.document(documentID).updateData(["\(CURRENT_USER)HP":20,"\(CURRENT_USER)MP":0,"turnLastDocument":turnLastDocument])
+        collectionRef.document(documentID).updateData(["\(CURRENT_USER)HP":20,"\(CURRENT_USER)MP":100,"turnLastDocument":turnLastDocument])
         setTurn()
     }
     
