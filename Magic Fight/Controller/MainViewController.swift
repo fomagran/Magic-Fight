@@ -15,6 +15,7 @@ class MainViewController: UIViewController {
     
     var ready:[Bool] = []
     var listener:ListenerRegistration?
+    var dataArray:[[[String]]] = []
     
     lazy var activityIndicator: UIActivityIndicatorView = {
         let activityIndicator = UIActivityIndicatorView()
@@ -29,8 +30,66 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        Firestore.firestore().collection("Record").getDocuments { snapshot, error in
+            guard let snapshot = snapshot else { return }
+            self.dataArray = Array(repeating: [[String]](), count: snapshot.documents.count)
+            for (i,document) in snapshot.documents.enumerated() {
+                self.getUsedCarddata(documentID: document.documentID,index: i)
+            }
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+            for (i,data) in self.dataArray.enumerated() {
+                print("\(i+1)번째 게임")
+                for (j,d) in data.enumerated() {
+                    print("\(j+1)번째턴 \(d)")
+                }
+            }
+        }
+        
         configure()
         observeRoom()
+    }
+    
+    func getUsedCarddata(documentID:String,index:Int) {
+        Firestore.firestore().collection("Record").document(documentID).collection("Turn").order(by: "timeStamp").getDocuments(completion: { snapshot, error in
+            guard let snapshot1 = snapshot else { return }
+            self.dataArray[index] = Array(repeating: [String](), count: snapshot1.documents.count)
+            for (i,document) in snapshot1.documents.enumerated() {
+                self.dataArray[index][i].append("사용한 시간 \(document.get("turnTime") ?? "00:50")")
+                Firestore.firestore().collection("Record").document(documentID).collection("Turn").document(document.documentID).collection("UsedCard").getDocuments { snapshot, error in
+                    guard let snapshot2 = snapshot else { return }
+                    if snapshot2.documents.isEmpty {
+                        self.dataArray[index][i].append("사용한 카드 없음")
+                    }else {
+                        for doc in snapshot2.documents {
+                            self.dataArray[index][i].append("사용한 카드 \(doc.get("card")!)")
+                        }
+                    }
+                }
+                Firestore.firestore().collection("Record").document(documentID).collection("Turn").document(document.documentID).collection("BoughtCard").getDocuments { snapshot, error in
+                    guard let snapshot2 = snapshot else { return }
+                    if snapshot2.documents.isEmpty {
+                        self.dataArray[index][i].append("구매한 카드 없음")
+                    }else {
+                        for doc in snapshot2.documents {
+                            self.dataArray[index][i].append("구매한 카드 \(doc.get("card")!)")
+                        }
+                    }
+                }
+            }
+        })
+    }
+    
+    
+    func getTurnTimeData() {
+        Firestore.firestore().collection("Record").document("HYZJPXTvcesAtXYlEnHS").collection("Turn").getDocuments { snapshot, error in
+            guard let snapshot = snapshot else {return}
+            for (i,document) in snapshot.documents.enumerated() {
+                print("\(i+1)번째턴 시간 \(document.get("turnTime")!)")
+            }
+        }
     }
     
     private func configure() {
