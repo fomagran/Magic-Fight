@@ -30,7 +30,12 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        getGameData()
+        configure()
+        observeRoom()
+    }
+    
+    func getGameData() {
         Firestore.firestore().collection("Record").getDocuments { snapshot, error in
             guard let snapshot = snapshot else { return }
             self.dataArray = Array(repeating: [[String]](), count: snapshot.documents.count)
@@ -47,9 +52,6 @@ class MainViewController: UIViewController {
                 }
             }
         }
-        
-        configure()
-        observeRoom()
     }
     
     func getUsedCarddata(documentID:String,index:Int) {
@@ -81,17 +83,7 @@ class MainViewController: UIViewController {
             }
         })
     }
-    
-    
-    func getTurnTimeData() {
-        Firestore.firestore().collection("Record").document("HYZJPXTvcesAtXYlEnHS").collection("Turn").getDocuments { snapshot, error in
-            guard let snapshot = snapshot else {return}
-            for (i,document) in snapshot.documents.enumerated() {
-                print("\(i+1)번째턴 시간 \(document.get("turnTime")!)")
-            }
-        }
-    }
-    
+
     private func configure() {
         nicknameLabel.text = UserDefaults.standard.string(forKey: "nickname")
         self.view.addSubview(self.activityIndicator)
