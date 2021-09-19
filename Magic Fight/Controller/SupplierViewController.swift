@@ -55,30 +55,35 @@ class SupplierViewController: UIViewController {
             return
         }
         
+        if isGiftBox {
+            collectionRef.document(documentID).collection(OPPONENT_USER).document(OPPONENT_USER).collection("Trash").addDocument(data: currentCard.toDictionary!)
+            dismiss(animated: true, completion: nil)
+            return
+        }
+        
         if currentCard?.name == "초급마법서" {
             setBeginnerMagic()
             return
         }
         
-        if isGiftBox {
-            collectionRef.document(documentID).collection(OPPONENT_USER).document(OPPONENT_USER).collection("Deck").addDocument(data: currentCard.toDictionary!)
-            dismiss(animated: true, completion: nil)
-            return
-        }
-        
         if isBeginnerMagic {
-            MY_CARDS.append(currentCard!)
+            collectionRef.document(documentID).collection(OPPONENT_USER).document(OPPONENT_USER).collection("Trash").addDocument(data: currentCard.toDictionary!)
             dismiss(animated: true, completion: nil)
             return
         }
         
         if !isSupplier {
+            if let _ = currentCard?.gem {
+                showAlert(str: "젬 카드는 사용할 수 없습니다.")
+                return
+            }
+            
             if myMP < currentCard!.price {
                 showAlert(str: "젬이 부족해 카드를 사용할 수 없습니다.")
             }else{
                 let index = MY_CARDS.firstIndex{$0.name == "\(currentCard!.name)"}!
                 MY_CARDS.remove(at: index)
-                collectionRef.document(documentID).updateData(["\(CURRENT_USER)MP":myMP-currentCard!.usePrice])
+                collectionRef.document(documentID).updateData(["\(CURRENT_USER)MP":FieldValue.increment(-Int64(currentCard!.usePrice))])
                 collectionRef.document(documentID).updateData(["\(CURRENT_USER)useCard":"\(currentCard!.name)"])
                 collectionRef.document(documentID).collection(CURRENT_USER).document(CURRENT_USER).collection("Trash").addDocument(data: currentCard!.toDictionary!)
                 cardEffect(name: currentCard!.name)
@@ -114,10 +119,13 @@ class SupplierViewController: UIViewController {
     }
     
     func setGiftBox() {
-        MY_CARDS.remove(at:MY_CARDS.firstIndex{$0.name == "선물상자"}!)
-        collectionRef.document(documentID).updateData(["\(CURRENT_USER)MP":myMP-2])
+        cards = cards.filter{$0.name != "선물상자"}
+        collectionRef.document(documentID).updateData(["\(CURRENT_USER)MP":FieldValue.increment(Int64(-2))])
         collectionRef.document(documentID).updateData(["\(CURRENT_USER)useCard":"선물상자"])
         recordRef.document(recordDocument).collection("Turn").document(turnLastDocument).collection("UsedCard").addDocument(data: ["player":CURRENT_USER, "card":"선물상자","attribute":"무속성","price":선물상자.usePrice])
+        isSupplier = true
+        bigCard.isHidden = true
+        currentCard = nil
         collection.reloadData()
         isGiftBox = true
     }

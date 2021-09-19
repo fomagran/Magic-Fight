@@ -160,6 +160,7 @@ class GameViewController: UIViewController {
     
     @IBAction func tapEndTurnButton(_ sender: Any) {
         collectionRef.document(documentID).updateData(["turn":OPPONENT_USER])
+        collectionRef.document(documentID).updateData(["\(CURRENT_USER)MP":0])
         endTurn()
         collectionRef.document(documentID).collection(CURRENT_USER).document(CURRENT_USER).collection("Deck").getDocuments { snapshot, error in
             guard let snapshot = snapshot else { return }
@@ -169,13 +170,13 @@ class GameViewController: UIViewController {
                 self.drawFiveCardFromDeck()
             }
         }
-        
-        //        Firestore.firestore().collection("Battle").document(documentID).collection("Turn").addDocument(data: ["player":CURRENT_USER, "turnTime":seconds,"HP":myHPLabel.text ?? "","MP":myMPLabel.text ?? ""])
     }
     
     @objc func tapBackground() {
         if victoryOrDefeatImage.isHidden == false {
             self.ref.removeValue()
+            collectionRef.document(CURRENT_USER).delete()
+            MY_CARDS = []
             self.performSegue(withIdentifier: "unwindMainViewController", sender: nil)
         }
     }
