@@ -97,13 +97,11 @@ class GameViewController: UIViewController {
             self.useCardString = "\(snapshot?.get("\(OPPONENT_USER)useCard") as? String ?? "")"
             
             if (snapshot?.get("turn") as? String ?? "") == CURRENT_USER {
-                if !self.isMyTurn {
-                    self.setInitialState()
-                    self.start()
-                    self.timerLabel.backgroundColor = .clear
-                    self.setTurn(isMyturn: true)
-                    self.isMyTurn = true
-                }
+                self.setInitialState()
+                self.start()
+                self.timerLabel.backgroundColor = .clear
+                self.setTurn(isMyturn: true)
+                self.isMyTurn = true
             }else {
                 self.timerLabel.backgroundColor = .red
                 self.setTurn(isMyturn: false)

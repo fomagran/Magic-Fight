@@ -73,12 +73,13 @@ class SupplierViewController: UIViewController {
         }
         
         if !isSupplier {
-            if let _ = currentCard?.gem {
+            
+            if currentCard?.gem ?? 0 > 0 {
                 showAlert(str: "젬 카드는 사용할 수 없습니다.")
                 return
             }
             
-            if myMP < currentCard!.price {
+            if myMP < currentCard!.usePrice {
                 showAlert(str: "젬이 부족해 카드를 사용할 수 없습니다.")
             }else{
                 let index = MY_CARDS.firstIndex{$0.name == "\(currentCard!.name)"}!

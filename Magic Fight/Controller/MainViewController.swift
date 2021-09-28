@@ -30,7 +30,7 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getGameData()
+//        getGameData()
         configure()
         observeRoom()
     }
@@ -119,10 +119,11 @@ class MainViewController: UIViewController {
                     OPPONENT_USER = user1 as? String ?? ""
                 }
                 
-                
                 if user1 != nil && user2 != nil {
                     Firestore.firestore().collection("WaitList").document(CURRENT_USER).delete()
+                    if documentID == CURRENT_USER {
                     collectionRef.document(CURRENT_USER).setData(["user1":user1 as! String,"user2":user2 as! String])
+                    }
                     self.activityIndicator.isHidden = true
                     self.performSegue(withIdentifier: "showTurnViewController", sender: nil)
                 }
