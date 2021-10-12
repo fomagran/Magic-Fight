@@ -132,6 +132,7 @@ class MainViewController: UIViewController {
     }
     
     @IBAction func unwindToMainViewController (segue : UIStoryboardSegue) {
+        MY_CARDS = []
     }
     
     @IBAction func tapBattleButton(_ sender: Any) {

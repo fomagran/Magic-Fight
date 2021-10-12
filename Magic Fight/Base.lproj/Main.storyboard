@@ -315,7 +315,7 @@
                     <connections>
                         <outlet property="battleButton" destination="S1M-2V-1bn" id="NpX-Fm-L4E"/>
                         <outlet property="nicknameLabel" destination="Hkq-Y4-8Zx" id="fyb-10-rpv"/>
-                        <segue destination="vDE-I1-T7w" kind="show" identifier="showBanCardViewController" id="2kZ-aS-AZ5"/>
+                        <segue destination="vDE-I1-T7w" kind="presentation" identifier="showBanCardViewController" id="2kZ-aS-AZ5"/>
                         <segue destination="7N2-i6-VUB" kind="show" identifier="showTurnViewController" id="rmK-IU-jz6"/>
                     </connections>
                 </viewController>
@@ -1503,10 +1503,10 @@
     </scenes>
     <designables>
         <designable name="6qx-nb-TPT">
-            <size key="intrinsicContentSize" width="-1" height="30"/>
+            <size key="intrinsicContentSize" width="-1" height="471.33333333333331"/>
         </designable>
         <designable name="VfA-CK-D0I">
-            <size key="intrinsicContentSize" width="-1" height="30"/>
+            <size key="intrinsicContentSize" width="-1" height="471.33333333333331"/>
         </designable>
     </designables>
     <inferredMetricsTieBreakers>

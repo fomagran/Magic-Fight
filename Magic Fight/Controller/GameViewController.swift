@@ -72,11 +72,9 @@ class GameViewController: UIViewController {
                 if (win as? String ?? "") != CURRENT_USER  {
                     self.victoryOrDefeatImage.image = #imageLiteral(resourceName: "defeat")
                     self.victoryOrDefeatImage.isHidden = false
-                    self.listener?.remove()
                 }else {
                     self.victoryOrDefeatImage.image = #imageLiteral(resourceName: "victory")
                     self.victoryOrDefeatImage.isHidden = false
-                    self.listener?.remove()
                 }
             }
             
@@ -172,7 +170,6 @@ class GameViewController: UIViewController {
     
     @objc func tapBackground() {
         if victoryOrDefeatImage.isHidden == false {
-            self.ref.removeValue()
             collectionRef.document(CURRENT_USER).delete()
             MY_CARDS = []
             self.performSegue(withIdentifier: "unwindMainViewController", sender: nil)
