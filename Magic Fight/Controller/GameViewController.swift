@@ -68,21 +68,24 @@ class GameViewController: UIViewController {
     
     func observeUserInfo() {
         listener = collectionRef.document(documentID).addSnapshotListener { snapshot, error in
+        
+            turnLastDocument = snapshot?.get("turnLastDocument") as? String ?? ""
+           
+            self.myHPLabel.text =  "\(snapshot?.get("\(CURRENT_USER)HP") as? Int ?? 20)"
+            if Int(self.myHPLabel.text ?? "0")! <= 0 {
+                collectionRef.document(documentID).updateData(["win":OPPONENT_USER])
+            }
+            
             if let win = snapshot?.get("win") {
                 if (win as? String ?? "") != CURRENT_USER  {
                     self.victoryOrDefeatImage.image = #imageLiteral(resourceName: "defeat")
                     self.victoryOrDefeatImage.isHidden = false
+                    self.listener?.remove()
                 }else {
                     self.victoryOrDefeatImage.image = #imageLiteral(resourceName: "victory")
                     self.victoryOrDefeatImage.isHidden = false
+                    self.listener?.remove()
                 }
-            }
-            
-            turnLastDocument = snapshot?.get("turnLastDocument") as? String ?? ""
-           
-            self.myHPLabel.text =  "\(snapshot?.get("\(CURRENT_USER)HP") as? Int ?? 20)"
-            if self.myHPLabel.text == "0" {
-                collectionRef.document(documentID).updateData(["win":OPPONENT_USER])
             }
             self.myMPLabel.text =  "\(snapshot?.get("\(CURRENT_USER)MP") as? Int ?? 0)"
             self.enemyHPLabel.text =  "\(snapshot?.get("\(OPPONENT_USER)HP") as? Int ?? 0)"
@@ -170,6 +173,7 @@ class GameViewController: UIViewController {
     
     @objc func tapBackground() {
         if victoryOrDefeatImage.isHidden == false {
+            self.ref.removeValue()
             collectionRef.document(CURRENT_USER).delete()
             MY_CARDS = []
             self.performSegue(withIdentifier: "unwindMainViewController", sender: nil)
