@@ -30,13 +30,13 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        getGameData()
+        getGameData()
         configure()
         observeRoom()
     }
     
     func getGameData() {
-        Firestore.firestore().collection("Record").getDocuments { snapshot, error in
+        Firestore.firestore().collection("Record").order(by: "timeStamp").getDocuments { snapshot, error in
             guard let snapshot = snapshot else { return }
             self.dataArray = Array(repeating: [[String]](), count: snapshot.documents.count)
             for (i,document) in snapshot.documents.enumerated() {
