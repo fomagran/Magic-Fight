@@ -919,7 +919,6 @@
                                 <rect key="frame" x="268.5" y="166.5" width="359" height="60"/>
                                 <connections>
                                     <action selector="tapQuitGameButton:" destination="8yP-i4-TCe" eventType="touchUpInside" id="Iq6-Lf-3H5"/>
-                                    <segue destination="2hf-fX-FYZ" kind="show" id="g9n-o3-wDF"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -1300,7 +1299,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="Uvw-my-Zof"/>
         <segue reference="rmK-IU-jz6"/>
-        <segue reference="g9n-o3-wDF"/>
+        <segue reference="K07-Sw-hQb"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="게임종료" width="630" height="472.33334350585938"/>

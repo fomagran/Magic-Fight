@@ -121,9 +121,9 @@ class GameViewController: UIViewController {
         }
         isMyTurn = false
         MY_CARDS.removeAll()
-        recordRef.document(recordDocument).collection("Turn").document(turnLastDocument).updateData(["user":CURRENT_USER,"turnTime":timerLabel.text ?? ""])
-        let lastDocument = recordRef.document(recordDocument).collection("Turn").addDocument(data: ["timeStamp":FieldValue.serverTimestamp()]).documentID
-        collectionRef.document(documentID).updateData(["turnLastDocument":lastDocument])
+//        recordRef.document(recordDocument).collection("Turn").document(turnLastDocument).updateData(["user":CURRENT_USER,"turnTime":timerLabel.text ?? ""])
+//        let lastDocument = recordRef.document(recordDocument).collection("Turn").addDocument(data: ["timeStamp":FieldValue.serverTimestamp()]).documentID
+//        collectionRef.document(documentID).updateData(["turnLastDocument":lastDocument])
         
     }
     

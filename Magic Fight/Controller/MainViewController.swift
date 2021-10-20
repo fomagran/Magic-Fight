@@ -98,9 +98,9 @@ class MainViewController: UIViewController {
     
     private func createRoom() {
         let waitDocument = Firestore.firestore().collection("WaitList").addDocument(data: ["user1":CURRENT_USER]).documentID
-        recordDocument = recordRef.addDocument(data: ["timeStamp":FieldValue.serverTimestamp()]).documentID
-        Firestore.firestore().collection("WaitList").document(CURRENT_USER).updateData(["recordDocument":recordDocument])
-        turnLastDocument = recordRef.document(recordDocument).collection("Turn").addDocument(data: ["timeStamp":FieldValue.serverTimestamp()]).documentID
+//        recordDocument = recordRef.addDocument(data: ["timeStamp":FieldValue.serverTimestamp()]).documentID
+//        Firestore.firestore().collection("WaitList").document(CURRENT_USER).updateData(["recordDocument":recordDocument])
+//        turnLastDocument = recordRef.document(recordDocument).collection("Turn").addDocument(data: ["timeStamp":FieldValue.serverTimestamp()]).documentID
         documentID = waitDocument
     }
     
@@ -113,7 +113,7 @@ class MainViewController: UIViewController {
                 documentID = firstDocumentID
                 let user1 = first?.get("user1")
                 let user2 = first?.get("user2")
-                recordDocument = first?.get("recordDocument") as? String ?? ""
+//                recordDocument = first?.get("recordDocument") as? String ?? ""
                 
                 if user1 as? String ?? "" == CURRENT_USER {
                     OPPONENT_USER = user2 as? String ?? ""
