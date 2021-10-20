@@ -19,4 +19,7 @@ class SettingViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func tapQuitGameButton(_ sender: Any) {
+        collectionRef.document(documentID).updateData(["\(CURRENT_USER)HP":0])
+    }
 }

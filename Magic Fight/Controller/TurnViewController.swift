@@ -20,7 +20,7 @@ class TurnViewController: UIViewController {
     
     private func setGameInitialSetting() {
         let cards:[Card] =  [푸른젬,푸른젬,푸른젬,푸른젬,푸른젬,푸른젬,푸른젬,푸른젬,초급마법서,초급마법서]
-        
+
         for card in cards {
             collectionRef.document(documentID).collection(CURRENT_USER).document(CURRENT_USER).collection("Deck").addDocument(data:card.toDictionary!)
         }

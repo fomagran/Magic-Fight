@@ -19,15 +19,12 @@ class GameViewController: UIViewController {
     @IBOutlet weak var victoryOrDefeatImage: UIImageView!
     @IBOutlet weak var endTurnButton: UIButton!
     @IBOutlet weak var enemyDeckLabel: UILabel!
-    @IBOutlet weak var deckCountLabel: UILabel!
     @IBOutlet weak var cardButton: UIButton!
     @IBOutlet weak var magicAttributeImageView: UIImageView!
-    @IBOutlet weak var trashCardLabel: UILabel!
     @IBOutlet weak var myMPLabel: UILabel!
     @IBOutlet weak var myHPLabel: UILabel!
     @IBOutlet weak var enemyMPLabel: UILabel!
     @IBOutlet weak var enemyHPLabel: UILabel!
-    @IBOutlet weak var logLabel: UIImageView!
     @IBOutlet weak var timerLabel: UILabel!
     
     var soundIntroPlayer = AVAudioPlayer()
@@ -115,7 +112,6 @@ class GameViewController: UIViewController {
     func configure() {
         victoryOrDefeatImage.isHidden = true
         myDeck = []
-        deckCountLabel.text = "\(myDeck.count)"
     }
     
     
@@ -175,6 +171,7 @@ class GameViewController: UIViewController {
         if victoryOrDefeatImage.isHidden == false {
             self.ref.removeValue()
             collectionRef.document(CURRENT_USER).delete()
+            collectionRef.document(OPPONENT_USER).delete()
             MY_CARDS = []
             self.performSegue(withIdentifier: "unwindMainViewController", sender: nil)
         }

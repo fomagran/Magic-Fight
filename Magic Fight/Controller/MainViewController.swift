@@ -30,7 +30,7 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getGameData()
+//        getGameData()
         configure()
         observeRoom()
     }
@@ -97,11 +97,11 @@ class MainViewController: UIViewController {
     }
     
     private func createRoom() {
-        Firestore.firestore().collection("WaitList").document(CURRENT_USER).setData(["user1":CURRENT_USER])
+        let waitDocument = Firestore.firestore().collection("WaitList").addDocument(data: ["user1":CURRENT_USER]).documentID
         recordDocument = recordRef.addDocument(data: ["timeStamp":FieldValue.serverTimestamp()]).documentID
         Firestore.firestore().collection("WaitList").document(CURRENT_USER).updateData(["recordDocument":recordDocument])
         turnLastDocument = recordRef.document(recordDocument).collection("Turn").addDocument(data: ["timeStamp":FieldValue.serverTimestamp()]).documentID
-        documentID = CURRENT_USER
+        documentID = waitDocument
     }
     
     private func observeRoom() {
@@ -109,21 +109,24 @@ class MainViewController: UIViewController {
             guard let snapshot = snapshot else { return }
             if !snapshot.documents.isEmpty {
                 let first = snapshot.documents.first
+                let firstDocumentID = snapshot.documents.first!.documentID
+                documentID = firstDocumentID
                 let user1 = first?.get("user1")
                 let user2 = first?.get("user2")
                 recordDocument = first?.get("recordDocument") as? String ?? ""
-    
+                
                 if user1 as? String ?? "" == CURRENT_USER {
                     OPPONENT_USER = user2 as? String ?? ""
                 }else {
                     OPPONENT_USER = user1 as? String ?? ""
                 }
                 
+                if let user1 = user1,let user2 = user2 {
+                    collectionRef.document(documentID).setData(["user1":user1 as! String,"user2":user2 as! String])
+                }
+                
                 if user1 != nil && user2 != nil {
-                    Firestore.firestore().collection("WaitList").document(CURRENT_USER).delete()
-                    if documentID == CURRENT_USER {
-                    collectionRef.document(CURRENT_USER).setData(["user1":user1 as! String,"user2":user2 as! String])
-                    }
+                    Firestore.firestore().collection("WaitList").document(documentID).delete()
                     self.activityIndicator.isHidden = true
                     self.performSegue(withIdentifier: "showTurnViewController", sender: nil)
                 }
