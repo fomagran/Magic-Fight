@@ -140,6 +140,7 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="9K5-Aq-HS5"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="F9Z-nR-1Mk" firstAttribute="centerX" secondItem="9K5-Aq-HS5" secondAttribute="centerX" id="Cc2-yd-8X0"/>
                             <constraint firstAttribute="bottom" secondItem="F9Z-nR-1Mk" secondAttribute="bottom" id="Kvq-EU-gUR"/>
@@ -149,6 +150,9 @@
                             <constraint firstItem="F9Z-nR-1Mk" firstAttribute="top" secondItem="9K5-Aq-HS5" secondAttribute="top" id="krE-K4-j08"/>
                             <constraint firstItem="N5p-sA-fHL" firstAttribute="centerY" secondItem="9K5-Aq-HS5" secondAttribute="centerY" id="qsd-Kn-W4Q"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="Du4-5v-KWp" appends="YES" id="m3W-gj-rDU"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="k3i-GO-gO2"/>
                     <connections>
@@ -160,6 +164,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2SC-IM-Df2" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="Du4-5v-KWp">
+                    <connections>
+                        <action selector="tapBackground:" destination="TTJ-5q-jgG" id="ggt-hK-42T"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="128.57142857142856" y="-217.39130434782609"/>
         </scene>

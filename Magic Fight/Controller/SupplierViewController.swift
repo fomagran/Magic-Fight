@@ -88,7 +88,7 @@ class SupplierViewController: UIViewController {
                 collectionRef.document(documentID).updateData(["\(CURRENT_USER)useCard":"\(currentCard!.name)"])
                 collectionRef.document(documentID).collection(CURRENT_USER).document(CURRENT_USER).collection("Trash").addDocument(data: currentCard!.toDictionary!)
                 cardEffect(name: currentCard!.name)
-                recordRef.document(recordDocument).collection("Turn").document(turnLastDocument).collection("UsedCard").addDocument(data: ["player":CURRENT_USER, "card":currentCard?.name ?? "","attribute":currentCard?.magicAttribute ?? "","price":currentCard?.usePrice ?? 0])
+//                recordRef.document(recordDocument).collection("Turn").document(turnLastDocument).collection("UsedCard").addDocument(data: ["player":CURRENT_USER, "card":currentCard?.name ?? "","attribute":currentCard?.magicAttribute ?? "","price":currentCard?.usePrice ?? 0])
                 dismiss(animated: true, completion: nil)
             }
         }else {
@@ -97,7 +97,7 @@ class SupplierViewController: UIViewController {
             }else {
                 collectionRef.document(documentID).collection(CURRENT_USER).document(CURRENT_USER).collection("Deck").addDocument(data: currentCard!.toDictionary!)
                 collectionRef.document(documentID).updateData(["\(CURRENT_USER)MP":FieldValue.increment(-Int64(currentCard?.price ?? 0))])
-                recordRef.document(recordDocument).collection("Turn").document(turnLastDocument).collection("BoughtCard").addDocument(data: ["player":CURRENT_USER, "card":currentCard?.name ?? "","price":currentCard?.price ?? 0])
+//                recordRef.document(recordDocument).collection("Turn").document(turnLastDocument).collection("BoughtCard").addDocument(data: ["player":CURRENT_USER, "card":currentCard?.name ?? "","price":currentCard?.price ?? 0])
                 dismiss(animated: true, completion: nil)
             }
         }
@@ -123,7 +123,7 @@ class SupplierViewController: UIViewController {
         cards = cards.filter{$0.name != "선물상자"}
         collectionRef.document(documentID).updateData(["\(CURRENT_USER)MP":FieldValue.increment(Int64(-2))])
         collectionRef.document(documentID).updateData(["\(CURRENT_USER)useCard":"선물상자"])
-        recordRef.document(recordDocument).collection("Turn").document(turnLastDocument).collection("UsedCard").addDocument(data: ["player":CURRENT_USER, "card":"선물상자","attribute":"무속성","price":선물상자.usePrice])
+//        recordRef.document(recordDocument).collection("Turn").document(turnLastDocument).collection("UsedCard").addDocument(data: ["player":CURRENT_USER, "card":"선물상자","attribute":"무속성","price":선물상자.usePrice])
         isSupplier = true
         bigCard.isHidden = true
         currentCard = nil
@@ -140,7 +140,7 @@ class SupplierViewController: UIViewController {
         MY_CARDS.remove(at:MY_CARDS.firstIndex{$0.name == "초급마법서"}!)
         collectionRef.document(documentID).updateData(["\(CURRENT_USER)MP":myMP-1])
         collectionRef.document(documentID).updateData(["\(CURRENT_USER)useCard":"초급마법서"])
-        recordRef.document(recordDocument).collection("Turn").document(turnLastDocument).collection("UsedCard").addDocument(data: ["player":CURRENT_USER, "card":"초급마법서","attribute":"무속성","price":초급마법서.usePrice])
+//        recordRef.document(recordDocument).collection("Turn").document(turnLastDocument).collection("UsedCard").addDocument(data: ["player":CURRENT_USER, "card":"초급마법서","attribute":"무속성","price":초급마법서.usePrice])
         collection.reloadData()
     }
     

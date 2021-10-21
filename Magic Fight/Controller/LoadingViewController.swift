@@ -15,6 +15,7 @@ class LoadingViewController: UIViewController {
     @IBOutlet weak var bgView: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        setKeyboardObserver()
         
         if UserDefaults.standard.string(forKey: "nickname") != nil {
             bgView.isHidden = true
@@ -49,4 +50,9 @@ class LoadingViewController: UIViewController {
             }
         }
     }
+    @IBAction func tapBackground(_ sender: Any) {
+        self.view.endEditing(true)
+    }
 }
+
+
