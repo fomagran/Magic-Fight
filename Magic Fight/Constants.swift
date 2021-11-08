@@ -9,7 +9,7 @@ import Foundation
 import FirebaseDatabase
 import FirebaseFirestore
 
-let CURRENT_USER = UserDefaults.standard.string(forKey: "nickname")!
+let CURRENT_USER = UserDefaults.standard.string(forKey: "Nickname")!
 var OPPONENT_USER:String = ""
 var PLAYER_NUMBER = "1"
 var documentID:String = ""

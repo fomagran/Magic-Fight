@@ -18,20 +18,19 @@ class LoadingViewController: UIViewController {
         super.viewDidLoad()
         setKeyboardObserver()
         
-        if UserDefaults.standard.string(forKey: "nickname") != nil {
+        if UserDefaults.standard.string(forKey: "Nickname") != nil {
             bgView.isHidden = true
             loadingLabel.isHidden = false
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                 self.performSegue(withIdentifier: "showMainViewController", sender: nil)
             }
-            
         }else {
             loadingLabel.isHidden = true
         }
     }
     
     func showAlert(title:String) {
-        let alert = UIAlertController(title: title, message:title, preferredStyle: .alert)
+        let alert = UIAlertController(title: title, message:"다른 닉네임을 사용해주세요!", preferredStyle: .alert)
         let action = UIAlertAction(title: "확인", style: .default) { (_) in
         }
         alert.addAction(action)
@@ -39,9 +38,9 @@ class LoadingViewController: UIViewController {
     }
     
     func checkOverlap(completion:@escaping(Bool)->Void) {
-        Firestore.firestore().collection("User").whereField("nickName",isEqualTo:nickNameTF.text ?? "").getDocuments { snapshot, error in
+        Firestore.firestore().collection("User").document(nickNameTF.text ?? "").getDocument { snapshot, error in
             guard let snapshot = snapshot else { return completion(false) }
-            if !snapshot.documents.isEmpty {
+            if let _ = snapshot.get("nickname") {
                 completion(true)
             }else {
                 completion(false)
@@ -56,16 +55,17 @@ class LoadingViewController: UIViewController {
             showAlert(title: "닉네임을 정해주세요!")
         }else {
             checkOverlap(completion:{ overlap in
-                if overlap {
+                if !overlap {
+                    self.loadingLabel.isHidden = false
+                    UserDefaults.standard.setValue(self.nickNameTF.text!, forKey: "Nickname")
+                    Firestore.firestore().collection("User").document(self.nickNameTF.text!).setData(["nickname" : self.nickNameTF.text!])
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                        self.performSegue(withIdentifier: "showMainViewController", sender: nil)
+                    }
+                }else {
                     self.showAlert(title: "닉네임이 중복되었습니다.")
-                    return
                 }
             })
-            loadingLabel.isHidden = false
-            UserDefaults.standard.setValue(nickNameTF.text!, forKey: "nickname")
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                self.performSegue(withIdentifier: "showMainViewController", sender: nil)
-            }
         }
     }
     @IBAction func tapBackground(_ sender: Any) {

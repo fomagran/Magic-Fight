@@ -85,7 +85,7 @@ class MainViewController: UIViewController {
     }
 
     private func configure() {
-        nicknameLabel.text = UserDefaults.standard.string(forKey: "nickname")
+        nicknameLabel.text = UserDefaults.standard.string(forKey: "Nickname")
         self.view.addSubview(self.activityIndicator)
         activityIndicator.isHidden = true
     }
