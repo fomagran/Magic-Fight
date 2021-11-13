@@ -1,2 +1,3 @@
 # Magic-Fight
-게임학과 캡스톤
+
+- [앱스토어 링크](https://apps.apple.com/app/id1588867897)
